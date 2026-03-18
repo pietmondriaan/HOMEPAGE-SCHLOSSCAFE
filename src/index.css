@@ -1,0 +1,85 @@
+@import "tailwindcss" layer(base);
+
+@theme {
+  --color-braun-900: #3a2a25;
+  --color-braun-800: #4a3530;
+  --color-braun-700: #543e39;
+  --color-braun-600: #6b4f48;
+  --color-braun-500: #8a6b62;
+  --color-braun-400: #a8897f;
+  --color-braun-300: #c4a99e;
+  --color-braun-200: #ddc8be;
+  --color-braun-100: #f0e4dd;
+  --color-braun-50: #faf5f2;
+  --color-creme: #fdf8f4;
+  --color-gold: #c9a86c;
+  --color-gold-light: #e0c992;
+  --color-rosa: #d4918a;
+  --color-rosa-light: #f0c4bf;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Lora', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-braun-900);
+  background-color: var(--color-creme);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-braun-900);
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(201, 168, 108, 0.4);
+}
+
+.btn-braun {
+  background: var(--color-braun-700);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.btn-braun:hover {
+  background: var(--color-braun-600);
+  transform: translateY(-2px);
+}
+
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(58, 42, 37, 0.15);
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+.ticker-scroll {
+  animation: ticker-scroll 35s linear infinite;
+}
+.ticker-scroll:hover {
+  animation-play-state: paused;
+}

@@ -1,0 +1,26 @@
+export const standorte = {
+  schlosscafe: {
+    name: "Schloss-Café",
+    ort: "Bleiburg",
+    adresse: "10. Oktober Platz 38, 9150 Bleiburg",
+    telefon: "04235 2979",
+    email: "oliver.burkhardt@gmx.at",
+    oeffnungszeiten: "Täglich 7:00 – 19:00 Uhr",
+    maps: "https://www.google.at/maps/dir//SCHLOSS+QUADRAT+Cafe,+10.+Oktober+Pl.+38,+9150+Bleiburg/@46.590407,14.7948093,17z",
+    logo: "/images/logos/schlosscafe-logo.png",
+    bild: "/images/schlosscafe-aussen.jpg",
+    beschreibung: "Unser Schloss-Café im Herzen von Bleiburg empfängt Sie in historischem Ambiente. Genießen Sie hausgemachte Mehlspeisen und Torten am wunderschönen 10. Oktober Platz.",
+  },
+  reinhardt: {
+    name: "Cafe Reinhardt",
+    ort: "Eberndorf",
+    adresse: "Kreuzbergweg 1, 9141 Eberndorf",
+    telefon: "04236 2140",
+    email: "oliver.burkhardt@gmx.at",
+    oeffnungszeiten: "Täglich 7:00 – 19:00 Uhr",
+    maps: "https://www.google.at/maps/dir//Cafe+Reinhart,+Kreuzberglweg+1,+9141+Eberndorf/@46.5910418,14.6073595,13z",
+    logo: "/images/logos/cafe-reinhart-logo.png",
+    bild: "/images/cafe-reinhart-aussen.jpg",
+    beschreibung: "Unser Cafe Reinhardt am Klopeinersee bietet Ihnen einen gemütlichen Rückzugsort. Regionale Köstlichkeiten und hausgemachte Eisspezialitäten in entspannter Atmosphäre.",
+  },
+}
