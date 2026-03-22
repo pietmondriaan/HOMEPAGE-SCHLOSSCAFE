@@ -1,6 +1,30 @@
 export const torten = [
   {
     id: 1,
+    name: "Topfen-Torte",
+    beschreibung: "Leicht und erfrischend – mit feinstem Topfen und einem Hauch Zitrone. Ein Klassiker aus unserer Vitrine.",
+    preis: null,
+    bild: "/images/Tortenvitrine3-Reinhart.jpg",
+    kategorie: "klassiker",
+  },
+  {
+    id: 2,
+    name: "Schwarzwälder Kirschtorte",
+    beschreibung: "Schokolade, Kirschen und Sahne – ein zeitloser Genuss nach traditionellem Rezept.",
+    preis: null,
+    bild: "/images/Tortenvitrine5-Reinhart.jpg",
+    kategorie: "klassiker",
+  },
+  {
+    id: 3,
+    name: "Nusstorte",
+    beschreibung: "Knackige Nüsse und cremige Füllung auf feinem Biskuitboden – hausgemacht mit Liebe.",
+    preis: null,
+    bild: "/images/Tortenvitrine7-Reinhart.jpg",
+    kategorie: "klassiker",
+  },
+  {
+    id: 4,
     name: "Elegante Hochzeitstorte",
     beschreibung: "Mehrstöckige Fondanttorte mit handmodellierten Zuckerrosen und Perlendetails — ein Traum in Weiß für Ihren großen Tag.",
     preis: null,
@@ -8,7 +32,7 @@ export const torten = [
     kategorie: "hochzeit",
   },
   {
-    id: 2,
+    id: 5,
     name: "Naked Cake mit Beeren",
     beschreibung: "Rustikaler Naked Cake mit frischen Beeren, Blüten und zartem Buttercreme-Finish — natürlich schön.",
     preis: null,
@@ -16,7 +40,7 @@ export const torten = [
     kategorie: "hochzeit",
   },
   {
-    id: 3,
+    id: 6,
     name: "Herztorte zur Hochzeit",
     beschreibung: "Personalisierte Doppelherz-Torte mit Fondantüberzug — individuell gestaltet für Ihr Fest.",
     preis: null,
@@ -24,7 +48,7 @@ export const torten = [
     kategorie: "hochzeit",
   },
   {
-    id: 4,
+    id: 7,
     name: "Blüten-Naked-Cake",
     beschreibung: "Dreistöckiger Semi-Naked-Cake mit echten Gerbera und Schleierkraut — Natur trifft Konditorkunst.",
     preis: null,
@@ -32,7 +56,7 @@ export const torten = [
     kategorie: "hochzeit",
   },
   {
-    id: 5,
+    id: 8,
     name: "Rosentorte in Rot",
     beschreibung: "Dreistöckige Fondanttorte mit roten Zuckerrosen — elegant und festlich für besondere Anlässe.",
     preis: null,
@@ -40,15 +64,7 @@ export const torten = [
     kategorie: "hochzeit",
   },
   {
-    id: 6,
-    name: "Festtorte mit Rosen",
-    beschreibung: "Zweistöckige Fondanttorte mit zarten rosa Rosen und Perlendekor — für Taufe, Geburtstag oder Jubiläum.",
-    preis: null,
-    bild: "/images/galerie/galerie-24.jpg",
-    kategorie: "festtorte",
-  },
-  {
-    id: 7,
+    id: 9,
     name: "Cupcake-Etagère",
     beschreibung: "Elegante Torte mit passenden Cupcakes auf einer Etagère — perfekt für Feiern mit vielen Gästen.",
     preis: null,
@@ -56,15 +72,7 @@ export const torten = [
     kategorie: "festtorte",
   },
   {
-    id: 8,
-    name: "Mr & Mrs Naked Cake",
-    beschreibung: "Romantischer Semi-Naked-Cake mit Beerendeko und goldenem Cake-Topper — für die moderne Hochzeit.",
-    preis: null,
-    bild: "/images/galerie/galerie-20.jpg",
-    kategorie: "hochzeit",
-  },
-  {
-    id: 9,
+    id: 10,
     name: "Hausgemachte Eisbecher",
     beschreibung: "Unsere verführerischen Eiskreationen mit frischen Früchten, Sahne und hausgemachter Sauce — ein Sommertraum.",
     preis: null,
@@ -78,7 +86,7 @@ export const aktionstorte = {
   name: "Aktionstorte der Woche",
   beschreibung: "Jede Woche überraschen wir Sie mit einer besonderen Kreation unserer Konditormeister. Fragen Sie nach!",
   preis: null,
-  bild: "/images/galerie/galerie-21.jpg",
+  bild: "/images/Tortenvitrine3-Reinhart.jpg",
   kategorie: "aktion",
   aktiv: true,
 }
