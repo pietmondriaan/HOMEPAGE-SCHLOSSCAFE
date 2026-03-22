@@ -20,9 +20,6 @@ export default function Footer() {
                 <FaInstagram size={16} />
               </a>
             </div>
-            <a href="https://restaurantguru.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-4">
-              <img src="./images/restaurant-guru-badge.webp" alt="Restaurant Guru 2023 — Best Coffeehouse in Bleiburg" className="h-20 sm:h-24 rounded-lg border border-braun-700 hover:border-gold transition-colors" />
-            </a>
           </div>
 
           <div>

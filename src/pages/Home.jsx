@@ -17,6 +17,21 @@ function Hero() {
       <div className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none hidden sm:block">
         <SpiralAnimation />
       </div>
+      {/* Restaurant Guru Badge — oben rechts */}
+      <a
+        href="https://restaurantguru.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute top-20 sm:top-24 right-4 sm:right-8 z-20 group hidden sm:flex flex-col items-center gap-1.5"
+      >
+        <img
+          src="./images/restaurant-guru-badge.webp"
+          alt="Restaurant Guru 2023 — Best Coffeehouse in Bleiburg"
+          className="h-16 lg:h-20 rounded-lg border border-creme/20 shadow-lg group-hover:border-gold/50 transition-all group-hover:scale-105"
+        />
+        <span className="text-[10px] text-creme/60 font-sans tracking-wide uppercase">Best Coffeehouse 2023</span>
+      </a>
+
       <div className="relative z-10 text-center px-5 sm:px-4 max-w-4xl pt-16 sm:pt-0">
         <p className="font-sans text-gold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm mb-4 sm:mb-6">Willkommen bei</p>
         <h1 className="text-4xl sm:text-6xl lg:text-8xl font-display text-creme mb-4 sm:mb-6 leading-tight">
