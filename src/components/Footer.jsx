@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10">
           <div className="col-span-2 md:col-span-1">
-            <img src="./images/logos/schloss-quadrat-logo.png" alt="Café mit Herz" className="h-12 sm:h-16 mb-3 sm:mb-4" />
+            <img src="./images/logos/schlosscafe-logo.png" alt="Café mit Herz" className="h-12 sm:h-16 mb-3 sm:mb-4" />
             <p className="text-sm leading-relaxed">
               Gastfreundschaft mit ganz viel Herz! Genießen Sie täglich frische, hausgemachte Mehlspeisen, Torten und Eisspezialitäten.
             </p>

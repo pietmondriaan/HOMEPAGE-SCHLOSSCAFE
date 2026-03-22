@@ -6,7 +6,7 @@ export const standorte = {
     telefon: "04235 2979",
     email: "oliver.burkhardt@gmx.at",
     oeffnungszeiten: "Täglich 7:00 – 19:00 Uhr",
-    maps: "https://www.google.at/maps/dir//SCHLOSS+QUADRAT+Cafe,+10.+Oktober+Pl.+38,+9150+Bleiburg/@46.590407,14.7948093,17z",
+    maps: "https://www.google.at/maps/dir//Schloss+Cafe,+10.+Oktober+Pl.+38,+9150+Bleiburg/@46.590407,14.7948093,17z",
     logo: "/images/logos/schlosscafe-logo.png",
     bild: "/images/schlosscafe-aussen.jpg",
     beschreibung: "Unser Schloss-Café im Herzen von Bleiburg empfängt Sie in historischem Ambiente. Genießen Sie hausgemachte Mehlspeisen und Torten am wunderschönen 10. Oktober Platz.",

@@ -42,7 +42,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <Link to="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <img src="./images/logos/schloss-quadrat-logo.png" alt="Café mit Herz" className="h-10 sm:h-14 w-auto" />
+            <img src="./images/logos/schlosscafe-logo.png" alt="Café mit Herz" className="h-10 sm:h-14 w-auto" />
             <span className="text-creme font-display text-lg sm:text-xl hidden sm:block">Café mit Herz</span>
           </Link>
 
