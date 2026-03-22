@@ -43,7 +43,10 @@ h1, h2, h3, h4 {
   font-family: var(--font-sans);
   font-weight: 600;
   transition: all 0.3s;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 .btn-gold:hover {
   transform: translateY(-2px);
@@ -58,7 +61,10 @@ h1, h2, h3, h4 {
   font-family: var(--font-sans);
   font-weight: 500;
   transition: all 0.3s;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 .btn-braun:hover {
   background: var(--color-braun-600);
