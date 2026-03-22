@@ -1,5 +1,16 @@
 export const events = [
   {
+    id: 2,
+    titel: "Josephimarkt Eberndorf 2026",
+    datum: "2026-03-21",
+    beschreibung: "Danke für Euren Besuch am Josephimarkt! Unsere hausgemachten Torten und Mehlspeisen waren wieder der Renner. Wir freuen uns schon auf nächstes Jahr!",
+    bild: "/images/josephimarkt-2026.jpg",
+    ort: "Cafe Reinhardt Eberndorf",
+    link: null,
+    dauerausstellung: false,
+    aktiv: true,
+  },
+  {
     id: 1,
     titel: "Dauerausstellung: Michael Pietrowski",
     datum: "2026-01-01",

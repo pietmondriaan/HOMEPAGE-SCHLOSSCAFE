@@ -12,7 +12,7 @@ export default function Footer() {
             <p className="text-sm leading-relaxed">
               Gastfreundschaft mit ganz viel Herz! Genießen Sie täglich frische, hausgemachte Mehlspeisen, Torten und Eisspezialitäten.
             </p>
-            <div className="flex gap-4 mt-5">
+            <div className="flex items-center gap-4 mt-5">
               <a href="https://www.facebook.com/search/top?q=schloss%20quadrat" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-braun-700 flex items-center justify-center hover:bg-gold transition-colors">
                 <FaFacebookF size={16} />
               </a>
@@ -20,6 +20,9 @@ export default function Footer() {
                 <FaInstagram size={16} />
               </a>
             </div>
+            <a href="https://restaurantguru.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-4">
+              <img src="./images/restaurant-guru-badge.webp" alt="Restaurant Guru 2023 — Best Coffeehouse in Bleiburg" className="h-20 sm:h-24 rounded-lg border border-braun-700 hover:border-gold transition-colors" />
+            </a>
           </div>
 
           <div>
