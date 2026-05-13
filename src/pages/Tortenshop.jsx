@@ -96,7 +96,7 @@ function BestellModal({ torte, onClose }) {
 
         <div className="mt-6 flex flex-col sm:flex-row gap-3">
           <a
-            href={`https://wa.me/4342352979?text=${bestellText}`}
+            href={`https://wa.me/436645336243?text=${bestellText}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-gold flex-1 text-center flex items-center justify-center gap-2"
@@ -156,7 +156,7 @@ export default function Tortenshop() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/4342352979?text=Hallo, ich möchte gerne eine individuelle Torte bestellen."
+                href="https://wa.me/436645336243?text=Hallo, ich möchte gerne eine individuelle Torte bestellen."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold flex items-center justify-center gap-2"
