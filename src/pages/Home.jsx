@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
 import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar } from 'react-icons/fa'
 import { torten, aktionstorte } from '../data/torten'
-import { events } from '../data/events'
+import { getActiveEvents } from '../data/events'
 import { standorte } from '../data/standorte'
 import SpiralAnimation from '../components/SpiralAnimation'
 import EventTicker from '../components/EventTicker'
@@ -13,11 +13,9 @@ function Hero() {
         <img src="./images/galerie/galerie-01.jpg" alt="Café mit Herz" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-braun-900/70 via-braun-900/50 to-braun-900/80" />
       </div>
-      {/* Spiral only on larger screens for performance */}
       <div className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none hidden sm:block">
         <SpiralAnimation />
       </div>
-      {/* Restaurant Guru Badge — oben rechts */}
       <a
         href="https://restaurantguru.com"
         target="_blank"
@@ -26,7 +24,7 @@ function Hero() {
       >
         <img
           src="./images/restaurant-guru-badge.webp"
-          alt="Restaurant Guru 2023 — Best Coffeehouse in Bleiburg"
+          alt="Restaurant Guru 2023 – Best Coffeehouse in Bleiburg"
           className="h-16 lg:h-20 rounded-lg border border-creme/20 shadow-lg group-hover:border-gold/50 transition-all group-hover:scale-105"
         />
         <span className="text-[10px] text-creme/60 font-sans tracking-wide uppercase">Best Coffeehouse 2023</span>
@@ -108,7 +106,7 @@ function TortenHighlight() {
           <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Schlemmen, Entspannen, Genießen</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-braun-800 mb-3 sm:mb-4">Unsere Torten</h2>
           <p className="text-braun-500 text-sm sm:text-base max-w-2xl mx-auto">
-            Aus hochwertigen, regionalen Zutaten — von unseren Konditormeistern täglich frisch zubereitet.
+            Aus hochwertigen, regionalen Zutaten – von unseren Konditormeistern täglich frisch zubereitet.
           </p>
         </div>
 
@@ -153,7 +151,7 @@ function TortenHighlight() {
 }
 
 function Events() {
-  const aktiveEvents = events.filter(e => e.aktiv)
+  const aktiveEvents = getActiveEvents()
   if (aktiveEvents.length === 0) return null
 
   return (
@@ -166,13 +164,16 @@ function Events() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {aktiveEvents.map(e => (
             <a key={e.id} href={e.link || '#'} target={e.link ? '_blank' : ''} rel="noopener noreferrer" className="card-hover bg-braun-700 rounded-2xl overflow-hidden block active:scale-[0.98] transition-transform">
-              <div className="h-40 sm:h-48 overflow-hidden">
-                <img src={`.${e.bild}`} alt={e.titel} className="w-full h-full object-cover" />
+              <div className={e.istPlakat ? "overflow-hidden bg-braun-900 flex items-center justify-center" : "h-40 sm:h-48 overflow-hidden"}>
+                <img src={`.${e.bild}`} alt={e.titel} className={e.istPlakat ? "w-full object-contain" : "w-full h-full object-cover"} />
               </div>
               <div className="p-5 sm:p-6">
                 <div className="flex items-center gap-2 text-gold text-sm mb-2 sm:mb-3">
                   <FaCalendarAlt />
-                  <span className="font-sans text-xs sm:text-sm">{e.dauerausstellung ? 'Dauerausstellung' : new Date(e.datum).toLocaleDateString('de-AT', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                  <span className="font-sans text-xs sm:text-sm">
+                    {e.dauerausstellung ? 'Dauerausstellung' : new Date(e.datum).toLocaleDateString('de-AT', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {e.uhrzeit ? ` · ${e.uhrzeit}` : ''}
+                  </span>
                 </div>
                 <h3 className="text-lg sm:text-xl font-display text-creme mb-1.5 sm:mb-2">{e.titel}</h3>
                 <p className="text-braun-300 text-xs sm:text-sm leading-relaxed">{e.beschreibung}</p>
