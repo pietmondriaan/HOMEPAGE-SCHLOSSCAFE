@@ -264,6 +264,12 @@ function Klassiker() {
       bild: '/images/klassiker/schaumrollen.jpg',
       video: '/images/klassiker/schaumrollen.mp4',
     },
+    {
+      name: 'Frühstück',
+      beschreibung: 'Üppige Etagère mit Käse, Aufschnitt, Eiern & Lachs — dazu Fruchtspiegel, Joghurt und frische Semmel. Nur auf Vorbestellung.',
+      bild: '/images/klassiker/fruehstueck-1.jpg',
+      badge: 'Auf Vorbestellung',
+    },
   ]
 
   return (
@@ -276,10 +282,10 @@ function Klassiker() {
             Täglich frisch in unseren Cafés — die Mehlspeisen, für die man immer wieder kommt.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {items.map(item => (
             <div key={item.name} className="card-hover bg-creme rounded-2xl overflow-hidden shadow-md">
-              <div className="relative h-60 sm:h-72 overflow-hidden">
+              <div className="relative h-60 sm:h-64 overflow-hidden">
                 {item.video ? (
                   <video
                     src={`.${item.video}`}
@@ -298,8 +304,13 @@ function Klassiker() {
                     <FaPlay size={8} /> Video
                   </div>
                 )}
+                {item.badge && (
+                  <div className="absolute top-3 left-3 bg-gold text-braun-900 font-sans text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow">
+                    {item.badge}
+                  </div>
+                )}
               </div>
-              <div className="p-5 sm:p-7">
+              <div className="p-5 sm:p-6">
                 <h3 className="text-xl sm:text-2xl font-display text-braun-800 mb-2">{item.name}</h3>
                 <p className="text-braun-500 text-sm leading-relaxed">{item.beschreibung}</p>
               </div>
