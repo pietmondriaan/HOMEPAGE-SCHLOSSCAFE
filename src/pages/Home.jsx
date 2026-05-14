@@ -319,7 +319,14 @@ function TortenHighlight() {
                 <span className="font-sans text-gold text-xs sm:text-sm font-semibold tracking-wide uppercase">Torte des Monats {aktionstorte.monat}</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-display text-braun-800 mb-2 sm:mb-3">{aktionstorte.name}</h3>
-              <p className="text-braun-600 text-sm sm:text-base mb-4 sm:mb-5">{aktionstorte.beschreibung}</p>
+              <p className="text-braun-600 text-sm sm:text-base mb-3 sm:mb-4">{aktionstorte.beschreibung}</p>
+              {aktionstorte.normalpreis && (
+                <div className="mb-4 sm:mb-5">
+                  <span className="text-braun-400 font-sans text-sm line-through mr-2">€ {aktionstorte.normalpreis.toFixed(2)}</span>
+                  <span className="text-gold font-sans font-bold text-xl">€ {aktionstorte.preis.toFixed(2)}</span>
+                  <span className="text-braun-500 font-sans text-xs ml-2">bei Online-Bestellung</span>
+                </div>
+              )}
               <Link to="/torten" className="btn-gold">Jetzt bestellen</Link>
             </div>
           </div>
