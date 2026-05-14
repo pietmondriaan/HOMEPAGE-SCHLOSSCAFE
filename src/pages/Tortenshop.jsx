@@ -22,14 +22,20 @@ function TortenKarte({ torte, onBestellen }) {
         )}
         {torte.kategorie === 'aktion' && (
           <div className="absolute top-4 right-4 bg-gold text-braun-900 font-sans text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-            <FaStar size={10} /> AKTION
+            <FaStar size={10} /> TORTE DES MONATS
           </div>
         )}
       </div>
       <div className="p-6">
         <h3 className="text-xl font-display text-braun-800 mb-2">{torte.name}</h3>
         <p className="text-braun-500 text-sm leading-relaxed mb-4">{torte.beschreibung}</p>
-        {torte.preis && (
+        {torte.normalpreis && (
+          <div className="mb-4">
+            <p className="text-braun-400 font-sans text-sm line-through">€ {torte.normalpreis.toFixed(2)}</p>
+            <p className="text-gold font-sans font-bold text-xl">€ {torte.preis.toFixed(2)} <span className="text-sm font-normal">bei Online-Bestellung</span></p>
+          </div>
+        )}
+        {torte.preis && !torte.normalpreis && (
           <p className="text-gold font-sans font-bold text-lg mb-4">€ {torte.preis.toFixed(2)}</p>
         )}
         <button
@@ -150,7 +156,14 @@ export default function Tortenshop() {
 
           {aktionstorte.aktiv && (
             <div className="mb-16">
-              <TortenKarte torte={aktionstorte} onBestellen={setSelected} />
+              <h2 className="text-2xl font-display text-braun-800 mb-6 flex items-center gap-3">
+                <FaStar className="text-gold" size={20} />
+                Torte des Monats
+                <span className="text-braun-400 font-sans text-sm font-normal">— {aktionstorte.monat}</span>
+              </h2>
+              <div className="max-w-sm">
+                <TortenKarte torte={aktionstorte} onBestellen={setSelected} />
+              </div>
             </div>
           )}
 

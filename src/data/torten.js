@@ -21,15 +21,15 @@ export const torten = [
     name: "Mokkatorte",
     beschreibung: "Zarter Mokka-Geschmack trifft auf luftige Cremefüllung – für alle, die Kaffee lieben.",
     preis: null,
-    bild: "/images/torten/mokkatorte.jpg",
+    bild: "/images/torten/mokkatorte-2.jpg",
     kategorie: "klassiker",
   },
   {
     id: 11,
-    name: "Schokosahnetorte",
+    name: "Schoko-Sahne-Torte",
     beschreibung: "Saftige Schokoladenschichten mit zarter Sahne – ein Traum für Schokoladen-Fans.",
     preis: null,
-    bild: "/images/torten/schokosahnetorte.jpg",
+    bild: "/images/torten/schokosahnetorte-4.jpg",
     kategorie: "klassiker",
   },
   {
@@ -92,10 +92,12 @@ export const torten = [
 
 export const aktionstorte = {
   id: 99,
-  name: "Aktionstorte der Woche",
-  beschreibung: "Jede Woche überraschen wir Sie mit einer besonderen Kreation unserer Konditormeister. Fragen Sie nach!",
-  preis: null,
-  bild: "/images/torten/mokkatorte.jpg",
+  name: "Schoko-Sahne-Torte",
+  beschreibung: "Saftige Schokoladenschichten mit zarter Sahne — unser Highlight im Mai. Bei Online-Bestellung zum Aktionspreis.",
+  preis: 52,
+  normalpreis: 58,
+  bild: "/images/torten/schokosahnetorte-4.jpg",
   kategorie: "aktion",
+  monat: "Mai 2026",
   aktiv: true,
 }
