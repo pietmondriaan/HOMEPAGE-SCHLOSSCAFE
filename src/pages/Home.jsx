@@ -1,12 +1,124 @@
 ﻿import { Link } from 'react-router-dom'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { usePageTitle } from '../hooks/usePageTitle'
-import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar, FaPlay, FaClock, FaMapMarkerAlt, FaExternalLinkAlt } from 'react-icons/fa'
+import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar, FaPlay, FaClock, FaMapMarkerAlt, FaExternalLinkAlt, FaIceCream, FaWhatsapp, FaUsers } from 'react-icons/fa'
 import { torten, aktionstorte } from '../data/torten'
 import { getActiveEvents } from '../data/events'
 import { standorte } from '../data/standorte'
 import SpiralAnimation from '../components/SpiralAnimation'
 import EventTicker from '../components/EventTicker'
+
+function AutoPlayVideo({ src, poster, className, muted = true, loop = false, playsInline = false, ...props }) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const v = ref.current
+    if (!v) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        v.play().catch(() => {})
+        observer.disconnect()
+      }
+    }, { rootMargin: '150px' })
+    observer.observe(v)
+    return () => observer.disconnect()
+  }, [])
+  return (
+    <video
+      ref={ref}
+      src={src}
+      poster={poster}
+      muted={muted}
+      loop={loop}
+      playsInline={playsInline}
+      preload="none"
+      className={className}
+      {...props}
+    />
+  )
+}
+
+function FruehstueckModal({ onClose }) {
+  const [datum, setDatum] = useState('')
+  const [uhrzeit, setUhrzeit] = useState('')
+  const [personen, setPersonen] = useState(2)
+  const tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  const minDate = tomorrow.toISOString().split('T')[0]
+  const waText = encodeURIComponent(
+    `Hallo, ich möchte ein Frühstück auf Vorbestellung.\n\nDatum: ${datum || '–'}\nUhrzeit: ${uhrzeit ? uhrzeit + ' Uhr' : '–'}\nAnzahl Personen: ${personen}`
+  )
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-braun-900/70 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-t-2xl sm:rounded-2xl max-w-md w-full p-5 sm:p-8 shadow-2xl max-h-[90svh] overflow-y-auto"
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="w-10 h-1 bg-braun-200 rounded-full mx-auto mb-4 sm:hidden" />
+        <h3 className="text-xl sm:text-2xl font-display text-braun-800 mb-1.5">Frühstück vorbestellen</h3>
+        <p className="text-braun-500 text-xs sm:text-sm mb-5">
+          Wir bereiten alles frisch für Sie vor. Bitte ab morgen einplanen.
+        </p>
+        <div className="space-y-4">
+          <div>
+            <label className="font-sans text-sm text-braun-600 block mb-1.5 flex items-center gap-2">
+              <FaCalendarAlt className="text-gold" size={12} /> Datum
+            </label>
+            <input
+              type="date"
+              min={minDate}
+              value={datum}
+              onChange={e => setDatum(e.target.value)}
+              className="w-full border border-braun-200 rounded-lg px-4 py-3 text-braun-800 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-gold"
+            />
+          </div>
+          <div>
+            <label className="font-sans text-sm text-braun-600 block mb-1.5 flex items-center gap-2">
+              <FaClock className="text-gold" size={12} /> Uhrzeit
+            </label>
+            <input
+              type="time"
+              value={uhrzeit}
+              onChange={e => setUhrzeit(e.target.value)}
+              className="w-full border border-braun-200 rounded-lg px-4 py-3 text-braun-800 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-gold"
+            />
+          </div>
+          <div>
+            <label className="font-sans text-sm text-braun-600 block mb-1.5 flex items-center gap-2">
+              <FaUsers className="text-gold" size={12} /> Anzahl Personen
+            </label>
+            <input
+              type="number"
+              min={1}
+              max={30}
+              value={personen}
+              onChange={e => setPersonen(e.target.value)}
+              className="w-full border border-braun-200 rounded-lg px-4 py-3 text-braun-800 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-gold"
+            />
+          </div>
+        </div>
+        <div className="mt-6">
+          <a
+            href={`https://wa.me/436645336243?text=${waText}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold w-full flex items-center justify-center gap-2"
+          >
+            <FaWhatsapp size={18} /> Per WhatsApp vorbestellen
+          </a>
+        </div>
+        <button
+          onClick={onClose}
+          className="mt-4 w-full text-center text-braun-400 font-sans text-sm hover:text-braun-600"
+        >
+          Abbrechen
+        </button>
+      </div>
+    </div>
+  )
+}
 
 function Hero() {
   return (
@@ -124,6 +236,98 @@ function Standorte() {
           ))}
         </div>
       </div>
+    </section>
+  )
+}
+
+function Klassiker() {
+  const [modalOpen, setModalOpen] = useState(false)
+  const items = [
+    {
+      name: 'Erdbeertörtchen',
+      beschreibung: 'Hausgemachte Roulade mit Marillen-Marmelade, gesüßtem Schlagobers, frischen Erdbeeren und säuerlicher Gelatine — ein Klassiker der Vitrine.',
+      bild: '/images/klassiker/erdbeertortchen.jpg',
+      video: null,
+    },
+    {
+      name: 'Schaumrollen',
+      beschreibung: 'Hauchdünner Blätterteig, gefüllt mit süßem Ei-Schnee nach Art des Hauses — hausgemacht wie eh und je.',
+      bild: '/images/klassiker/schaumrollen.jpg',
+      video: '/images/klassiker/schaumrollen.mp4',
+    },
+    {
+      name: 'Frühstück',
+      beschreibung: 'Üppige Etagère mit Käse, Aufschnitt, Eiern & Lachs — dazu Fruchtspiegel, Joghurt und frische Semmel. Nur auf Vorbestellung.',
+      bild: '/images/klassiker/fruehstueck-1.jpg',
+      badge: 'Auf Vorbestellung',
+    },
+    {
+      name: 'Eiskreationen',
+      beschreibung: 'Hausgemachte Eisbecher und Eisspezialitäten — täglich frisch, nach Saison und Laune.',
+      bild: null,
+      video: '/images/klassiker/eiskreationen.mp4',
+    },
+  ]
+
+  return (
+    <section className="py-16 sm:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-16">
+          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Café Reinhart & Schloss-Café</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-braun-800 mb-3 sm:mb-4">Unsere Klassiker</h2>
+          <p className="text-braun-500 text-sm sm:text-base max-w-xl mx-auto">
+            Täglich frisch in unseren Cafés — die Mehlspeisen, für die man immer wieder kommt.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {items.map(item => (
+            <div key={item.name} className="card-hover bg-creme rounded-2xl overflow-hidden shadow-md">
+              <div className="relative h-60 sm:h-64 overflow-hidden">
+                {item.video ? (
+                  <AutoPlayVideo
+                    src={`.${item.video}`}
+                    poster={item.bild ? `.${item.bild}` : undefined}
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <img
+                    src={`.${item.bild}`}
+                    alt={item.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                )}
+                {item.video && (
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm text-white font-sans text-[10px] tracking-wide px-2.5 py-1 rounded-full">
+                    <FaPlay size={8} /> Video
+                  </div>
+                )}
+                {item.badge && (
+                  <div className="absolute top-3 left-3 bg-gold text-braun-900 font-sans text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow">
+                    {item.badge}
+                  </div>
+                )}
+              </div>
+              <div className="p-5 sm:p-6">
+                <h3 className="text-xl sm:text-2xl font-display text-braun-800 mb-2">{item.name}</h3>
+                <p className="text-braun-500 text-sm leading-relaxed">{item.beschreibung}</p>
+                {item.name === 'Frühstück' && (
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="mt-4 btn-gold w-full text-sm flex items-center justify-center gap-2"
+                  >
+                    <FaShoppingBag size={13} /> Jetzt vorbestellen
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {modalOpen && <FruehstueckModal onClose={() => setModalOpen(false)} />}
     </section>
   )
 }
@@ -287,6 +491,68 @@ function TortenHighlight() {
   )
 }
 
+function EisMitMicha() {
+  const waText = encodeURIComponent(
+    'Hallo, ich interessiere mich für die Vermietung der Eismaschine / des Kühlwagens für eine Veranstaltung.'
+  )
+  return (
+    <section className="relative overflow-hidden bg-braun-900">
+      <div className="absolute inset-0">
+        <img
+          src="./images/vermietung/eismaschine-micha.jpg"
+          alt="Eisverkäufer Micha"
+          loading="lazy"
+          className="w-full h-full object-cover object-top opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-braun-900/95 via-braun-900/80 to-braun-900/60" />
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div className="max-w-xl">
+          <div className="flex items-center gap-2 mb-4">
+            <FaIceCream className="text-gold" size={14} />
+            <span className="font-sans text-gold text-xs tracking-[0.2em] uppercase font-semibold">Events & Vermietung</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-display text-creme mb-4 leading-tight">
+            Eis für Ihr Fest —<br />
+            <span className="text-gold italic">mit Micha dabei.</span>
+          </h2>
+          <p className="text-braun-300 text-sm sm:text-base leading-relaxed mb-3">
+            Soft-Eis-Maschine inkl. Eisverkäufer Micha für Ihren Event —
+            <span className="text-gold font-semibold"> € 500 für 6 Stunden</span>
+            , inkl. Material, Auf- &amp; Abbau.
+          </p>
+          <p className="text-braun-400 text-sm mb-8">Außerdem: Kühlwagen-Vermietung auf Anfrage.</p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link
+              to="/vermietung"
+              className="btn-gold flex items-center justify-center gap-2 text-sm"
+            >
+              Alle Angebote <FaArrowRight size={12} />
+            </Link>
+            <a
+              href={`https://wa.me/436645336243?text=${waText}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-braun flex items-center justify-center gap-2 text-sm !border-braun-600"
+            >
+              <FaWhatsapp size={15} /> Direkt anfragen
+            </a>
+          </div>
+        </div>
+      </div>
+      {/* Price badge - desktop only */}
+      <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center">
+        <div className="bg-gradient-to-br from-gold via-gold-light to-gold text-braun-900 rounded-2xl px-8 py-6 shadow-[0_8px_40px_rgba(201,168,108,0.5)] text-center">
+          <p className="font-sans text-[10px] tracking-[0.2em] uppercase font-bold mb-1 opacity-70">mit Micha</p>
+          <p className="font-display text-5xl font-bold leading-none">€ 500</p>
+          <p className="font-sans text-xs mt-1.5 opacity-75">6 Stunden · inkl. Material</p>
+        </div>
+        <p className="text-braun-500 font-sans text-[10px] mt-3 italic">exkl. Trinkgeld</p>
+      </div>
+    </section>
+  )
+}
+
 function VideoKarte({ e }) {
   const ref = useRef(null)
   useEffect(() => {
@@ -366,8 +632,10 @@ export default function Home() {
     <>
       <Hero />
       <Standorte />
+      <Klassiker />
       <KulturMoment />
       <TortenHighlight />
+      <EisMitMicha />
       <Events />
     </>
   )

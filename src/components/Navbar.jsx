@@ -160,6 +160,7 @@ export default function Navbar() {
             {/* Flat nav items */}
             {[
               { to: '/torten', label: 'Tortenshop' },
+              { to: '/vermietung', label: 'Vermietung' },
             ].map(l => (
               <Link
                 key={l.to}
@@ -277,6 +278,9 @@ export default function Navbar() {
             {/* Flat mobile links */}
             <Link to="/torten" className={`block px-6 py-4 font-sans text-base active:bg-braun-700 transition-colors ${isActive('/torten') ? 'text-gold bg-braun-700/50 font-semibold' : 'text-braun-200'}`}>
               Tortenshop
+            </Link>
+            <Link to="/vermietung" className={`block px-6 py-4 font-sans text-base active:bg-braun-700 transition-colors ${isActive('/vermietung') ? 'text-gold bg-braun-700/50 font-semibold' : 'text-braun-200'}`}>
+              Vermietung
             </Link>
             <button onClick={scrollToEvents} className="block w-full text-left px-6 py-4 font-sans text-base text-braun-200 active:bg-braun-700 transition-colors">
               Events

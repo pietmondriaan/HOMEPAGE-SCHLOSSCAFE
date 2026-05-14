@@ -11,6 +11,7 @@ import Datenschutz from './pages/Datenschutz'
 import AGB from './pages/AGB'
 import Widerruf from './pages/Widerruf'
 import Karten from './pages/Karten'
+import Vermietung from './pages/Vermietung'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/agb" element={<AGB />} />
           <Route path="/widerruf" element={<Widerruf />} />
           <Route path="/karten" element={<Karten />} />
+          <Route path="/vermietung" element={<Vermietung />} />
         </Routes>
       </main>
       <Footer />
