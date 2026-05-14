@@ -72,22 +72,6 @@ export const torten = [
     bild: "/images/galerie/galerie-28.jpg",
     kategorie: "hochzeit",
   },
-  {
-    id: 9,
-    name: "Cupcake-Etagère",
-    beschreibung: "Elegante Torte mit passenden Cupcakes auf einer Etagère — perfekt für Feiern mit vielen Gästen.",
-    preis: null,
-    bild: "/images/galerie/galerie-30.jpg",
-    kategorie: "festtorte",
-  },
-  {
-    id: 10,
-    name: "Hausgemachte Eisbecher",
-    beschreibung: "Unsere verführerischen Eiskreationen mit frischen Früchten, Sahne und hausgemachter Sauce — ein Sommertraum.",
-    preis: null,
-    bild: "/images/galerie/galerie-03.jpg",
-    kategorie: "eis",
-  },
 ]
 
 export const aktionstorte = {
