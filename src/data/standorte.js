@@ -10,6 +10,8 @@ export const standorte = {
     logo: "/images/logos/schlosscafe-logo.png",
     bild: "/images/schlosscafe-aussen.jpg",
     beschreibung: "Unser Schloss-Café im Herzen von Bleiburg empfängt Sie in historischem Ambiente. Genießen Sie hausgemachte Mehlspeisen und Torten am wunderschönen 10. Oktober Platz.",
+    whatsapp: "436645336243",
+    googleReview: "https://maps.google.com/?cid=15374964977103743120",
   },
   reinhardt: {
     name: "Cafe Reinhardt",
@@ -22,5 +24,7 @@ export const standorte = {
     logo: "/images/logos/cafe-reinhart-logo.png",
     bild: "/images/cafe-reinhart-aussen.jpg",
     beschreibung: "Unser Cafe Reinhardt am Klopeinersee bietet Ihnen einen gemütlichen Rückzugsort. Regionale Köstlichkeiten und hausgemachte Eisspezialitäten in entspannter Atmosphäre.",
+    whatsapp: "436645336243",
+    googleReview: "https://maps.google.com/?cid=18071507739389262239",
   },
 }
