@@ -135,7 +135,7 @@ export default function Vermietung() {
 
                 {/* Preis */}
                 <div className="mb-8">
-                  <PreisGlossy preis="500" einheit="pro Tag · inkl. MwSt." klein="Online-Preis" />
+                  <PreisGlossy preis="500" einheit="6 Std. · inkl. MwSt." klein="pro Einsatz" />
                 </div>
 
                 {/* Inkl./Exkl. */}

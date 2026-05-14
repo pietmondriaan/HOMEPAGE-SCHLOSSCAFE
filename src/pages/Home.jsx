@@ -454,7 +454,7 @@ function VermietungTeaser() {
           </h2>
           <p className="text-braun-300 text-sm sm:text-base leading-relaxed mb-3">
             Soft-Eis-Maschine inkl. Eisverkäufer Micha für Ihren Event —
-            <span className="text-gold font-semibold"> € 500 pro Tag</span>, inkl. Material, Auf- & Abbau.
+            <span className="text-gold font-semibold"> € 500 für 6 Stunden</span>, inkl. Material, Auf- & Abbau.
           </p>
           <p className="text-braun-400 text-sm mb-8">
             Außerdem: Kühlwagen-Vermietung auf Anfrage.
@@ -480,7 +480,7 @@ function VermietungTeaser() {
         <div className="bg-gradient-to-br from-gold via-gold-light to-gold text-braun-900 rounded-2xl px-8 py-6 shadow-[0_8px_40px_rgba(201,168,108,0.5)] text-center">
           <p className="font-sans text-[10px] tracking-[0.2em] uppercase font-bold mb-1 opacity-70">mit Micha</p>
           <p className="font-display text-5xl font-bold leading-none">€ 500</p>
-          <p className="font-sans text-xs mt-1.5 opacity-75">pro Tag · inkl. Material</p>
+          <p className="font-sans text-xs mt-1.5 opacity-75">6 Stunden · inkl. Material</p>
         </div>
         <p className="text-braun-500 font-sans text-[10px] mt-3 italic">exkl. Trinkgeld</p>
       </div>
