@@ -79,6 +79,43 @@ h1, h2, h3, h4 {
   box-shadow: 0 20px 40px rgba(58, 42, 37, 0.15);
 }
 
+/* Skip-to-content link — visible only when focused (keyboard nav) */
+.skip-to-content {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--color-gold);
+  color: var(--color-braun-900);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  text-decoration: none;
+  transition: top 0.2s;
+  outline: 3px solid var(--color-braun-900);
+}
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Global focus-visible — keyboard nav gets a clear outline, mouse clicks don't */
+*:focus {
+  outline: none;
+}
+*:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* High-contrast focus on dark backgrounds */
+nav *:focus-visible,
+footer *:focus-visible {
+  outline-color: var(--color-gold-light);
+}
+
 @keyframes ticker-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-33.333%); }

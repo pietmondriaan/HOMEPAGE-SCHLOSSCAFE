@@ -1,4 +1,7 @@
+import { usePageTitle } from '../hooks/usePageTitle'
+
 export default function Widerruf() {
+  usePageTitle('Widerrufsbelehrung')
   return (
     <div className="pt-20">
       <section className="py-24 bg-creme">
@@ -27,7 +30,7 @@ export default function Widerruf() {
           <h2>Kontakt für Stornierungen</h2>
           <p>
             Schloss-Café Bleiburg: 04235 2979<br />
-            Cafe Reinhardt Eberndorf: 04236 2140<br />
+            Cafe Reinhart Eberndorf: 04236 2140<br />
             E-Mail: oliver.burkhardt@gmx.at
           </p>
 

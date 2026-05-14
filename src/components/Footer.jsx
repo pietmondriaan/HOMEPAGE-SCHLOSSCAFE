@@ -33,7 +33,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-creme text-base sm:text-lg mb-3 sm:mb-4">Cafe Reinhardt Eberndorf</h4>
+            <h4 className="text-creme text-base sm:text-lg mb-3 sm:mb-4">Cafe Reinhart Eberndorf</h4>
             <div className="space-y-2 text-sm">
               <p className="flex items-start gap-2"><FaMapMarkerAlt className="mt-1 shrink-0" /> {standorte.reinhardt.adresse}</p>
               <p className="flex items-center gap-2"><FaPhone /> {standorte.reinhardt.telefon}</p>
@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-braun-700 mt-12 pt-8 text-center text-xs text-braun-500">
-          <p>&copy; {new Date().getFullYear()} Café mit Herz – Schloss-Café & Cafe Reinhardt. Alle Rechte vorbehalten.</p>
+          <p>&copy; {new Date().getFullYear()} Café mit Herz – Schloss-Café & Cafe Reinhart. Alle Rechte vorbehalten.</p>
           <p className="mt-1">Websitegestaltung: Pietrowski vis a vision</p>
         </div>
       </div>

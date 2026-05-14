@@ -1,4 +1,7 @@
+import { usePageTitle } from '../hooks/usePageTitle'
+
 export default function AGB() {
+  usePageTitle('Allgemeine Geschäftsbedingungen')
   return (
     <div className="pt-20">
       <section className="py-24 bg-creme">
@@ -28,7 +31,7 @@ export default function AGB() {
 
           <h2>4. Abholung</h2>
           <p>
-            Bestellte Torten werden im gewählten Standort (Schloss-Café Bleiburg oder Cafe Reinhardt
+            Bestellte Torten werden im gewählten Standort (Schloss-Café Bleiburg oder Cafe Reinhart
             Eberndorf) zur Abholung bereitgestellt. Die Abholung ist frühestens am nächsten Werktag
             nach Bestelleingang möglich. Den genauen Abholzeitpunkt bestätigen wir Ihnen bei
             Bestellbestätigung.

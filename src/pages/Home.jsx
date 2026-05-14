@@ -1,5 +1,7 @@
 ﻿import { Link } from 'react-router-dom'
-import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar } from 'react-icons/fa'
+import { useRef, useEffect } from 'react'
+import { usePageTitle } from '../hooks/usePageTitle'
+import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar, FaPlay, FaClock, FaMapMarkerAlt, FaExternalLinkAlt } from 'react-icons/fa'
 import { torten, aktionstorte } from '../data/torten'
 import { getActiveEvents } from '../data/events'
 import { standorte } from '../data/standorte'
@@ -61,6 +63,53 @@ function Hero() {
   )
 }
 
+function StandortKarte({ standortKey, s }) {
+  const videoRef = useRef(null)
+  const to = standortKey === 'schlosscafe' ? '/schlosscafe' : '/reinhardt'
+
+  return (
+    <Link to={to} className="group card-hover rounded-2xl overflow-hidden bg-white shadow-md">
+      <div className="relative h-48 sm:h-72 overflow-hidden">
+        {s.video ? (
+          <>
+            <video
+              ref={videoRef}
+              src={`.${s.video}`}
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={`.${s.bild}`}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm text-white font-sans text-[10px] tracking-wide px-2.5 py-1 rounded-full">
+              <FaPlay size={8} />
+              Live
+            </div>
+          </>
+        ) : (
+          <img src={`.${s.bild}`} alt={s.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-braun-900/60 to-transparent" />
+        {s.badge && (
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-gold text-braun-900 font-sans text-[10px] sm:text-xs font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow">
+            {s.badge}
+          </div>
+        )}
+        <img src={`.${s.logo}`} alt={`${s.name} Logo`} className="absolute bottom-3 left-4 sm:bottom-4 sm:left-6 h-12 sm:h-16 drop-shadow-lg" />
+      </div>
+      <div className="p-5 sm:p-8">
+        <h3 className="text-xl sm:text-2xl font-display text-braun-800 mb-1">{s.name}</h3>
+        <p className="text-gold font-sans text-sm mb-2 sm:mb-3">{s.ort}</p>
+        <p className="text-braun-600 text-sm sm:text-base leading-relaxed mb-3 sm:mb-4 line-clamp-3 sm:line-clamp-none">{s.beschreibung}</p>
+        <div className="flex items-center gap-2 text-gold font-sans text-sm font-semibold group-hover:gap-4 transition-all">
+          Mehr erfahren <FaArrowRight />
+        </div>
+      </div>
+    </Link>
+  )
+}
+
 function Standorte() {
   return (
     <section id="standorte" className="py-16 sm:py-24 bg-creme">
@@ -71,26 +120,114 @@ function Standorte() {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10">
           {Object.entries(standorte).map(([key, s]) => (
-            <Link
-              key={key}
-              to={`/${key === 'schlosscafe' ? 'schlosscafe' : 'reinhardt'}`}
-              className="group card-hover rounded-2xl overflow-hidden bg-white shadow-md"
-            >
-              <div className="relative h-48 sm:h-72 overflow-hidden">
-                <img src={`.${s.bild}`} alt={s.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-braun-900/60 to-transparent" />
-                <img src={`.${s.logo}`} alt={`${s.name} Logo`} className="absolute bottom-3 left-4 sm:bottom-4 sm:left-6 h-12 sm:h-16 drop-shadow-lg" />
-              </div>
-              <div className="p-5 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-display text-braun-800 mb-1">{s.name}</h3>
-                <p className="text-gold font-sans text-sm mb-2 sm:mb-3">{s.ort}</p>
-                <p className="text-braun-600 text-sm sm:text-base leading-relaxed mb-3 sm:mb-4 line-clamp-3 sm:line-clamp-none">{s.beschreibung}</p>
-                <div className="flex items-center gap-2 text-gold font-sans text-sm font-semibold group-hover:gap-4 transition-all">
-                  Mehr erfahren <FaArrowRight />
+            <StandortKarte key={key} standortKey={key} s={s} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function KulturMoment() {
+  return (
+    <section className="bg-[#0c0906] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0 items-center">
+
+          {/* Foto */}
+          <div className="relative order-1 lg:order-1 lg:pr-12 xl:pr-16">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <img
+                src="./images/helnwein-besuch.jpg"
+                alt="Gottfried Helnwein zu Gast im Schloss-Café Bleiburg"
+                className="w-full aspect-[4/5] sm:aspect-[3/4] object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0906]/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0c0906]/20" />
+            </div>
+            {/* Datum-Badge */}
+            <div className="absolute top-4 left-4 sm:top-5 sm:left-5 bg-gold text-braun-900 font-sans text-[10px] sm:text-xs font-bold tracking-[0.15em] uppercase px-3 py-1.5 rounded-full shadow-lg">
+              7. Mai 2026
+            </div>
+            {/* Dezente Linie links */}
+            <div className="hidden lg:block absolute -left-1 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-gold/30 to-transparent" />
+          </div>
+
+          {/* Text */}
+          <div className="order-2 lg:order-2 lg:pl-8 xl:pl-12">
+            <div className="flex items-center gap-3 mb-5 sm:mb-6">
+              <div className="w-8 h-px bg-gold" />
+              <p className="font-sans text-gold tracking-[0.25em] uppercase text-[10px] sm:text-xs">Besonderer Besuch</p>
+            </div>
+
+            <h2 className="text-4xl sm:text-5xl xl:text-6xl font-display text-creme leading-[1.08] mb-5 sm:mb-6">
+              Gottfried<br />Helnwein<br />
+              <span className="text-gold italic">zu Gast</span>
+            </h2>
+
+            <p className="text-braun-300 text-sm sm:text-base leading-relaxed mb-7 sm:mb-8 max-w-md">
+              Der Weltkünstler und Ehrenbürger von Bleiburg besuchte anlässlich der Eröffnung
+              der Ausstellung seiner Tochter <span className="text-creme font-medium">Mercedes Helnwein</span> im
+              Werner Berg Museum das Schloss-Café — nur wenige Schritte vom Museum entfernt, am selben Platz.
+            </p>
+
+            {/* Ausstellungs-Box */}
+            <div className="border border-braun-700/60 rounded-xl p-4 sm:p-5 mb-7 sm:mb-8 bg-braun-800/20 backdrop-blur-sm">
+              <p className="font-sans text-gold text-[10px] sm:text-xs tracking-[0.2em] uppercase mb-2.5">
+                Werner Berg Museum · Bleiburg
+              </p>
+              <h3 className="font-display text-creme text-lg sm:text-xl mb-1">Drei Welten im Nahbereich</h3>
+              <p className="text-braun-400 text-xs mb-3.5 italic">
+                Mercedes Helnwein · Werner Berg · Alberto Giacometti
+              </p>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-braun-300 text-xs">
+                  <FaCalendarAlt className="text-gold/70 shrink-0" size={10} />
+                  <span>8. Mai – 8. November 2026</span>
+                </div>
+                <div className="flex items-center gap-2 text-braun-300 text-xs">
+                  <FaClock className="text-gold/70 shrink-0" size={10} />
+                  <span>Di–So, 10:00–18:00 Uhr</span>
+                </div>
+                <div className="flex items-center gap-2 text-braun-300 text-xs">
+                  <FaMapMarkerAlt className="text-gold/70 shrink-0" size={10} />
+                  <span>10. Oktober Platz 4 · direkt am Schlossplatz</span>
                 </div>
               </div>
-            </Link>
-          ))}
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-7 sm:mb-8">
+              <a
+                href="https://www.wernerberg.museum"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-braun text-sm inline-flex items-center justify-center gap-2 !border-braun-600"
+              >
+                <FaExternalLinkAlt size={11} /> Zum Werner Berg Museum
+              </a>
+              <Link to="/kontakt" className="btn-gold text-sm inline-flex items-center justify-center gap-2">
+                Tisch reservieren
+              </Link>
+            </div>
+
+            {/* Pietrowski-Hinweis */}
+            <div className="pt-5 border-t border-braun-800">
+              <p className="text-braun-500 text-xs leading-relaxed">
+                <span className="text-braun-400">Kunst direkt im Café:</span> Die Dauerausstellung von{' '}
+                <a
+                  href="https://www.pietrowski.at"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold hover:text-gold-light transition-colors"
+                >
+                  Michael Pietrowski
+                </a>
+                {' '}— Fadenbilder, Acryl & CrossArt — ist täglich im Schloss-Café zu sehen und käuflich zu erwerben.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -150,6 +287,37 @@ function TortenHighlight() {
   )
 }
 
+function VideoKarte({ e }) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const v = ref.current
+    if (v) v.play().catch(() => {})
+  }, [])
+  return (
+    <div className="relative h-40 sm:h-48 overflow-hidden bg-braun-900">
+      <video
+        ref={ref}
+        src={`.${e.video}`}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-braun-900/40 to-transparent" />
+      <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm text-white font-sans text-[10px] tracking-wide px-2.5 py-1 rounded-full">
+        <FaPlay size={8} />
+        Video
+      </div>
+      {e.immer_zeigen && (
+        <div className="absolute top-3 left-3 bg-gold text-braun-900 font-sans text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow">
+          Aktuell
+        </div>
+      )}
+    </div>
+  )
+}
+
 function Events() {
   const aktiveEvents = getActiveEvents()
   if (aktiveEvents.length === 0) return null
@@ -164,9 +332,13 @@ function Events() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {aktiveEvents.map(e => (
             <a key={e.id} href={e.link || '#'} target={e.link ? '_blank' : ''} rel="noopener noreferrer" className="card-hover bg-braun-700 rounded-2xl overflow-hidden block active:scale-[0.98] transition-transform">
-              <div className={e.istPlakat ? "overflow-hidden bg-braun-900 flex items-center justify-center" : "h-40 sm:h-48 overflow-hidden"}>
-                <img src={`.${e.bild}`} alt={e.titel} className={e.istPlakat ? "w-full object-contain" : "w-full h-full object-cover"} />
-              </div>
+              {e.video ? (
+                <VideoKarte e={e} />
+              ) : (
+                <div className={e.istPlakat ? "overflow-hidden bg-braun-900 flex items-center justify-center" : "h-40 sm:h-48 overflow-hidden"}>
+                  <img src={`.${e.bild}`} alt={e.titel} className={e.istPlakat ? "w-full object-contain" : `w-full h-full object-cover ${e.objektPos === 'top' ? 'object-top' : ''}`} />
+                </div>
+              )}
               <div className="p-5 sm:p-6">
                 <div className="flex items-center gap-2 text-gold text-sm mb-2 sm:mb-3">
                   <FaCalendarAlt />
@@ -189,10 +361,12 @@ function Events() {
 }
 
 export default function Home() {
+  usePageTitle(null)
   return (
     <>
       <Hero />
       <Standorte />
+      <KulturMoment />
       <TortenHighlight />
       <Events />
     </>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FaWhatsapp, FaEnvelope, FaShoppingBag, FaStar, FaPalette } from 'react-icons/fa'
 import { torten, aktionstorte } from '../data/torten'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 function TortenKarte({ torte, onBestellen }) {
   return (
@@ -40,7 +41,7 @@ function BestellModal({ torte, onClose }) {
   morgen.setDate(morgen.getDate() + 1)
   const minDatum = morgen.toISOString().split('T')[0]
 
-  const bestellText = `Tortenbestellung:%0A%0ATorte: ${torte.name}%0AAbholung: ${standort === 'schlosscafe' ? 'Schloss-Café Bleiburg' : 'Cafe Reinhardt Eberndorf'}%0ADatum: ${datum}%0AName: ${name}%0ATelefon: ${telefon}`
+  const bestellText = `Tortenbestellung:%0A%0ATorte: ${torte.name}%0AAbholung: ${standort === 'schlosscafe' ? 'Schloss-Café Bleiburg' : 'Cafe Reinhart Eberndorf'}%0ADatum: ${datum}%0AName: ${name}%0ATelefon: ${telefon}`
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-braun-900/70 backdrop-blur-sm" onClick={onClose}>
@@ -59,7 +60,7 @@ function BestellModal({ torte, onClose }) {
               className="w-full border border-braun-200 rounded-lg px-4 py-3 text-braun-800 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-gold"
             >
               <option value="schlosscafe">Schloss-Café Bleiburg</option>
-              <option value="reinhardt">Cafe Reinhardt Eberndorf</option>
+              <option value="reinhardt">Cafe Reinhart Eberndorf</option>
             </select>
           </div>
           <div>
@@ -119,6 +120,7 @@ function BestellModal({ torte, onClose }) {
 }
 
 export default function Tortenshop() {
+  usePageTitle('Torten online bestellen – hausgemachte Konditorei-Torten')
   const [selected, setSelected] = useState(null)
 
   return (
