@@ -1,4 +1,7 @@
+import { usePageTitle } from '../hooks/usePageTitle'
+
 export default function Impressum() {
+  usePageTitle('Impressum')
   return (
     <div className="pt-20">
       <section className="py-24 bg-creme">
@@ -9,7 +12,7 @@ export default function Impressum() {
 
           <p>
             <strong>Oliver Burkhardt</strong><br />
-            Café mit Herz – Schloss-Café & Cafe Reinhardt<br />
+            Café mit Herz – Schloss-Café & Cafe Reinhart<br />
             10. Oktober Platz 38<br />
             9150 Bleiburg<br />
             Österreich

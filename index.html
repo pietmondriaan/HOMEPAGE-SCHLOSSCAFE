@@ -2,13 +2,265 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/images/logos/schloss-quadrat-logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/logos/schloss-quadrat-logo.png" />
+    <link rel="apple-touch-icon" href="/images/logos/schloss-quadrat-logo.png" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Café mit Herz – Schloss-Café Bleiburg & Cafe Reinhardt Eberndorf. Hausgemachte Torten, Mehlspeisen & Eisspezialitäten. Online Tortenbestellung." />
+
+    <!-- SEO: Title & Description -->
+    <title>Schloss-Café Bleiburg | Torten, Mehlspeisen & Kunst | Café mit Herz</title>
+    <meta name="description" content="Schloss-Café Bleiburg am 10. Oktober Platz – hausgemachte Torten, Mehlspeisen & Eisspezialitäten täglich 7–19 Uhr. Kunst von Pietrowski bis Helnwein. Neben dem Werner Berg Museum. Online Tortenbestellung. Cafe Reinhart Eberndorf am Klopeinersee." />
+    <meta name="keywords" content="Schloss-Café Bleiburg, Café Bleiburg, Kaffeehaus Bleiburg, Konditorei Bleiburg, Torten Bleiburg, Mehlspeisen Bleiburg, Eisspezialitäten, Cafe Reinhart Eberndorf, Cafe Klopeinersee, Kunst Bleiburg, Kultur Bleiburg, Helnwein Bleiburg, Werner Berg Museum, Pietrowski Kunst, Bleiburg Kärnten" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Café mit Herz – Oliver Burkhardt" />
+
+    <!-- Geo Tags für lokale Suche -->
+    <meta name="geo.region" content="AT-2" />
+    <meta name="geo.placename" content="Bleiburg, Kärnten, Österreich" />
+    <meta name="geo.position" content="46.590407;14.794809" />
+    <meta name="ICBM" content="46.590407, 14.794809" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.cafemitherz.at/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:title" content="Schloss-Café Bleiburg | Torten, Mehlspeisen & Kunst" />
+    <meta property="og:description" content="Hausgemachte Torten & Mehlspeisen täglich frisch. Kunst, Kultur & Gastfreundschaft am Bleiburger Schlossplatz. Neben dem Werner Berg Museum." />
+    <meta property="og:image" content="https://www.cafemitherz.at/images/schlosscafe-aussen.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://www.cafemitherz.at/" />
+    <meta property="og:site_name" content="Café mit Herz – Schloss-Café Bleiburg" />
+    <meta property="og:locale" content="de_AT" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Schloss-Café Bleiburg | Torten, Mehlspeisen & Kunst" />
+    <meta name="twitter:description" content="Hausgemachte Torten & Mehlspeisen täglich frisch. Kunst & Kultur am Bleiburger Schlossplatz." />
+    <meta name="twitter:image" content="https://www.cafemitherz.at/images/schlosscafe-aussen.jpg" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <title>Café mit Herz – Schloss-Café & Cafe Reinhardt</title>
+
+    <!-- Structured Data: JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CafeOrCoffeeShop",
+          "@id": "https://www.cafemitherz.at/#schlosscafe",
+          "name": "Schloss-Café",
+          "alternateName": ["Schloss Cafe Bleiburg", "Café mit Herz", "Kaffeehaus Bleiburg"],
+          "description": "Hausgemachte Torten, Mehlspeisen & Eisspezialitäten im historischen Schloss-Café am 10. Oktober Platz in Bleiburg, Kärnten. Täglich frisch. Kunstausstellungen vor Ort. Neben dem Werner Berg Museum. Online Tortenbestellung.",
+          "url": "https://www.cafemitherz.at",
+          "telephone": "+4342352979",
+          "email": "oliver.burkhardt@gmx.at",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "10. Oktober Platz 38",
+            "addressLocality": "Bleiburg",
+            "addressRegion": "Kärnten",
+            "postalCode": "9150",
+            "addressCountry": "AT"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 46.590407,
+            "longitude": 14.794809
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+              "opens": "07:00",
+              "closes": "19:00"
+            }
+          ],
+          "priceRange": "€€",
+          "servesCuisine": ["Österreichische Küche","Mehlspeisen","Torten","Eisspezialitäten","Kaffeespezialitäten","Konditorei"],
+          "image": "https://www.cafemitherz.at/images/schlosscafe-aussen.jpg",
+          "logo": "https://www.cafemitherz.at/images/logos/schlosscafe-logo.png",
+          "hasMap": "https://www.google.at/maps/dir//Schloss+Cafe,+10.+Oktober+Pl.+38,+9150+Bleiburg",
+          "award": "Restaurant Guru 2023 – Best Coffeehouse in Bleiburg",
+          "sameAs": ["https://www.facebook.com/search/top?q=schloss%20quadrat"],
+          "potentialAction": {
+            "@type": "ReserveAction",
+            "target": "https://www.cafemitherz.at/#/kontakt",
+            "name": "Tisch reservieren"
+          },
+          "nearbyAttractions": [
+            {
+              "@type": "Museum",
+              "name": "Werner Berg Museum",
+              "address": {"streetAddress": "10. Oktober Platz 4", "addressLocality": "Bleiburg"}
+            }
+          ]
+        },
+        {
+          "@type": "CafeOrCoffeeShop",
+          "@id": "https://www.cafemitherz.at/#reinhart",
+          "name": "Cafe Reinhart",
+          "alternateName": ["Cafe Reinhart Eberndorf", "Cafe Klopeinersee"],
+          "description": "Cafe Reinhart am Klopeinersee in Eberndorf, Kärnten – hausgemachte Mehlspeisen, Torten und Eisspezialitäten in entspannter Atmosphäre direkt am See.",
+          "telephone": "+4342362140",
+          "email": "oliver.burkhardt@gmx.at",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Kreuzbergweg 1",
+            "addressLocality": "Eberndorf",
+            "addressRegion": "Kärnten",
+            "postalCode": "9141",
+            "addressCountry": "AT"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 46.5910418,
+            "longitude": 14.6073595
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+              "opens": "07:00",
+              "closes": "19:00"
+            }
+          ],
+          "priceRange": "€€",
+          "servesCuisine": ["Österreichische Küche","Mehlspeisen","Torten","Eisspezialitäten"],
+          "image": "https://www.cafemitherz.at/images/cafe-reinhart-aussen.jpg",
+          "hasMap": "https://www.google.at/maps/dir//Cafe+Reinhart,+Kreuzberglweg+1,+9141+Eberndorf"
+        },
+        {
+          "@type": "ArtGallery",
+          "@id": "https://www.cafemitherz.at/#galerie-pietrowski",
+          "name": "Kunstausstellung Michael Pietrowski im Schloss-Café Bleiburg",
+          "description": "Dauerausstellung: Fadenbilder, Acryl, CrossArt & Beanie-Serie von Bleiburger Künstler Michael Pietrowski. Werke täglich im Schloss-Café zu besichtigen und käuflich zu erwerben.",
+          "location": {"@id": "https://www.cafemitherz.at/#schlosscafe"},
+          "creator": {
+            "@type": "Person",
+            "name": "Michael Pietrowski",
+            "url": "https://www.pietrowski.at",
+            "jobTitle": "Bildender Künstler",
+            "address": {"addressLocality": "Bleiburg", "addressCountry": "AT"}
+          }
+        },
+        {
+          "@type": "ExhibitionEvent",
+          "@id": "https://www.cafemitherz.at/#ausstellung-helnwein-2026",
+          "name": "Drei Welten im Nahbereich – Mercedes Helnwein, Werner Berg, Alberto Giacometti",
+          "description": "Kunstausstellung im Werner Berg Museum Bleiburg – direkt neben dem Schloss-Café am 10. Oktober Platz. Zur Eröffnung besuchte Weltkünstler Gottfried Helnwein das Schloss-Café.",
+          "startDate": "2026-05-08",
+          "endDate": "2026-11-08",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "location": {
+            "@type": "Museum",
+            "name": "Werner Berg Museum Bleiburg",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "10. Oktober Platz 4",
+              "addressLocality": "Bleiburg",
+              "postalCode": "9150",
+              "addressCountry": "AT"
+            }
+          },
+          "performer": [
+            {"@type": "Person", "name": "Mercedes Helnwein"},
+            {"@type": "Person", "name": "Werner Berg"},
+            {"@type": "Person", "name": "Alberto Giacometti"}
+          ],
+          "image": "https://www.cafemitherz.at/images/helnwein-besuch.jpg"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.cafemitherz.at/#website",
+          "url": "https://www.cafemitherz.at",
+          "name": "Café mit Herz – Schloss-Café Bleiburg & Cafe Reinhart Eberndorf",
+          "inLanguage": "de-AT",
+          "publisher": {"@id": "https://www.cafemitherz.at/#schlosscafe"}
+        }
+      ]
+    }
+    </script>
+
+    <!-- FAQ Schema — highest-impact GEO signal for AI search (ChatGPT, Gemini, Perplexity) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Wann ist das Schloss-Café Bleiburg geöffnet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das Schloss-Café Bleiburg am 10. Oktober Platz 38 ist täglich von 07:00 bis 19:00 Uhr geöffnet – Montag bis Sonntag, auch an Feiertagen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wo befindet sich das Schloss-Café in Bleiburg?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das Schloss-Café Bleiburg befindet sich am 10. Oktober Platz 38, 9150 Bleiburg, Kärnten – direkt neben dem Werner Berg Museum am historischen Schlossplatz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kann ich im Schloss-Café Bleiburg Torten bestellen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja! Im Schloss-Café können hausgemachte Torten online bestellt werden – per WhatsApp (+43 664 5336243) oder E-Mail (oliver.burkhardt@gmx.at). Motivtorten, Cremetorten und Saisonspezialitäten werden täglich frisch zubereitet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist das Besondere am Schloss-Café Bleiburg?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das Schloss-Café Bleiburg verbindet Kaffeehauskultur mit Kunst: Es beherbergt eine Dauerausstellung des Bleiburger Künstlers Michael Pietrowski. Das Café liegt direkt neben dem Werner Berg Museum und wurde 2023 als bestes Kaffeehaus in Bleiburg ausgezeichnet. Im Mai 2026 besuchte Weltkünstler Gottfried Helnwein das Café."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Gibt es ein Café in Bleiburg mit Kunst?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja – das Schloss-Café Bleiburg (10. Oktober Platz 38) ist gleichzeitig Galerie mit einer Dauerausstellung von Michael Pietrowski. Es liegt direkt neben dem Werner Berg Museum und ist das kulturelle Herz am Bleiburger Schlossplatz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist das Cafe Reinhart am Klopeinersee?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das Cafe Reinhart (Kreuzbergweg 1, 9141 Eberndorf) liegt direkt am Klopeinersee in Kärnten und gehört zur selben Familie wie das Schloss-Café Bleiburg. Geöffnet täglich 07:00–19:00 Uhr. Hausgemachte Mehlspeisen, Torten und Eisspezialitäten in entspannter Seeatmosphäre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Cafés gibt es in Bleiburg, Kärnten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das bekannteste Café in Bleiburg ist das Schloss-Café Bleiburg am 10. Oktober Platz 38 – ein historisches Kaffeehaus mit hausgemachten Torten, Mehlspeisen, Eisspezialitäten und Kunst. Es wurde 2023 als bestes Kaffeehaus in Bleiburg ausgezeichnet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie kann ich im Schloss-Café Bleiburg einen Tisch reservieren?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eine Tischreservierung ist per WhatsApp (+43 664 5336243), telefonisch (+43 4235 2979) oder per E-Mail (oliver.burkhardt@gmx.at) möglich. Für größere Gruppen wird eine Reservierung empfohlen."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

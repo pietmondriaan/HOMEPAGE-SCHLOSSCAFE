@@ -10,6 +10,7 @@ import Impressum from './pages/Impressum'
 import Datenschutz from './pages/Datenschutz'
 import AGB from './pages/AGB'
 import Widerruf from './pages/Widerruf'
+import Karten from './pages/Karten'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -20,9 +21,10 @@ function ScrollToTop() {
 export default function App() {
   return (
     <>
+      <a href="#main-content" className="skip-to-content">Zum Hauptinhalt springen</a>
       <ScrollToTop />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/schlosscafe" element={<Standort />} />
@@ -33,6 +35,7 @@ export default function App() {
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/agb" element={<AGB />} />
           <Route path="/widerruf" element={<Widerruf />} />
+          <Route path="/karten" element={<Karten />} />
         </Routes>
       </main>
       <Footer />

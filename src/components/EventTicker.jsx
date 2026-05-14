@@ -1,6 +1,6 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { FaStar, FaPalette } from 'react-icons/fa'
-import { events } from '../data/events'
+import { getActiveEvents } from '../data/events'
 import { aktionstorte } from '../data/torten'
 
 function TickerItem({ icon, label, text, accent }) {
@@ -24,16 +24,18 @@ export default function EventTicker() {
     items.push({
       icon: <FaStar size={10} />,
       label: 'Torte der Woche',
-      text: aktionstorte.name + ' — jetzt bestellen',
+      text: aktionstorte.name + ' – jetzt bestellen',
       accent: true,
     })
   }
 
-  events.filter(e => e.aktiv).forEach(e => {
+  getActiveEvents().forEach(e => {
     items.push({
       icon: <FaPalette size={10} />,
       label: e.dauerausstellung ? 'Ausstellung' : 'Event',
-      text: `${e.titel} · ${e.ort}`,
+      text: e.uhrzeit
+        ? `${e.titel} · ${new Date(e.datum).toLocaleDateString('de-AT', { day: 'numeric', month: 'long' })} · ${e.uhrzeit} · ${e.ort}`
+        : `${e.titel} · ${e.ort}`,
       accent: false,
     })
   })

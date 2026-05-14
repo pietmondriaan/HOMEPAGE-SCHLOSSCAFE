@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { FaWhatsapp, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
 import { standorte } from '../data/standorte'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 export default function Kontakt() {
-  const [form, setForm] = useState({ name: '', email: '', telefon: '', personen: '', datum: '', standort: 'schlosscafe', nachricht: '' })
+  usePageTitle('Kontakt & Reservierung')
+  const [form, setForm] = useState({ name: '', email: '', telefon: '', personen: '', datum: '', uhrzeit: '', standort: 'schlosscafe', nachricht: '' })
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const whatsappText = `Reservierung:%0A%0AName: ${form.name}%0APersonen: ${form.personen}%0ADatum: ${form.datum}%0AStandort: ${form.standort === 'schlosscafe' ? 'Schloss-Café Bleiburg' : 'Cafe Reinhardt Eberndorf'}%0ANachricht: ${form.nachricht}`
+  const whatsappText = `Reservierung:%0A%0AName: ${form.name}%0APersonen: ${form.personen}%0ADatum: ${form.datum}%0AUhrzeit: ${form.uhrzeit}%0AStandort: ${form.standort === 'schlosscafe' ? 'Schloss-Café Bleiburg' : 'Cafe Reinhart Eberndorf'}%0ANachricht: ${form.nachricht}`
 
   return (
     <div className="pt-20">
@@ -52,11 +54,17 @@ export default function Kontakt() {
                       className="w-full border border-braun-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
                   </div>
                   <div>
+                    <label className="font-sans text-sm text-braun-600 block mb-1">Uhrzeit *</label>
+                    <input name="uhrzeit" type="time" value={form.uhrzeit} onChange={handleChange}
+                      min="07:00" max="19:00"
+                      className="w-full border border-braun-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold" />
+                  </div>
+                  <div>
                     <label className="font-sans text-sm text-braun-600 block mb-1">Standort</label>
                     <select name="standort" value={form.standort} onChange={handleChange}
                       className="w-full border border-braun-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold">
                       <option value="schlosscafe">Schloss-Café Bleiburg</option>
-                      <option value="reinhardt">Cafe Reinhardt Eberndorf</option>
+                      <option value="reinhardt">Cafe Reinhart Eberndorf</option>
                     </select>
                   </div>
                 </div>
