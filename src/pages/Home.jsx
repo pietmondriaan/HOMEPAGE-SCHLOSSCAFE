@@ -270,6 +270,12 @@ function Klassiker() {
       bild: '/images/klassiker/fruehstueck-1.jpg',
       badge: 'Auf Vorbestellung',
     },
+    {
+      name: 'Eiskreationen',
+      beschreibung: 'Hausgemachte Eisbecher und Eisspezialitäten — täglich frisch, nach Saison und Laune.',
+      bild: null,
+      video: '/images/klassiker/eiskreationen.mp4',
+    },
   ]
 
   return (
@@ -282,7 +288,7 @@ function Klassiker() {
             Täglich frisch in unseren Cafés — die Mehlspeisen, für die man immer wieder kommt.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {items.map(item => (
             <div key={item.name} className="card-hover bg-creme rounded-2xl overflow-hidden shadow-md">
               <div className="relative h-60 sm:h-64 overflow-hidden">
