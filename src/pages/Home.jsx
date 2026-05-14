@@ -244,7 +244,7 @@ function Klassiker() {
     },
     {
       name: 'Schaumrollen',
-      beschreibung: 'Hauchdünner Blätterteig, gefüllt mit luftiger Schlagsahne — hausgemacht wie eh und je.',
+      beschreibung: 'Hauchdünner Blätterteig, gefüllt mit süßem Ei-Schnee nach Art des Hauses — hausgemacht wie eh und je.',
       bild: '/images/klassiker/schaumrollen.jpg',
       video: '/images/klassiker/schaumrollen.mp4',
     },
