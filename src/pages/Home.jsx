@@ -211,6 +211,22 @@ function KulturMoment() {
               </Link>
             </div>
 
+            {/* Museumsbecher */}
+            <div className="mb-7 sm:mb-8 rounded-2xl overflow-hidden border border-braun-700/60 flex flex-col sm:flex-row items-stretch">
+              <div className="sm:w-32 shrink-0 overflow-hidden">
+                <img
+                  src="./images/museumsbecher.jpg"
+                  alt="Museumsbecher – Helnwein/Berg/Giacometti"
+                  className="w-full h-28 sm:h-full object-cover object-top"
+                />
+              </div>
+              <div className="flex-1 bg-braun-800/40 px-4 py-3.5">
+                <p className="font-sans text-[10px] text-gold tracking-[0.18em] uppercase font-semibold mb-1">Unsere Empfehlung zur Ausstellung</p>
+                <p className="font-display text-creme text-base leading-snug mb-1">Museumsbecher</p>
+                <p className="font-sans text-braun-400 text-xs leading-relaxed">Schokolade · Stracciatella · hausgemachte Himbeersauce</p>
+              </div>
+            </div>
+
             {/* Pietrowski-Hinweis */}
             <div className="pt-5 border-t border-braun-800">
               <p className="text-braun-500 text-xs leading-relaxed">
