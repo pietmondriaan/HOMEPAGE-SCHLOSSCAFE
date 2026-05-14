@@ -238,7 +238,7 @@ function Klassiker() {
   const items = [
     {
       name: 'Erdbeertörtchen',
-      beschreibung: 'Knuspriger Mürbteig, frische Erdbeeren und samtige Sahne — ein Klassiker der Vitrine.',
+      beschreibung: 'Hausgemachte Roulade mit Marillen-Marmelade, gesüßtem Schlagobers, frischen Erdbeeren und säuerlicher Gelatine — ein Klassiker der Vitrine.',
       bild: '/images/klassiker/erdbeertortchen.jpg',
       video: null,
     },
