@@ -1,7 +1,7 @@
 ﻿import { Link } from 'react-router-dom'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { usePageTitle } from '../hooks/usePageTitle'
-import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar, FaPlay, FaClock, FaMapMarkerAlt, FaExternalLinkAlt } from 'react-icons/fa'
+import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar, FaPlay, FaClock, FaMapMarkerAlt, FaExternalLinkAlt, FaSnowflake, FaWhatsapp } from 'react-icons/fa'
 import { torten, aktionstorte } from '../data/torten'
 import { getActiveEvents } from '../data/events'
 import { standorte } from '../data/standorte'
@@ -428,6 +428,66 @@ function Events() {
   )
 }
 
+function VermietungTeaser() {
+  const waMsg = encodeURIComponent('Hallo, ich interessiere mich für die Vermietung der Eismaschine / des Kühlwagens für eine Veranstaltung.')
+  return (
+    <section className="relative overflow-hidden bg-braun-900">
+      {/* Foto-Hintergrund */}
+      <div className="absolute inset-0">
+        <img
+          src="./images/vermietung/eismaschine-micha.jpg"
+          alt="Eisverkäufer Micha"
+          className="w-full h-full object-cover object-top opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-braun-900/95 via-braun-900/80 to-braun-900/60" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div className="max-w-xl">
+          <div className="flex items-center gap-2 mb-4">
+            <FaSnowflake className="text-gold" size={14} />
+            <span className="font-sans text-gold text-xs tracking-[0.2em] uppercase font-semibold">Events & Vermietung</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-display text-creme mb-4 leading-tight">
+            Eis für Ihr Fest —<br />
+            <span className="text-gold italic">mit Micha dabei.</span>
+          </h2>
+          <p className="text-braun-300 text-sm sm:text-base leading-relaxed mb-3">
+            Soft-Eis-Maschine inkl. Eisverkäufer Micha für Ihren Event —
+            <span className="text-gold font-semibold"> € 500 pro Tag</span>, inkl. Material, Auf- & Abbau.
+          </p>
+          <p className="text-braun-400 text-sm mb-8">
+            Außerdem: Kühlwagen-Vermietung auf Anfrage.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link to="/vermietung" className="btn-gold flex items-center justify-center gap-2 text-sm">
+              Alle Angebote <FaArrowRight size={12} />
+            </Link>
+            <a
+              href={`https://wa.me/436645336243?text=${waMsg}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-braun flex items-center justify-center gap-2 text-sm !border-braun-600"
+            >
+              <FaWhatsapp size={15} /> Direkt anfragen
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Preis-Badge rechts (Desktop) */}
+      <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center">
+        <div className="bg-gradient-to-br from-gold via-gold-light to-gold text-braun-900 rounded-2xl px-8 py-6 shadow-[0_8px_40px_rgba(201,168,108,0.5)] text-center">
+          <p className="font-sans text-[10px] tracking-[0.2em] uppercase font-bold mb-1 opacity-70">mit Micha</p>
+          <p className="font-display text-5xl font-bold leading-none">€ 500</p>
+          <p className="font-sans text-xs mt-1.5 opacity-75">pro Tag · inkl. Material</p>
+        </div>
+        <p className="text-braun-500 font-sans text-[10px] mt-3 italic">exkl. Trinkgeld</p>
+      </div>
+    </section>
+  )
+}
+
 export default function Home() {
   usePageTitle(null)
   return (
@@ -437,6 +497,7 @@ export default function Home() {
       <Klassiker />
       <KulturMoment />
       <TortenHighlight />
+      <VermietungTeaser />
       <Events />
     </>
   )
