@@ -5,11 +5,11 @@ import Footer from '../components/Footer.astro'
 
 // Events — gefiltert wie in getActiveEvents(), Datum relativ zum Build-Datum
 const allEvents = [
-  { id: 6, titel: "Ausstellung: Drei Welten im Nahbereich", datum: "2026-11-08", uhrzeit: "noch bis 8. Nov · Di–So 10–18 Uhr", beschreibung: "Mercedes Helnwein, Werner Berg & Alberto Giacometti im Dialog — direkt am 10. Oktober Platz. Zur Eröffnung war Weltkünstler Gottfried Helnwein persönlich in Bleiburg — und zu Gast im Schloss-Café.", bild: "https://www.cafemitherz.at/images/helnwein-besuch.jpg", ort: "Werner Berg Museum · 10. Oktober Platz 4", link: "https://www.wernerberg.museum", dauerausstellung: false, immer_zeigen: true, aktiv: true, istPlakat: true },
-  { id: 5, titel: "Neueröffnung nach Umbau", datum: "2026-05-01", uhrzeit: "seit 1. Mai 2026", beschreibung: "Nach einem aufwändigen Umbau erstrahlt das Schloss-Café in neuem Glanz! Frisch renovierte Räume, neue Atmosphäre — aber mit dem gewohnten Herzstück: hausgemachte Mehlspeisen, Torten und Gastfreundschaft.", video: "https://www.cafemitherz.at/videos/neueroffnung-schlosscafe.mp4", bild: null, ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, immer_zeigen: true, aktiv: true },
-  { id: 4, titel: "Auszahlung Sparverein", datum: "2026-07-05", uhrzeit: "ab 12:00 Uhr", beschreibung: "Die jährliche Auszahlung des Sparvereins ab 12:00 Uhr. Wir freuen uns auf einen gemütlichen Nachmittag im Schloss-Café — mit hausgemachten Mehlspeisen und guter Gesellschaft!", bild: "https://www.cafemitherz.at/images/sparverein-auszahlung.jpg", ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, aktiv: true },
-  { id: 3, titel: "43. Bleiburger Radwandertag & Sommerfest", datum: "2026-06-20", uhrzeit: "ab 17:00 Uhr", beschreibung: "Der 43. Bleiburger Radwandertag der Kärntner Sparkasse – und wir sind dabei! Das Schloss-Café Bleiburg feiert gleichzeitig sein Sommerfest – kommt vorbei!", bild: "https://www.cafemitherz.at/images/radwandertag-2026-plakat.jpg", ort: "Kärntner Sparkasse Bleiburg, 10. Oktober Platz 38", link: null, dauerausstellung: false, aktiv: true, istPlakat: true },
-  { id: 1, titel: "Dauerausstellung: Michael Pietrowski", datum: "2026-01-01", beschreibung: "Fadenbilder, Acryl, CrossArt & Beanie-Serie — Werke können vor Ort besichtigt und erworben werden.", bild: "https://www.cafemitherz.at/images/pietrowski-ausstellung.webp", ort: "Schloss-Café Bleiburg", link: "https://www.pietrowski.at", dauerausstellung: true, aktiv: true },
+  { id: 6, titel: "Ausstellung: Drei Welten im Nahbereich", datum: "2026-11-08", uhrzeit: "noch bis 8. Nov · Di–So 10–18 Uhr", beschreibung: "Mercedes Helnwein, Werner Berg & Alberto Giacometti im Dialog — direkt am 10. Oktober Platz. Zur Eröffnung war Weltkünstler Gottfried Helnwein persönlich in Bleiburg — und zu Gast im Schloss-Café.", bild: "/images/helnwein-besuch.jpg", ort: "Werner Berg Museum · 10. Oktober Platz 4", link: "https://www.wernerberg.museum", dauerausstellung: false, immer_zeigen: true, aktiv: true, istPlakat: true },
+  { id: 5, titel: "Neueröffnung nach Umbau", datum: "2026-05-01", uhrzeit: "seit 1. Mai 2026", beschreibung: "Nach einem aufwändigen Umbau erstrahlt das Schloss-Café in neuem Glanz! Frisch renovierte Räume, neue Atmosphäre — aber mit dem gewohnten Herzstück: hausgemachte Mehlspeisen, Torten und Gastfreundschaft.", video: "/videos/neueroffnung-schlosscafe.mp4", bild: null, ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, immer_zeigen: true, aktiv: true },
+  { id: 4, titel: "Auszahlung Sparverein", datum: "2026-07-05", uhrzeit: "ab 12:00 Uhr", beschreibung: "Die jährliche Auszahlung des Sparvereins ab 12:00 Uhr. Wir freuen uns auf einen gemütlichen Nachmittag im Schloss-Café — mit hausgemachten Mehlspeisen und guter Gesellschaft!", bild: "/images/sparverein-auszahlung.jpg", ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, aktiv: true },
+  { id: 3, titel: "43. Bleiburger Radwandertag & Sommerfest", datum: "2026-06-20", uhrzeit: "ab 17:00 Uhr", beschreibung: "Der 43. Bleiburger Radwandertag der Kärntner Sparkasse – und wir sind dabei! Das Schloss-Café Bleiburg feiert gleichzeitig sein Sommerfest – kommt vorbei!", bild: "/images/radwandertag-2026-plakat.jpg", ort: "Kärntner Sparkasse Bleiburg, 10. Oktober Platz 38", link: null, dauerausstellung: false, aktiv: true, istPlakat: true },
+  { id: 1, titel: "Dauerausstellung: Michael Pietrowski", datum: "2026-01-01", beschreibung: "Fadenbilder, Acryl, CrossArt & Beanie-Serie — Werke können vor Ort besichtigt und erworben werden.", bild: "/images/pietrowski-ausstellung.webp", ort: "Schloss-Café Bleiburg", link: "https://www.pietrowski.at", dauerausstellung: true, aktiv: true },
 ]
 
 const today = new Date('2026-05-15')
@@ -62,7 +62,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
       aria-label="Restaurant Guru – Best Coffeehouse 2023–2026 (öffnet in neuem Tab)"
     >
       <img
-        src="https://www.cafemitherz.at/images/restaurant-guru-2026.webp"
+        src="/images/restaurant-guru-2026.webp"
         alt="Restaurant Guru Auszeichnung"
         width="96"
         height="96"
@@ -157,8 +157,8 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
           <a href="/standort/" class="block">
             <div class="relative h-48 sm:h-72 overflow-hidden">
               <video
-                data-lazy-src="https://www.cafemitherz.at/videos/neueroffnung-schlosscafe.mp4"
-                poster="https://www.cafemitherz.at/images/schlosscafe-aussen.jpg"
+                data-lazy-src="/videos/neueroffnung-schlosscafe.mp4"
+                poster="/images/schlosscafe-aussen.jpg"
                 muted loop playsinline preload="none"
                 class="lazy-video w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 aria-label="Schloss-Café Bleiburg Videovorschau"
@@ -172,7 +172,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
               </div>
               <!-- Logo overlay -->
               <img
-                src="https://www.cafemitherz.at/images/logos/schlosscafe-logo.png"
+                src="/images/logos/schlosscafe-logo.png"
                 alt="Schloss-Café Logo"
                 width="100"
                 height="28"
@@ -198,7 +198,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
           <a href="/standort/#reinhart" class="block">
             <div class="relative h-48 sm:h-72 overflow-hidden">
               <img
-                src="https://www.cafemitherz.at/images/cafe-reinhart-aussen.jpg"
+                src="/images/cafe-reinhart-aussen.jpg"
                 alt="Café Reinhart Eberndorf am Klopeinersee"
                 width="800"
                 height="600"
@@ -211,7 +211,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
               </div>
               <!-- Logo overlay -->
               <img
-                src="https://www.cafemitherz.at/images/logos/cafe-reinhart-logo.png"
+                src="/images/logos/cafe-reinhart-logo.png"
                 alt="Café Reinhart Logo"
                 width="100"
                 height="28"
@@ -250,21 +250,21 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
           {
             name: 'Erdbeertörtchen',
             beschreibung: 'Hausgemachte Roulade mit Marillen-Marmelade, gesüßtem Schlagobers und frischen Erdbeeren.',
-            bild: 'https://www.cafemitherz.at/images/klassiker/erdbeertortchen.jpg',
+            bild: '/images/klassiker/erdbeertortchen.jpg',
             video: null,
             badge: null,
           },
           {
             name: 'Schaumrollen',
             beschreibung: 'Hauchdünner Blätterteig, gefüllt mit süßem Ei-Schnee nach Art des Hauses.',
-            bild: 'https://www.cafemitherz.at/images/klassiker/schaumrollen.jpg',
-            video: 'https://www.cafemitherz.at/images/klassiker/schaumrollen.mp4',
+            bild: '/images/klassiker/schaumrollen.jpg',
+            video: '/images/klassiker/schaumrollen.mp4',
             badge: null,
           },
           {
             name: 'Frühstück',
             beschreibung: 'Üppige Etagère mit Käse, Aufschnitt, Eiern & Lachs — dazu Fruchtspiegel, Joghurt und frische Semmel. Nur auf Vorbestellung.',
-            bild: 'https://www.cafemitherz.at/images/klassiker/fruehstueck-1.jpg',
+            bild: '/images/klassiker/fruehstueck-1.jpg',
             video: null,
             badge: 'Auf Vorbestellung',
           },
@@ -272,7 +272,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
             name: 'Eiskreationen',
             beschreibung: 'Hausgemachte Eisbecher und Eisspezialitäten — täglich frisch, nach Saison und Laune.',
             bild: null,
-            video: 'https://www.cafemitherz.at/images/klassiker/eiskreationen.mp4',
+            video: '/images/klassiker/eiskreationen.mp4',
             badge: 'Täglich frisch',
           },
         ].map(item => (
@@ -343,7 +343,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
       <div class="mb-10 sm:mb-16 bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 rounded-2xl p-5 sm:p-8 flex flex-col md:flex-row items-center gap-5 sm:gap-8">
         <div class="w-full md:w-1/3 h-44 sm:h-56 rounded-xl overflow-hidden">
           <img
-            src="https://www.cafemitherz.at/images/torten/schokosahnetorte-4.jpg"
+            src="/images/torten/schokosahnetorte-4.jpg"
             alt="Schoko-Sahne-Torte – Torte des Monats Mai 2026"
             width="600"
             height="450"
@@ -371,9 +371,9 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
         {[
-          { name: 'Topfen-Torte', src: 'https://www.cafemitherz.at/images/torten/topfentorte.jpg', text: 'Leicht und erfrischend – mit feinstem Topfen und einem Hauch Zitrone.' },
-          { name: 'Schwarzwälder Kirschtorte', src: 'https://www.cafemitherz.at/images/torten/schwarzwaelder.jpg', text: 'Schokolade, Kirschen und Sahne – ein zeitloser Genuss nach traditionellem Rezept.' },
-          { name: 'Mokkatorte', src: 'https://www.cafemitherz.at/images/torten/mokkatorte-2.jpg', text: 'Zarter Mokka-Geschmack trifft auf luftige Cremefüllung – für alle, die Kaffee lieben.' },
+          { name: 'Topfen-Torte', src: '/images/torten/topfentorte.jpg', text: 'Leicht und erfrischend – mit feinstem Topfen und einem Hauch Zitrone.' },
+          { name: 'Schwarzwälder Kirschtorte', src: '/images/torten/schwarzwaelder.jpg', text: 'Schokolade, Kirschen und Sahne – ein zeitloser Genuss nach traditionellem Rezept.' },
+          { name: 'Mokkatorte', src: '/images/torten/mokkatorte-2.jpg', text: 'Zarter Mokka-Geschmack trifft auf luftige Cremefüllung – für alle, die Kaffee lieben.' },
         ].map(t => (
           <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
             <div class="h-44 sm:h-52 overflow-hidden">
@@ -408,7 +408,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
         <div class="relative order-1 lg:pr-12 xl:pr-16">
           <div class="relative overflow-hidden rounded-2xl shadow-2xl">
             <img
-              src="https://www.cafemitherz.at/images/helnwein-besuch.jpg"
+              src="/images/helnwein-besuch.jpg"
               alt="Gottfried Helnwein zu Gast im Schloss-Café Bleiburg, Mai 2026"
               width="800"
               height="1000"
@@ -453,7 +453,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
           <div class="mb-7 sm:mb-8 rounded-2xl overflow-hidden border border-braun-700/60 flex flex-col sm:flex-row items-stretch">
             <div class="sm:w-32 shrink-0 overflow-hidden">
               <img
-                src="https://www.cafemitherz.at/images/museumsbecher.jpg"
+                src="/images/museumsbecher.jpg"
                 alt="Museumsbecher – Helnwein, Werner Berg & Giacometti"
                 width="128"
                 height="128"
@@ -486,7 +486,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
   <section class="relative overflow-hidden bg-braun-900" aria-labelledby="vermietung-title">
     <div class="absolute inset-0" aria-hidden="true">
       <img
-        src="https://www.cafemitherz.at/images/vermietung/eismaschine-micha.jpg"
+        src="/images/vermietung/eismaschine-micha.jpg"
         alt=""
         width="1200"
         height="800"
