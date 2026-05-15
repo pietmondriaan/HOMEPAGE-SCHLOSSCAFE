@@ -85,17 +85,19 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
     </a>
 
     <div class="relative z-10 text-center px-5 sm:px-4 max-w-4xl pt-16 sm:pt-0">
-      <p class="font-sans text-braun-900 tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm mb-3 sm:mb-4 font-semibold [text-shadow:0_1px_3px_rgba(255,255,255,0.8)]">Willkommen bei</p>
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display text-braun-900 mb-3 sm:mb-4 leading-tight [text-shadow:0_2px_8px_rgba(255,255,255,0.6)]">
-        Café mit Herz
-      </h1>
-      <p class="text-braun-800 text-lg sm:text-2xl font-light mb-2 sm:mb-3 italic [text-shadow:0_1px_4px_rgba(255,255,255,0.7)]">
-        Gastfreundschaft mit ganz viel Herz!
-      </p>
-      <p class="text-braun-800 text-sm sm:text-base mb-5 sm:mb-6 max-w-2xl mx-auto leading-relaxed [text-shadow:0_1px_3px_rgba(255,255,255,0.7)]">
-        Täglich frische Mehlspeisen, Torten & Eisspezialitäten —
-        in Bleiburg und Eberndorf am Klopeinersee.
-      </p>
+      <div class="bg-braun-900/55 backdrop-blur-sm rounded-2xl px-6 sm:px-10 py-6 sm:py-8 mb-5 sm:mb-6 border border-braun-700/40">
+        <p class="font-sans text-gold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm mb-3 sm:mb-4 font-semibold">Willkommen bei</p>
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display text-creme mb-3 sm:mb-4 leading-tight">
+          Café mit Herz
+        </h1>
+        <p class="text-braun-100 text-lg sm:text-2xl font-light mb-2 sm:mb-3 italic">
+          Gastfreundschaft mit ganz viel Herz!
+        </p>
+        <p class="text-braun-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          Täglich frische Mehlspeisen, Torten & Eisspezialitäten —
+          in Bleiburg und Eberndorf am Klopeinersee.
+        </p>
+      </div>
 
       <!-- Öffnungszeiten + Standorte — above the fold -->
       <div class="flex flex-col sm:flex-row gap-2 justify-center mb-5 sm:mb-6">
