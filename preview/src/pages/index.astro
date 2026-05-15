@@ -31,26 +31,26 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
   canonical="https://www.cafemitherz.at/"
 >
   <Fragment slot="head">
-    <!-- LCP preload — Verbesserung #1: kein blockierendes Warten auf Bild-Entdeckung durch JS -->
-    <link rel="preload" as="image" href="https://www.cafemitherz.at/images/galerie/galerie-01.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/hero/hero-mehlspeisen-warm.jpg" fetchpriority="high" />
   </Fragment>
 
   <Navbar slot="navbar" />
 
   <!-- HERO -->
   <section class="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
-    <!-- Hintergrundbild mit expliziten Dimensionen → kein CLS -->
+    <!-- Hintergrundbild — hell, warm, einladend -->
     <div class="absolute inset-0">
       <img
-        src="https://www.cafemitherz.at/images/galerie/galerie-01.jpg"
+        src="/images/hero/hero-mehlspeisen-warm.jpg"
         alt=""
         width="1920"
-        height="1080"
-        class="w-full h-full object-cover"
+        height="1280"
+        class="w-full h-full object-cover object-center"
         fetchpriority="high"
         decoding="async"
       />
-      <div class="absolute inset-0 bg-gradient-to-b from-braun-900/70 via-braun-900/50 to-braun-900/80" aria-hidden="true"></div>
+      <!-- Overlay max 15 % — Bild bleibt sichtbar, Text lesbar via drop-shadow -->
+      <div class="absolute inset-0 bg-braun-900/15" aria-hidden="true"></div>
     </div>
 
     <!-- Restaurant Guru Badge -->
@@ -74,18 +74,41 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
       </span>
     </a>
 
+    <!-- Pietrowski-Badge (P2) — dezent, oben links -->
+    <a
+      href="#events"
+      class="absolute top-20 sm:top-24 left-3 sm:left-8 z-20 flex items-center gap-2 bg-braun-900/60 backdrop-blur-sm border border-gold/30 rounded-full px-3 py-1.5 hover:border-gold/70 transition-colors"
+      aria-label="Dauerausstellung Michael Pietrowski"
+    >
+      <span class="text-gold text-xs">🎨</span>
+      <span class="font-sans text-[10px] sm:text-xs text-creme/90 leading-tight">Ausstellung<br class="hidden sm:block" /><span class="hidden sm:inline"> Pietrowski</span></span>
+    </a>
+
     <div class="relative z-10 text-center px-5 sm:px-4 max-w-4xl pt-16 sm:pt-0">
-      <p class="font-sans text-gold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm mb-4 sm:mb-6">Willkommen bei</p>
-      <h1 class="text-4xl sm:text-6xl lg:text-8xl font-display text-creme mb-4 sm:mb-6 leading-tight">
+      <p class="font-sans text-braun-900 tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm mb-3 sm:mb-4 font-semibold [text-shadow:0_1px_3px_rgba(255,255,255,0.8)]">Willkommen bei</p>
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display text-braun-900 mb-3 sm:mb-4 leading-tight [text-shadow:0_2px_8px_rgba(255,255,255,0.6)]">
         Café mit Herz
       </h1>
-      <p class="text-braun-200 text-lg sm:text-2xl font-light mb-3 sm:mb-4 italic">
+      <p class="text-braun-800 text-lg sm:text-2xl font-light mb-2 sm:mb-3 italic [text-shadow:0_1px_4px_rgba(255,255,255,0.7)]">
         Gastfreundschaft mit ganz viel Herz!
       </p>
-      <p class="text-braun-300 text-sm sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-        Genießen Sie täglich frische, hausgemachte Mehlspeisen, Torten und Eisspezialitäten
-        in unseren Cafés in Bleiburg und Eberndorf am Klopeinersee.
+      <p class="text-braun-800 text-sm sm:text-base mb-5 sm:mb-6 max-w-2xl mx-auto leading-relaxed [text-shadow:0_1px_3px_rgba(255,255,255,0.7)]">
+        Täglich frische Mehlspeisen, Torten & Eisspezialitäten —
+        in Bleiburg und Eberndorf am Klopeinersee.
       </p>
+
+      <!-- Öffnungszeiten + Standorte — above the fold -->
+      <div class="flex flex-col sm:flex-row gap-2 justify-center mb-5 sm:mb-6">
+        <div class="flex items-center gap-2 bg-creme/80 backdrop-blur-sm rounded-full px-4 py-2 border border-braun-300/40">
+          <span class="text-braun-700 text-sm" aria-hidden="true">📍</span>
+          <span class="font-sans text-xs sm:text-sm text-braun-800 font-medium">Bleiburg · Mo–So 7–19 Uhr</span>
+        </div>
+        <div class="flex items-center gap-2 bg-creme/80 backdrop-blur-sm rounded-full px-4 py-2 border border-braun-300/40">
+          <span class="text-braun-700 text-sm" aria-hidden="true">📍</span>
+          <span class="font-sans text-xs sm:text-sm text-braun-800 font-medium">Eberndorf · Mo–So 7–19 Uhr</span>
+        </div>
+      </div>
+
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
         <a href="/torten/" class="btn-gold text-base sm:text-lg py-3.5 sm:py-3">
           🛍 Torte bestellen
@@ -98,8 +121,8 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
 
     <!-- Scroll-Indicator -->
     <div class="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 animate-bounce hidden sm:block" aria-hidden="true">
-      <div class="w-6 h-10 rounded-full border-2 border-creme/40 flex items-start justify-center p-2">
-        <div class="w-1.5 h-3 bg-creme/60 rounded-full"></div>
+      <div class="w-6 h-10 rounded-full border-2 border-braun-700/50 flex items-start justify-center p-2">
+        <div class="w-1.5 h-3 bg-braun-700/70 rounded-full"></div>
       </div>
     </div>
 
