@@ -1,13 +1,14 @@
 ---
 const links = [
   { href: '/', label: 'Home' },
-  { href: '/torten', label: 'Torten' },
-  { href: '/standort', label: 'Standorte' },
-  { href: '/kontakt', label: 'Kontakt' },
-  { href: '/karten', label: 'Speisekarten' },
-  { href: '/vermietung', label: 'Vermietung' },
+  { href: '/torten/', label: 'Torten' },
+  { href: '/standort/', label: 'Standorte' },
+  { href: '/kontakt/', label: 'Kontakt' },
+  { href: '/karten/', label: 'Speisekarten' },
+  { href: '/vermietung/', label: 'Vermietung' },
 ]
-const current = Astro.url.pathname
+const raw = Astro.url.pathname
+const current = raw === '/' ? '/' : (raw.endsWith('/') ? raw : raw + '/')
 ---
 <nav class="fixed top-0 left-0 right-0 z-50 bg-braun-900/95 backdrop-blur-md border-b border-braun-700/40" aria-label="Hauptnavigation">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,7 +41,7 @@ const current = Astro.url.pathname
             {l.label}
           </a>
         ))}
-        <a href="/torten" class="btn-gold ml-3 text-sm !py-2 !px-5">
+        <a href="/torten/" class="btn-gold ml-3 text-sm !py-2 !px-5">
           Torte bestellen
         </a>
       </div>
@@ -76,7 +77,7 @@ const current = Astro.url.pathname
           {l.label}
         </a>
       ))}
-      <a href="/torten" class="btn-gold mt-2 w-full text-sm !py-2.5">
+      <a href="/torten/" class="btn-gold mt-2 w-full text-sm !py-2.5">
         Torte bestellen
       </a>
     </div>
