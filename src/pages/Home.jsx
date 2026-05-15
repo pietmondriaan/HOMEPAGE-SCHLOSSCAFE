@@ -1,12 +1,13 @@
 ﻿import { Link } from 'react-router-dom'
-import { useRef, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { usePageTitle } from '../hooks/usePageTitle'
-import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar, FaPlay, FaClock, FaMapMarkerAlt, FaExternalLinkAlt, FaSnowflake, FaWhatsapp } from 'react-icons/fa'
+import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar, FaPlay, FaClock, FaMapMarkerAlt, FaExternalLinkAlt, FaSnowflake, FaWhatsapp, FaUsers } from 'react-icons/fa'
 import { torten, aktionstorte } from '../data/torten'
 import { getActiveEvents } from '../data/events'
 import { standorte } from '../data/standorte'
 import SpiralAnimation from '../components/SpiralAnimation'
 import EventTicker from '../components/EventTicker'
+import LazyVideo from '../components/LazyVideo'
 
 function Hero() {
   return (
@@ -22,14 +23,18 @@ function Hero() {
         href="https://restaurantguru.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute top-20 sm:top-24 right-4 sm:right-8 z-20 group hidden sm:flex flex-col items-center gap-1.5"
+        className="absolute top-20 sm:top-24 right-3 sm:right-8 z-20 group flex flex-col items-center gap-1.5"
       >
-        <img
-          src="./images/restaurant-guru-badge.webp"
-          alt="Restaurant Guru 2023 – Best Coffeehouse in Bleiburg"
-          className="h-16 lg:h-20 rounded-lg border border-creme/20 shadow-lg group-hover:border-gold/50 transition-all group-hover:scale-105"
-        />
-        <span className="text-[10px] text-creme/60 font-sans tracking-wide uppercase">Best Coffeehouse 2023</span>
+        <div className="relative">
+          <img
+            src="./images/restaurant-guru-2026.webp"
+            alt="Restaurant Guru – Best Coffeehouse in Bleiburg"
+            className="h-16 sm:h-20 lg:h-24 rounded-lg border border-creme/20 shadow-lg group-hover:border-gold/50 transition-all group-hover:scale-105"
+          />
+        </div>
+        <span className="font-sans text-[8px] sm:text-[9px] bg-creme/15 backdrop-blur-sm text-creme/90 px-2 py-0.5 rounded border border-creme/25 font-semibold tracking-wide whitespace-nowrap">
+          Best Coffeehouse 2023 – 2026
+        </span>
       </a>
 
       <div className="relative z-10 text-center px-5 sm:px-4 max-w-4xl pt-16 sm:pt-0">
@@ -64,7 +69,6 @@ function Hero() {
 }
 
 function StandortKarte({ standortKey, s }) {
-  const videoRef = useRef(null)
   const to = standortKey === 'schlosscafe' ? '/schlosscafe' : '/reinhardt'
 
   return (
@@ -72,14 +76,12 @@ function StandortKarte({ standortKey, s }) {
       <div className="relative h-48 sm:h-72 overflow-hidden">
         {s.video ? (
           <>
-            <video
-              ref={videoRef}
+            <LazyVideo
               src={`.${s.video}`}
-              autoPlay
+              poster={`.${s.bild}`}
               muted
               loop
               playsInline
-              poster={`.${s.bild}`}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm text-white font-sans text-[10px] tracking-wide px-2.5 py-1 rounded-full">
@@ -88,7 +90,7 @@ function StandortKarte({ standortKey, s }) {
             </div>
           </>
         ) : (
-          <img src={`.${s.bild}`} alt={s.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <img src={`.${s.bild}`} alt={s.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-braun-900/60 to-transparent" />
         {s.badge && (
@@ -140,6 +142,7 @@ function KulturMoment() {
               <img
                 src="./images/helnwein-besuch.jpg"
                 alt="Gottfried Helnwein zu Gast im Schloss-Café Bleiburg"
+                loading="lazy"
                 className="w-full aspect-[4/5] sm:aspect-[3/4] object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0c0906]/70 via-transparent to-transparent" />
@@ -217,6 +220,7 @@ function KulturMoment() {
                 <img
                   src="./images/museumsbecher.jpg"
                   alt="Museumsbecher – Helnwein/Berg/Giacometti"
+                  loading="lazy"
                   className="w-full h-28 sm:h-full object-cover object-top"
                 />
               </div>
@@ -250,7 +254,96 @@ function KulturMoment() {
   )
 }
 
+function FruehstueckModal({ onClose }) {
+  const [datum, setDatum] = useState('')
+  const [zeit, setZeit] = useState('')
+  const [personen, setPersonen] = useState(2)
+
+  const morgen = new Date()
+  morgen.setDate(morgen.getDate() + 1)
+  const minDatum = morgen.toISOString().split('T')[0]
+
+  const msg = encodeURIComponent(
+    `Hallo, ich möchte ein Frühstück auf Vorbestellung.\n\nDatum: ${datum || '–'}\nUhrzeit: ${zeit ? zeit + ' Uhr' : '–'}\nAnzahl Personen: ${personen}`
+  )
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-braun-900/70 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-t-2xl sm:rounded-2xl max-w-md w-full p-5 sm:p-8 shadow-2xl max-h-[90svh] overflow-y-auto"
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="w-10 h-1 bg-braun-200 rounded-full mx-auto mb-4 sm:hidden" />
+        <h3 className="text-xl sm:text-2xl font-display text-braun-800 mb-1.5">Frühstück vorbestellen</h3>
+        <p className="text-braun-500 text-xs sm:text-sm mb-5">
+          Wir bereiten alles frisch für Sie vor. Bitte ab morgen einplanen.
+        </p>
+
+        <div className="space-y-4">
+          <div>
+            <label className="font-sans text-sm text-braun-600 block mb-1.5 flex items-center gap-2">
+              <FaCalendarAlt className="text-gold" size={12} /> Datum
+            </label>
+            <input
+              type="date"
+              min={minDatum}
+              value={datum}
+              onChange={e => setDatum(e.target.value)}
+              className="w-full border border-braun-200 rounded-lg px-4 py-3 text-braun-800 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-gold"
+            />
+          </div>
+          <div>
+            <label className="font-sans text-sm text-braun-600 block mb-1.5 flex items-center gap-2">
+              <FaClock className="text-gold" size={12} /> Uhrzeit
+            </label>
+            <input
+              type="time"
+              value={zeit}
+              onChange={e => setZeit(e.target.value)}
+              className="w-full border border-braun-200 rounded-lg px-4 py-3 text-braun-800 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-gold"
+            />
+          </div>
+          <div>
+            <label className="font-sans text-sm text-braun-600 block mb-1.5 flex items-center gap-2">
+              <FaUsers className="text-gold" size={12} /> Anzahl Personen
+            </label>
+            <input
+              type="number"
+              min={1}
+              max={30}
+              value={personen}
+              onChange={e => setPersonen(e.target.value)}
+              className="w-full border border-braun-200 rounded-lg px-4 py-3 text-braun-800 font-sans text-sm focus:outline-none focus:ring-2 focus:ring-gold"
+            />
+          </div>
+        </div>
+
+        <div className="mt-6">
+          <a
+            href={`https://wa.me/436645336243?text=${msg}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold w-full flex items-center justify-center gap-2"
+          >
+            <FaWhatsapp size={18} /> Per WhatsApp vorbestellen
+          </a>
+        </div>
+        <button
+          onClick={onClose}
+          className="mt-4 w-full text-center text-braun-400 font-sans text-sm hover:text-braun-600"
+        >
+          Abbrechen
+        </button>
+      </div>
+    </div>
+  )
+}
+
 function Klassiker() {
+  const [fruehstueckOpen, setFruehstueckOpen] = useState(false)
   const items = [
     {
       name: 'Erdbeertörtchen',
@@ -293,17 +386,16 @@ function Klassiker() {
             <div key={item.name} className="card-hover bg-creme rounded-2xl overflow-hidden shadow-md">
               <div className="relative h-60 sm:h-64 overflow-hidden">
                 {item.video ? (
-                  <video
+                  <LazyVideo
                     src={`.${item.video}`}
-                    poster={`.${item.bild}`}
-                    autoPlay
+                    poster={item.bild ? `.${item.bild}` : undefined}
                     muted
                     loop
                     playsInline
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <img src={`.${item.bild}`} alt={item.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  <img src={`.${item.bild}`} alt={item.name} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                 )}
                 {item.video && (
                   <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm text-white font-sans text-[10px] tracking-wide px-2.5 py-1 rounded-full">
@@ -319,11 +411,20 @@ function Klassiker() {
               <div className="p-5 sm:p-6">
                 <h3 className="text-xl sm:text-2xl font-display text-braun-800 mb-2">{item.name}</h3>
                 <p className="text-braun-500 text-sm leading-relaxed">{item.beschreibung}</p>
+                {item.name === 'Frühstück' && (
+                  <button
+                    onClick={() => setFruehstueckOpen(true)}
+                    className="mt-4 btn-gold w-full text-sm flex items-center justify-center gap-2"
+                  >
+                    <FaShoppingBag size={13} /> Jetzt vorbestellen
+                  </button>
+                )}
               </div>
             </div>
           ))}
         </div>
       </div>
+      {fruehstueckOpen && <FruehstueckModal onClose={() => setFruehstueckOpen(false)} />}
     </section>
   )
 }
@@ -344,7 +445,7 @@ function TortenHighlight() {
         {aktionstorte.aktiv && (
           <div className="mb-10 sm:mb-16 bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 rounded-2xl p-5 sm:p-8 flex flex-col md:flex-row items-center gap-5 sm:gap-8">
             <div className="w-full md:w-1/3 h-44 sm:h-56 rounded-xl overflow-hidden">
-              <img src={`.${aktionstorte.bild}`} alt={aktionstorte.name} className="w-full h-full object-cover" />
+              <img src={`.${aktionstorte.bild}`} alt={aktionstorte.name} loading="lazy" className="w-full h-full object-cover" />
             </div>
             <div className="flex-1 text-center md:text-left">
               <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">
@@ -369,7 +470,7 @@ function TortenHighlight() {
           {highlights.map(t => (
             <div key={t.id} className="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
               <div className="h-44 sm:h-52 overflow-hidden">
-                <img src={`.${t.bild}`} alt={t.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                <img src={`.${t.bild}`} alt={t.name} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-5 sm:p-6">
                 <h3 className="text-lg sm:text-xl font-display text-braun-800 mb-1.5 sm:mb-2">{t.name}</h3>
@@ -389,20 +490,13 @@ function TortenHighlight() {
 }
 
 function VideoKarte({ e }) {
-  const ref = useRef(null)
-  useEffect(() => {
-    const v = ref.current
-    if (v) v.play().catch(() => {})
-  }, [])
   return (
     <div className="relative h-40 sm:h-48 overflow-hidden bg-braun-900">
-      <video
-        ref={ref}
+      <LazyVideo
         src={`.${e.video}`}
         muted
         loop
         playsInline
-        preload="auto"
         className="w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-braun-900/40 to-transparent" />
@@ -470,6 +564,7 @@ function VermietungTeaser() {
         <img
           src="./images/vermietung/eismaschine-micha.jpg"
           alt="Eisverkäufer Micha"
+          loading="lazy"
           className="w-full h-full object-cover object-top opacity-20"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-braun-900/95 via-braun-900/80 to-braun-900/60" />

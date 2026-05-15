@@ -46,6 +46,7 @@ export default function Vermietung() {
           <img
             src="./images/vermietung/eismaschine-micha.jpg"
             alt="Micha am Eis-Stand"
+            loading="eager"
             className="w-full h-full object-cover object-top opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-braun-900/60 via-braun-900/50 to-braun-900" />
@@ -102,6 +103,7 @@ export default function Vermietung() {
                 <img
                   src="./images/vermietung/eismaschine-micha.jpg"
                   alt="Eisverkäufer Micha mit Soft-Eis-Maschine"
+                  loading="lazy"
                   className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-braun-900/60 hidden lg:block" />

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FaWhatsapp, FaEnvelope, FaShoppingBag, FaStar, FaPalette } from 'react-icons/fa'
+import LazyVideo from '../components/LazyVideo'
 import { torten, aktionstorte } from '../data/torten'
 import { usePageTitle } from '../hooks/usePageTitle'
 
@@ -8,17 +9,16 @@ function TortenKarte({ torte, onBestellen }) {
     <div className="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
       <div className="relative h-56 overflow-hidden">
         {torte.video ? (
-          <video
+          <LazyVideo
             src={`.${torte.video}`}
             poster={`.${torte.bild}`}
-            autoPlay
             muted
             loop
             playsInline
             className="w-full h-full object-cover"
           />
         ) : (
-          <img src={`.${torte.bild}`} alt={torte.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+          <img src={`.${torte.bild}`} alt={torte.name} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
         )}
         {torte.kategorie === 'aktion' && (
           <div className="absolute top-4 right-4 bg-gold text-braun-900 font-sans text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">

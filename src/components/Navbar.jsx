@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { FaBars, FaTimes, FaFacebookF, FaInstagram, FaChevronDown } from 'react-icons/fa'
+import { FaBars, FaTimes, FaFacebookF, FaInstagram, FaChevronDown, FaPhone } from 'react-icons/fa'
 
 const cafesMenu = [
   {
@@ -291,7 +291,14 @@ export default function Navbar() {
           </div>
 
           {/* Mobile footer */}
-          <div className="p-6 border-t border-braun-700 space-y-4">
+          <div className="p-6 border-t border-braun-700 space-y-3">
+            <a
+              href="tel:+4342352979"
+              className="flex items-center justify-center gap-2.5 w-full py-3.5 rounded-xl bg-braun-700 border border-braun-600 text-creme font-sans text-sm font-medium active:bg-braun-600 transition-colors"
+            >
+              <FaPhone size={13} className="text-gold" />
+              <span>04235 2979 anrufen</span>
+            </a>
             <Link to="/torten" className="btn-gold text-base text-center block py-4">
               Torte bestellen
             </Link>

@@ -1,5 +1,33 @@
 ﻿export const events = [
   {
+    id: 6,
+    titel: "Ausstellung: Drei Welten im Nahbereich",
+    datum: "2026-11-08",
+    uhrzeit: "noch bis 8. Nov · Di–So 10–18 Uhr",
+    beschreibung: "Mercedes Helnwein, Werner Berg & Alberto Giacometti im Dialog — direkt am 10. Oktober Platz. Zur Eröffnung war Weltkünstler Gottfried Helnwein persönlich in Bleiburg — und zu Gast im Schloss-Café.",
+    bild: "/images/helnwein-besuch.jpg",
+    istPlakat: true,
+    ort: "Werner Berg Museum · 10. Oktober Platz 4",
+    link: "https://www.wernerberg.museum",
+    dauerausstellung: false,
+    immer_zeigen: true,
+    aktiv: true,
+  },
+  {
+    id: 5,
+    titel: "Neueröffnung nach Umbau",
+    datum: "2026-05-01",
+    uhrzeit: "seit 1. Mai 2026",
+    beschreibung: "Nach einem aufwändigen Umbau erstrahlt das Schloss-Café in neuem Glanz! Frisch renovierte Räume, neue Atmosphäre — aber mit dem gewohnten Herzstück: hausgemachte Mehlspeisen, Torten und Gastfreundschaft.",
+    video: "/videos/neueroffnung-schlosscafe.mp4",
+    bild: null,
+    ort: "Schloss-Café Bleiburg",
+    link: null,
+    dauerausstellung: false,
+    immer_zeigen: true,
+    aktiv: true,
+  },
+  {
     id: 4,
     titel: "Auszahlung Sparverein",
     datum: "2026-07-05",
@@ -45,7 +73,7 @@ export const getActiveEvents = () => {
   return events
     .filter(e => {
       if (!e.aktiv) return false
-      if (e.dauerausstellung) return true
+      if (e.dauerausstellung || e.immer_zeigen) return true
       return new Date(e.datum) >= today
     })
     .sort((a, b) => {

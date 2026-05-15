@@ -1,4 +1,7 @@
+import { usePageTitle } from '../hooks/usePageTitle'
+
 export default function Datenschutz() {
+  usePageTitle('Datenschutzerklärung')
   return (
     <div className="pt-20">
       <section className="py-24 bg-creme">

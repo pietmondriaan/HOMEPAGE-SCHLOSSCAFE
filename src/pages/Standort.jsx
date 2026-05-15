@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaDirections, FaArrowRight } from 'react-icons/fa'
 import { standorte } from '../data/standorte'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 export default function Standort() {
   const location = useLocation()
   const id = location.pathname.replace('/', '')
   const s = id === 'schlosscafe' ? standorte.schlosscafe : standorte.reinhardt
+  usePageTitle(id === 'schlosscafe' ? 'Schloss-Café Bleiburg – Torten, Kunst & Kaffeegenuss' : 'Cafe Reinhart Eberndorf – am Klopeinersee')
 
   if (!s) return <div className="pt-20 p-10 text-center">Standort nicht gefunden.</div>
 
