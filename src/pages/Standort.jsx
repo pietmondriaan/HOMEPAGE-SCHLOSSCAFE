@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaDirections, FaArrowRight } from 'react-icons/fa'
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaDirections, FaArrowRight, FaWhatsapp, FaStar } from 'react-icons/fa'
 import { standorte } from '../data/standorte'
 import { usePageTitle } from '../hooks/usePageTitle'
 
@@ -103,8 +103,43 @@ export default function Standort() {
                   Zum Tortenshop <FaArrowRight />
                 </Link>
               </div>
+
+              <div className="bg-white rounded-2xl p-8 text-center shadow-md">
+                <div className="flex justify-center gap-0.5 mb-3">
+                  {[...Array(5)].map((_, i) => <FaStar key={i} className="text-gold text-lg" />)}
+                </div>
+                <h3 className="text-xl font-display text-braun-800 mb-2">War es schön bei uns?</h3>
+                <p className="text-braun-500 text-sm mb-5">Hinterlassen Sie uns eine Google-Bewertung — wir freuen uns!</p>
+                <a
+                  href={s.googleReview}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-braun w-full text-center flex items-center justify-center gap-2 text-sm"
+                >
+                  <FaStar /> Jetzt bewerten
+                </a>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20 bg-braun-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Täglich ab 7:00 Uhr</p>
+          <h2 className="text-3xl sm:text-4xl font-display text-creme mb-4">Frühstück im {s.name}</h2>
+          <p className="text-braun-300 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
+            Starten Sie Ihren Tag mit einem frischen Frühstück bei uns — hausgemacht, regional und mit viel Herz zubereitet.
+            Einfach per WhatsApp vorbestellen!
+          </p>
+          <a
+            href={`https://wa.me/${s.whatsapp}?text=Hallo!%20Ich%20m%C3%B6chte%20ein%20Fr%C3%BChst%C3%BCck%20im%20${encodeURIComponent(s.name)}%20vorbestellen.%20Datum%2FUhrzeit%3A%20___%20Anzahl%20Personen%3A%20___`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold inline-flex items-center gap-2 text-base px-8 py-4"
+          >
+            <FaWhatsapp size={20} /> Frühstück vorbestellen
+          </a>
         </div>
       </section>
     </div>

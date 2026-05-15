@@ -12,6 +12,8 @@ export const standorte = {
     video: "/videos/neueroffnung-schlosscafe.mp4",
     badge: "Neu eröffnet",
     beschreibung: "Unser Schloss-Café im Herzen von Bleiburg empfängt Sie in historischem Ambiente. Genießen Sie hausgemachte Mehlspeisen und Torten am wunderschönen 10. Oktober Platz.",
+    whatsapp: "436645336243",
+    googleReview: "https://maps.google.com/?cid=15374964977103743120",
   },
   reinhardt: {
     name: "Cafe Reinhart",
