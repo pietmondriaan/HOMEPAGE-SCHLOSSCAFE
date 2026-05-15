@@ -84,6 +84,8 @@ const {
     })} />
 
     <slot name="head" />
+    <!-- Barrierefreie Ansicht: state early-restore to prevent flash -->
+    <script is:inline>try{if(localStorage.getItem('a11y')==='1')document.documentElement.setAttribute('data-accessible','')}catch{}</script>
   </head>
   <body>
     <a href="#main-content" class="skip-to-content">Zum Hauptinhalt springen</a>

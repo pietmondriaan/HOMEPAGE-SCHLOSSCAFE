@@ -37,7 +37,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
   <Navbar slot="navbar" />
 
   <!-- HERO -->
-  <section class="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
+  <section class="relative min-h-[calc(100svh-92px)] sm:min-h-[calc(100svh-108px)] flex items-center justify-center overflow-hidden">
     <!-- Hintergrundbild — hell, warm, einladend -->
     <div class="absolute inset-0">
       <img
@@ -58,7 +58,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
       href="https://restaurantguru.com"
       target="_blank"
       rel="noopener noreferrer"
-      class="absolute top-20 sm:top-24 right-3 sm:right-8 z-20 group flex flex-col items-center gap-1.5"
+      class="absolute top-4 sm:top-24 right-3 sm:right-8 z-20 group flex flex-col items-center gap-1.5"
       aria-label="Restaurant Guru – Best Coffeehouse 2023–2026 (öffnet in neuem Tab)"
     >
       <img
@@ -77,14 +77,14 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
     <!-- Pietrowski-Badge (P2) — dezent, oben links -->
     <a
       href="#events"
-      class="absolute top-20 sm:top-24 left-3 sm:left-8 z-20 flex items-center gap-2 bg-braun-900/60 backdrop-blur-sm border border-gold/30 rounded-full px-3 py-1.5 hover:border-gold/70 transition-colors"
+      class="absolute top-4 sm:top-24 left-3 sm:left-8 z-20 flex items-center gap-2 bg-braun-900/60 backdrop-blur-sm border border-gold/30 rounded-full px-3 py-1.5 hover:border-gold/70 transition-colors"
       aria-label="Dauerausstellung Michael Pietrowski"
     >
       <span class="text-gold text-xs">🎨</span>
       <span class="font-sans text-[10px] sm:text-xs text-creme/90 leading-tight">Ausstellung<br class="hidden sm:block" /><span class="hidden sm:inline"> Pietrowski</span></span>
     </a>
 
-    <div class="relative z-10 text-center px-5 sm:px-4 max-w-4xl pt-16 sm:pt-0">
+    <div class="relative z-10 text-center px-5 sm:px-4 max-w-4xl pt-8 sm:pt-0 pb-10 sm:pb-0">
       <div class="bg-braun-900/55 backdrop-blur-sm rounded-2xl px-6 sm:px-10 py-6 sm:py-8 mb-5 sm:mb-6 border border-braun-700/40">
         <p class="font-sans text-gold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm mb-3 sm:mb-4 font-semibold">Willkommen bei</p>
         <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display text-creme mb-3 sm:mb-4 leading-tight">
@@ -365,7 +365,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
             <span class="text-gold font-sans font-bold text-xl">€ 52,00</span>
             <span class="text-braun-500 font-sans text-xs ml-2">bei Online-Bestellung</span>
           </div>
-          <a href="/torten/">Jetzt bestellen</a>
+          <a href="/torten/" class="btn-gold text-sm">Jetzt bestellen →</a>
         </div>
       </div>
 
@@ -447,7 +447,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
             <a href="https://www.wernerberg.museum" target="_blank" rel="noopener noreferrer" class="btn-braun text-sm !border-braun-600">
               Zum Werner Berg Museum ↗
             </a>
-            <a href="/kontakt/" class="btn-gold text-sm">Tisch reservieren</a>
+            <a href="/standort/" class="btn-gold text-sm">Tisch reservieren</a>
           </div>
 
           <!-- Museumsbecher -->

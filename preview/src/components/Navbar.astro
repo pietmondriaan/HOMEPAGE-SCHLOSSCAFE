@@ -12,12 +12,23 @@ const cafesActive = ['/standort/', '/karten/'].some(p => current.startsWith(p))
 
 const flatLinks = [
   { href: '/torten/', label: 'Tortenshop' },
-  { href: '/#vermietung', label: 'Vermietung' },
+  { href: '/vermietung/', label: 'Vermietung' },
   { href: '/standort/', label: 'Kontakt' },
 ]
 ---
 
 <nav class="fixed top-0 w-full z-50 bg-braun-800/95 backdrop-blur-md shadow-lg" aria-label="Hauptnavigation">
+  <!-- A11y utility bar -->
+  <div class="bg-braun-900 border-b border-braun-800 px-4 sm:px-6 lg:px-8 flex justify-end items-center h-7">
+    <button
+      id="a11y-toggle"
+      class="a11y-bar-btn"
+      aria-pressed="false"
+      aria-label="Barrierefreie Ansicht aktivieren"
+    >
+      ♿ Barrierefreie Ansicht
+    </button>
+  </div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 sm:h-20">
 
@@ -154,7 +165,7 @@ const flatLinks = [
 <!-- Mobile Overlay -->
 <div
   id="mobile-menu"
-  class="lg:hidden fixed inset-0 top-16 sm:top-20 z-40 bg-braun-800 translate-x-full transition-transform duration-300 ease-out overflow-y-auto"
+  class="lg:hidden fixed inset-0 top-[92px] sm:top-[108px] z-40 bg-braun-800 translate-x-full transition-transform duration-300 ease-out overflow-y-auto"
   aria-hidden="true"
 >
   <div class="flex flex-col min-h-full">
@@ -213,10 +224,34 @@ const flatLinks = [
   </div>
 </div>
 
-<!-- Spacer -->
-<div class="h-16 sm:h-20" aria-hidden="true"></div>
+<!-- Spacer: navbar h-16/h-20 + a11y bar h-7 (28px) -->
+<div class="h-[92px] sm:h-[108px]" aria-hidden="true"></div>
 
 <script>
+// A11y toggle
+const a11yBtn = document.getElementById('a11y-toggle')
+function setAccessible(on: boolean) {
+  const html = document.documentElement
+  if (on) {
+    html.setAttribute('data-accessible', '')
+    a11yBtn?.setAttribute('aria-pressed', 'true')
+    a11yBtn?.setAttribute('aria-label', 'Barrierefreie Ansicht deaktivieren')
+  } else {
+    html.removeAttribute('data-accessible')
+    a11yBtn?.setAttribute('aria-pressed', 'false')
+    a11yBtn?.setAttribute('aria-label', 'Barrierefreie Ansicht aktivieren')
+  }
+  try { localStorage.setItem('a11y', on ? '1' : '0') } catch {}
+}
+// Sync button state with current html attribute (set by early inline script)
+if (document.documentElement.hasAttribute('data-accessible')) {
+  a11yBtn?.setAttribute('aria-pressed', 'true')
+  a11yBtn?.setAttribute('aria-label', 'Barrierefreie Ansicht deaktivieren')
+}
+a11yBtn?.addEventListener('click', () => {
+  setAccessible(!document.documentElement.hasAttribute('data-accessible'))
+})
+
 // Dropdown
 const btn = document.getElementById('cafes-btn')
 const menu = document.getElementById('cafes-menu')
