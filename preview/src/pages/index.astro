@@ -637,16 +637,13 @@ document.querySelectorAll('video.lazy-video').forEach(video => {
   const src = video.dataset.lazySrc
   if (!src) return
   const observer = new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting) {
-      observer.disconnect()
-      video.muted = true
-      video.src = src
-      video.load()
-      const tryPlay = () => video.play().catch(() => {})
-      video.addEventListener('canplay', tryPlay, { once: true })
-      // Fallback: try after short delay in case canplay already fired
-      setTimeout(tryPlay, 300)
-    }
+    if (!entry.isIntersecting) return
+    observer.disconnect()
+    // autoplay + muted + playsinline = reliable cross-browser autoplay incl. iOS Safari
+    video.setAttribute('autoplay', '')
+    video.muted = true
+    video.src = src
+    video.load()
   }, { rootMargin: '200px' })
   observer.observe(video)
 })
