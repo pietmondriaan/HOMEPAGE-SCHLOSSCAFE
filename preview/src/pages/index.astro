@@ -2,18 +2,12 @@
 import Layout from '../layouts/Layout.astro'
 import Navbar from '../components/Navbar.astro'
 import Footer from '../components/Footer.astro'
+import allEvents from '../data/events.json'
 
-// Events — gefiltert wie in getActiveEvents(), Datum relativ zum Build-Datum
-const allEvents = [
-  { id: 6, titel: "Ausstellung: Drei Welten im Nahbereich", datum: "2026-11-08", uhrzeit: "noch bis 8. Nov · Di–So 10–18 Uhr", beschreibung: "Mercedes Helnwein, Werner Berg & Alberto Giacometti im Dialog — direkt am 10. Oktober Platz. Zur Eröffnung war Weltkünstler Gottfried Helnwein persönlich in Bleiburg — und zu Gast im Schloss-Café.", bild: "/images/helnwein-besuch.jpg", ort: "Werner Berg Museum · 10. Oktober Platz 4", link: "https://www.wernerberg.museum", dauerausstellung: false, immer_zeigen: true, aktiv: true, istPlakat: true },
-  { id: 5, titel: "Neueröffnung nach Umbau", datum: "2026-05-01", uhrzeit: "seit 1. Mai 2026", beschreibung: "Nach einem aufwändigen Umbau erstrahlt das Schloss-Café in neuem Glanz! Frisch renovierte Räume, neue Atmosphäre — aber mit dem gewohnten Herzstück: hausgemachte Mehlspeisen, Torten und Gastfreundschaft.", video: "/videos/neueroffnung-schlosscafe.mp4", poster: "/images/schlosscafe-aussen.jpg", bild: null, ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, immer_zeigen: true, aktiv: true },
-  { id: 4, titel: "Auszahlung Sparverein", datum: "2026-07-05", uhrzeit: "ab 12:00 Uhr", beschreibung: "Die jährliche Auszahlung des Sparvereins ab 12:00 Uhr. Wir freuen uns auf einen gemütlichen Nachmittag im Schloss-Café — mit hausgemachten Mehlspeisen und guter Gesellschaft!", bild: "/images/sparverein-auszahlung.jpg", ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, aktiv: true },
-  { id: 3, titel: "43. Bleiburger Radwandertag & Sommerfest", datum: "2026-06-20", uhrzeit: "ab 17:00 Uhr", beschreibung: "Der 43. Bleiburger Radwandertag der Kärntner Sparkasse – und wir sind dabei! Das Schloss-Café Bleiburg feiert gleichzeitig sein Sommerfest – kommt vorbei!", bild: "/images/radwandertag-2026-plakat.jpg", ort: "Kärntner Sparkasse Bleiburg, 10. Oktober Platz 38", link: null, dauerausstellung: false, aktiv: true, istPlakat: true },
-  { id: 1, titel: "Dauerausstellung: Michael Pietrowski", datum: "2026-01-01", beschreibung: "Fadenbilder, Acryl, CrossArt & Beanie-Serie — Werke können vor Ort besichtigt und erworben werden.", bild: "/images/pietrowski-ausstellung.webp", ort: "Schloss-Café Bleiburg", link: "https://www.pietrowski.at", dauerausstellung: true, aktiv: true },
-]
-
-const today = new Date('2026-05-15')
-today.setHours(0,0,0,0)
+// Single Source of Truth: src/data/events.json — wird auch vom GBP-Sync-Script gelesen.
+// Filtern: aktiv + (Dauerausstellung || immer_zeigen || Datum >= heute)
+const today = new Date()
+today.setHours(0, 0, 0, 0)
 const activeEvents = allEvents
   .filter(e => e.aktiv && (e.dauerausstellung || (e as any).immer_zeigen || new Date(e.datum) >= today))
   .sort((a, b) => {
@@ -22,7 +16,6 @@ const activeEvents = allEvents
     return new Date(a.datum).getTime() - new Date(b.datum).getTime()
   })
 
-// Ticker-Texte
 const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
 ---
 <Layout
