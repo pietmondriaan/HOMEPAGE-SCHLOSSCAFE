@@ -154,7 +154,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10">
         <!-- Schloss-Café — mit Video -->
         <article class="card-hover rounded-2xl overflow-hidden bg-white shadow-md">
-          <a href="/standort/" class="block">
+          <a href="/standort/" class="block" aria-label="Mehr über das Schloss-Café Bleiburg erfahren">
             <div class="relative h-48 sm:h-72 overflow-hidden">
               <video
                 data-lazy-src="/videos/neueroffnung-schlosscafe.mp4"
@@ -195,7 +195,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
 
         <!-- Café Reinhart — mit Logo -->
         <article class="card-hover rounded-2xl overflow-hidden bg-white shadow-md">
-          <a href="/standort/#reinhart" class="block">
+          <a href="/standort/#reinhart" class="block" aria-label="Mehr über das Café Reinhart Eberndorf erfahren">
             <div class="relative h-48 sm:h-72 overflow-hidden">
               <img
                 src="/images/cafe-reinhart-aussen.jpg"
@@ -484,7 +484,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
   </section>
 
   <!-- VERMIETUNG TEASER -->
-  <section class="relative overflow-hidden bg-braun-900" aria-labelledby="vermietung-title">
+  <section id="vermietung" class="relative overflow-hidden bg-braun-900" aria-labelledby="vermietung-title">
     <div class="absolute inset-0" aria-hidden="true">
       <img
         src="/images/vermietung/eismaschine-micha.jpg"
@@ -512,7 +512,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
         </p>
         <p class="text-braun-400 text-sm mb-8">Außerdem: Kühlwagen-Vermietung auf Anfrage.</p>
         <div class="flex flex-col sm:flex-row gap-3">
-          <a href="/vermietung" class="btn-gold flex items-center justify-center gap-2 text-sm">
+          <a href="#vermietung" class="btn-gold flex items-center justify-center gap-2 text-sm">
             Alle Angebote →
           </a>
           <a
@@ -549,6 +549,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
             <article>
               {e.link ? (
                 <a href={e.link} target="_blank" rel="noopener noreferrer"
+                   aria-label={`${e.titel} – externe Website öffnen`}
                    class="card-hover bg-braun-700 rounded-2xl overflow-hidden block active:scale-[0.98] transition-transform">
                   {(e as any).video ? (
                     <div class="relative h-40 sm:h-48 overflow-hidden bg-braun-900">
