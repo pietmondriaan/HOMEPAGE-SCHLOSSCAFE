@@ -27,7 +27,7 @@ const standorte = [
     adresse: 'Kreuzbergweg 1, 9141 Eberndorf',
     tel: '+43 4236 2140',
     telHref: 'tel:+4342362140',
-    zeiten: 'Täglich 7:00 – 19:00 Uhr',
+    zeiten: 'Mo–So 8:00 – 19:00 Uhr · Donnerstag Ruhetag',
     beschreibung: 'Am Fuße des Klopeinersees in Eberndorf, Kärnten. Das Café Reinhart lädt in entspannter Atmosphäre zum Verweilen ein — hausgemachte Mehlspeisen, Torten und Eisspezialitäten täglich frisch zubereitet. Ideal nach einem Spaziergang am See oder einem Ausflug in die Südkärntner Region.',
     bild: '/images/cafe-reinhart-aussen.jpg',
     bildAlt: 'Café Reinhart Eberndorf am Klopeinersee',
@@ -40,7 +40,7 @@ const standorte = [
 ---
 <Layout
   title="Unsere Standorte | Schloss-Café Bleiburg & Café Reinhart Eberndorf"
-  description="Schloss-Café Bleiburg (10. Oktober Platz 38) und Café Reinhart Eberndorf am Klopeinersee — beide täglich 7–19 Uhr geöffnet. Hausgemachte Torten und Mehlspeisen."
+  description="Schloss-Café Bleiburg (10. Oktober Platz 38) Mo–So 7–19 Uhr und Café Reinhart Eberndorf am Klopeinersee Mo–So 8–19 Uhr (Do Ruhetag). Hausgemachte Torten und Mehlspeisen."
   canonical="https://www.cafemitherz.at/standort"
 >
   <Fragment slot="head">
@@ -62,7 +62,7 @@ const standorte = [
         "address": { "@type": "PostalAddress", "streetAddress": "Kreuzbergweg 1", "addressLocality": "Eberndorf", "postalCode": "9141", "addressCountry": "AT" },
         "geo": { "@type": "GeoCoordinates", "latitude": 46.5910418, "longitude": 14.6073595 },
         "telephone": "+4342362140",
-        "openingHours": "Mo-Su 07:00-19:00"
+        "openingHours": ["Mo,Tu,We,Fr,Sa,Su 08:00-19:00"]
       }
     ])} />
   </Fragment>

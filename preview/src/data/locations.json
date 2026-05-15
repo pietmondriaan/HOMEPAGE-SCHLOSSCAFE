@@ -1,0 +1,18 @@
+[
+  {
+    "id": "reinhart",
+    "label": "Café Reinhart Eberndorf",
+    "active": true,
+    "name": "TBD-after-gbp-list-locations",
+    "homepageUrl": "https://cafemitherz.at/standort/#reinhart",
+    "note": "Michael ist seit 15.05.2026 18:50 Admin. Name wird nach gbp-list-locations.mjs Erstausführung hier eingetragen, Format: accounts/{aid}/locations/{lid}"
+  },
+  {
+    "id": "schlosscafe",
+    "label": "Schloss-Café Bleiburg",
+    "active": false,
+    "name": "TBD-after-oli-handover",
+    "homepageUrl": "https://cafemitherz.at/standort/",
+    "note": "Oli muss Michael noch als Admin einladen (separates Listing)."
+  }
+]
