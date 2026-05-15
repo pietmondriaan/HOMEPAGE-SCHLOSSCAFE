@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+
+const torten = [
+  { id: 1, name: 'Topfen-Torte', beschreibung: 'Leicht und erfrischend – mit feinstem Topfen und einem Hauch Zitrone. Ein Klassiker aus unserer Vitrine.', preis: 58, bild: 'https://www.cafemitherz.at/images/torten/topfentorte.jpg' },
+  { id: 2, name: 'Schwarzwälder Kirschtorte', beschreibung: 'Schokolade, Kirschen und Sahne – ein zeitloser Genuss nach traditionellem Rezept.', preis: 58, bild: 'https://www.cafemitherz.at/images/torten/schwarzwaelder.jpg' },
+  { id: 3, name: 'Mokkatorte', beschreibung: 'Zarter Mokka-Geschmack trifft auf luftige Cremefüllung – für alle, die Kaffee lieben.', preis: 58, bild: 'https://www.cafemitherz.at/images/torten/mokkatorte-2.jpg' },
+  { id: 11, name: 'Schoko-Sahne-Torte', beschreibung: 'Saftige Schokoladenschichten mit zarter Sahne – ein Traum für Schokoladen-Fans.', preis: 58, bild: 'https://www.cafemitherz.at/images/torten/schokosahnetorte-4.jpg' },
+  { id: 12, name: 'Joghurt-Erdbeer-Torte', beschreibung: 'Cremige Joghurtfüllung mit frischen Erdbeeren, rosa Sahnerosetten und weißer Schokolade — leicht und verführerisch.', preis: 58, bild: 'https://www.cafemitherz.at/images/torten/joghurt-erdbeer.jpg' },
+  { id: 13, name: 'Fruchttorte', beschreibung: 'Üppig belegt mit Erdbeeren, Kiwi und Himbeeren auf feiner Cremebasis — frisch, bunt und unwiderstehlich.', preis: 58, bild: 'https://www.cafemitherz.at/images/torten/fruchttorte.jpg' },
+]
+---
+<Layout
+  title="Torten bestellen | Schloss-Café Bleiburg & Café Reinhart | Café mit Herz"
+  description="Hausgemachte Torten aus Bleiburg online bestellen. Topfen-Torte, Schwarzwälder Kirschtorte, Mokkatorte und mehr — täglich frisch von unseren Konditormeistern. Ab € 52."
+  canonical="https://www.cafemitherz.at/torten"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Hausgemachte Torten",
+      "brand": { "@type": "Brand", "name": "Café mit Herz – Schloss-Café Bleiburg" },
+      "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "52", "priceValidUntil": "2026-05-31", "availability": "https://schema.org/InStock" }
+    })} />
+  </Fragment>
+
+  <Navbar slot="navbar" />
+
+  <!-- Page Header -->
+  <section class="bg-braun-900 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-3">Täglich frisch</p>
+      <h1 class="text-4xl sm:text-6xl font-display text-creme mb-4">Unsere Torten</h1>
+      <p class="text-braun-300 text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed">
+        Aus hochwertigen, regionalen Zutaten – von unseren Konditormeistern täglich frisch zubereitet.
+        Bestellung möglich für Abholung oder per WhatsApp.
+      </p>
+    </div>
+  </section>
+
+  <!-- Torte des Monats -->
+  <section class="py-10 sm:py-16 bg-creme" aria-labelledby="aktion-title">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 rounded-2xl p-6 sm:p-10 flex flex-col md:flex-row items-center gap-6 sm:gap-10">
+        <div class="w-full md:w-2/5 aspect-[4/3] rounded-xl overflow-hidden">
+          <img
+            src="https://www.cafemitherz.at/images/torten/schokosahnetorte-4.jpg"
+            alt="Schoko-Sahne-Torte – Torte des Monats Mai 2026"
+            width="600"
+            height="450"
+            loading="eager"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="flex-1">
+          <div class="inline-flex items-center gap-2 bg-gold/20 rounded-full px-3 py-1.5 mb-4">
+            <span class="text-gold">⭐</span>
+            <span class="font-sans text-gold text-xs font-semibold tracking-wide uppercase">Torte des Monats Mai 2026</span>
+          </div>
+          <h2 id="aktion-title" class="text-2xl sm:text-4xl font-display text-braun-800 mb-3">Schoko-Sahne-Torte</h2>
+          <p class="text-braun-600 text-sm sm:text-base mb-4 leading-relaxed">
+            Saftige Schokoladenschichten mit zarter Sahne — unser Highlight im Mai.
+            Bei Online-Bestellung jetzt zum Aktionspreis.
+          </p>
+          <div class="flex items-baseline gap-3 mb-6">
+            <span class="text-braun-400 font-sans text-base line-through">€ 58,00</span>
+            <span class="text-gold font-sans font-bold text-3xl">€ 52,00</span>
+            <span class="text-braun-500 font-sans text-sm">bei Online-Bestellung</span>
+          </div>
+          <a
+            href={`https://wa.me/436645336243?text=${encodeURIComponent('Hallo, ich möchte eine Schoko-Sahne-Torte bestellen (Aktionspreis Mai 2026).')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-gold"
+          >
+            📱 Jetzt per WhatsApp bestellen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tortenübersicht -->
+  <section class="py-10 sm:py-16 bg-braun-50" aria-labelledby="torten-grid-title">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="torten-grid-title" class="text-2xl sm:text-3xl font-display text-braun-800 mb-8 sm:mb-12 text-center">Alle Torten</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {torten.map(t => (
+          <article class="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img
+                src={t.bild}
+                alt={t.name}
+                width="500"
+                height="375"
+                loading="lazy"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-5 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-display text-braun-800 mb-1.5">{t.name}</h3>
+              <p class="text-braun-500 text-sm leading-relaxed mb-3">{t.beschreibung}</p>
+              <div class="flex items-center justify-between">
+                <span class="text-gold font-sans font-bold text-lg">€ {t.preis.toFixed(2)}</span>
+                <a
+                  href={`https://wa.me/436645336243?text=${encodeURIComponent(`Hallo, ich möchte eine ${t.name} bestellen.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-gold !py-2 !px-4 text-sm"
+                  aria-label={`${t.name} per WhatsApp bestellen`}
+                >
+                  Bestellen
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bestellinfos -->
+  <section class="py-12 sm:py-20 bg-braun-800" aria-labelledby="bestellung-info-title">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <h2 id="bestellung-info-title" class="text-2xl sm:text-3xl font-display text-creme mb-6">So einfach bestellen</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+        {[
+          { step: '1', title: 'Torte auswählen', text: 'Wählen Sie Ihre Lieblingstorte und klicken auf "Bestellen".' },
+          { step: '2', title: 'WhatsApp Nachricht', text: 'Sie werden zu WhatsApp weitergeleitet. Datum und Abholzeit angeben.' },
+          { step: '3', title: 'Frisch abholen', text: 'Ihre Torte wird frisch für Sie vorbereitet und wartet auf Sie.' },
+        ].map(s => (
+          <div class="text-center">
+            <div class="w-10 h-10 rounded-full bg-gold text-braun-900 font-sans font-bold text-lg flex items-center justify-center mx-auto mb-3" aria-hidden="true">
+              {s.step}
+            </div>
+            <h3 class="font-display text-creme text-lg mb-2">{s.title}</h3>
+            <p class="text-braun-300 text-sm leading-relaxed">{s.text}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-braun-400 text-sm">
+        Für Großbestellungen oder individuelle Wünsche:
+        <a href="tel:+4342352979" class="text-gold hover:text-gold-light transition-colors">+43 4235 2979</a>
+      </p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>

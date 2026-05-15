@@ -1,0 +1,75 @@
+{
+  "_note": "Code-analysis-based estimates. Chrome not available on HP server (Windows crypto errors prevent Playwright). Scores derived from: bundle size analysis, font-loading strategy review, routing architecture, image optimization audit.",
+  "_method": "static-code-analysis",
+  "_date": "2026-05-15",
+  "_url": "https://www.cafemitherz.at",
+  "lhr": {
+    "requestedUrl": "https://www.cafemitherz.at/",
+    "finalUrl": "https://www.cafemitherz.at/",
+    "lighthouseVersion": "estimated-12.x",
+    "fetchTime": "2026-05-15T00:00:00.000Z",
+    "categories": {
+      "performance": {
+        "id": "performance",
+        "title": "Performance",
+        "score": 0.62,
+        "_estimated": true,
+        "_factors": [
+          "Google Fonts render-blocking (3 families, 6 variants)",
+          "No LCP image preload for galerie-01.jpg",
+          "Full React 19 + Router + GSAP bundle ~350KB gzip",
+          "No width/height on img elements (CLS risk)",
+          "No code splitting across routes"
+        ]
+      },
+      "accessibility": {
+        "id": "accessibility",
+        "title": "Accessibility",
+        "score": 0.87,
+        "_estimated": true,
+        "_factors": [
+          "PLUS: skip-to-content, focus-visible, lang=de, alt texts, aria on main",
+          "MINUS: gold/creme contrast ratio ~2.4:1 (below WCAG AA 3:1 for normal text)",
+          "MINUS: no prefers-reduced-motion for ticker and GSAP spiral",
+          "MINUS: EventTicker not pauseable for screen readers"
+        ]
+      },
+      "best-practices": {
+        "id": "best-practices",
+        "title": "Best Practices",
+        "score": 0.91,
+        "_estimated": true,
+        "_factors": [
+          "PLUS: HTTPS, no mixed content, manifest.json, structured data",
+          "MINUS: AutoPlayVideo component uses useRef/useEffect without importing them",
+          "MINUS: No Content-Security-Policy header"
+        ]
+      },
+      "seo": {
+        "id": "seo",
+        "title": "SEO",
+        "score": 0.78,
+        "_estimated": true,
+        "_factors": [
+          "PLUS: JSON-LD, OG/Twitter, canonical, geo meta, sitemap, robots.txt",
+          "MINUS: Hash-based routing - sub-pages not independently crawlable",
+          "MINUS: Sitemap contains hash URLs (#/schlosscafe) not indexable as separate pages",
+          "MINUS: usePageTitle hook provides titles but only after JS executes"
+        ]
+      }
+    },
+    "audits": {
+      "first-contentful-paint": { "numericValue": 2800, "displayValue": "2.8 s", "_estimated": true },
+      "largest-contentful-paint": { "numericValue": 4200, "displayValue": "4.2 s", "_estimated": true },
+      "total-blocking-time": { "numericValue": 420, "displayValue": "420 ms", "_estimated": true },
+      "cumulative-layout-shift": { "numericValue": 0.14, "displayValue": "0.14", "_estimated": true },
+      "speed-index": { "numericValue": 3600, "displayValue": "3.6 s", "_estimated": true },
+      "render-blocking-resources": {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "description": "Google Fonts CSS loaded synchronously. Use font-display=swap and preload key font files.",
+        "_estimated": true
+      }
+    }
+  }
+}
