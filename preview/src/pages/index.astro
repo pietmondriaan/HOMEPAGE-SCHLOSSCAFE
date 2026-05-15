@@ -2,6 +2,28 @@
 import Layout from '../layouts/Layout.astro'
 import Navbar from '../components/Navbar.astro'
 import Footer from '../components/Footer.astro'
+
+// Events — gefiltert wie in getActiveEvents(), Datum relativ zum Build-Datum
+const allEvents = [
+  { id: 6, titel: "Ausstellung: Drei Welten im Nahbereich", datum: "2026-11-08", uhrzeit: "noch bis 8. Nov · Di–So 10–18 Uhr", beschreibung: "Mercedes Helnwein, Werner Berg & Alberto Giacometti im Dialog — direkt am 10. Oktober Platz. Zur Eröffnung war Weltkünstler Gottfried Helnwein persönlich in Bleiburg — und zu Gast im Schloss-Café.", bild: "https://www.cafemitherz.at/images/helnwein-besuch.jpg", ort: "Werner Berg Museum · 10. Oktober Platz 4", link: "https://www.wernerberg.museum", dauerausstellung: false, immer_zeigen: true, aktiv: true, istPlakat: true },
+  { id: 5, titel: "Neueröffnung nach Umbau", datum: "2026-05-01", uhrzeit: "seit 1. Mai 2026", beschreibung: "Nach einem aufwändigen Umbau erstrahlt das Schloss-Café in neuem Glanz! Frisch renovierte Räume, neue Atmosphäre — aber mit dem gewohnten Herzstück: hausgemachte Mehlspeisen, Torten und Gastfreundschaft.", video: "https://www.cafemitherz.at/videos/neueroffnung-schlosscafe.mp4", bild: null, ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, immer_zeigen: true, aktiv: true },
+  { id: 4, titel: "Auszahlung Sparverein", datum: "2026-07-05", uhrzeit: "ab 12:00 Uhr", beschreibung: "Die jährliche Auszahlung des Sparvereins ab 12:00 Uhr. Wir freuen uns auf einen gemütlichen Nachmittag im Schloss-Café — mit hausgemachten Mehlspeisen und guter Gesellschaft!", bild: "https://www.cafemitherz.at/images/sparverein-auszahlung.jpg", ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, aktiv: true },
+  { id: 3, titel: "43. Bleiburger Radwandertag & Sommerfest", datum: "2026-06-20", uhrzeit: "ab 17:00 Uhr", beschreibung: "Der 43. Bleiburger Radwandertag der Kärntner Sparkasse – und wir sind dabei! Das Schloss-Café Bleiburg feiert gleichzeitig sein Sommerfest – kommt vorbei!", bild: "https://www.cafemitherz.at/images/radwandertag-2026-plakat.jpg", ort: "Kärntner Sparkasse Bleiburg, 10. Oktober Platz 38", link: null, dauerausstellung: false, aktiv: true, istPlakat: true },
+  { id: 1, titel: "Dauerausstellung: Michael Pietrowski", datum: "2026-01-01", beschreibung: "Fadenbilder, Acryl, CrossArt & Beanie-Serie — Werke können vor Ort besichtigt und erworben werden.", bild: "https://www.cafemitherz.at/images/pietrowski-ausstellung.webp", ort: "Schloss-Café Bleiburg", link: "https://www.pietrowski.at", dauerausstellung: true, aktiv: true },
+]
+
+const today = new Date('2026-05-15')
+today.setHours(0,0,0,0)
+const activeEvents = allEvents
+  .filter(e => e.aktiv && (e.dauerausstellung || (e as any).immer_zeigen || new Date(e.datum) >= today))
+  .sort((a, b) => {
+    if (a.dauerausstellung) return 1
+    if (b.dauerausstellung) return -1
+    return new Date(a.datum).getTime() - new Date(b.datum).getTime()
+  })
+
+// Ticker-Texte
+const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
 ---
 <Layout
   title="Schloss-Café Bleiburg | Torten, Mehlspeisen & Kunst | Café mit Herz"
@@ -80,6 +102,21 @@ import Footer from '../components/Footer.astro'
         <div class="w-1.5 h-3 bg-creme/60 rounded-full"></div>
       </div>
     </div>
+
+    <!-- EventTicker -->
+    {activeEvents.length > 0 && (
+      <div class="absolute bottom-0 left-0 right-0 z-20 bg-braun-900/80 backdrop-blur-sm border-t border-braun-700/40 overflow-hidden"
+           role="marquee" aria-label="Aktuelle Veranstaltungen">
+        <div class="ticker-scroll flex whitespace-nowrap py-2.5">
+          {[...tickerItems, ...tickerItems].map((t, i) => (
+            <span class="inline-flex items-center gap-3 px-6 font-sans text-xs sm:text-sm text-braun-200">
+              <span class="text-gold" aria-hidden="true">★</span>
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
   </section>
 
   <!-- STANDORTE -->
@@ -380,11 +417,40 @@ import Footer from '../components/Footer.astro'
             <p class="text-braun-400 text-xs mb-3 italic">Mercedes Helnwein · Werner Berg · Alberto Giacometti</p>
             <p class="text-braun-300 text-xs">8. Mai – 8. November 2026 · Di–So 10:00–18:00</p>
           </div>
-          <div class="flex flex-col sm:flex-row gap-3">
+          <div class="flex flex-col sm:flex-row gap-3 mb-7 sm:mb-8">
             <a href="https://www.wernerberg.museum" target="_blank" rel="noopener noreferrer" class="btn-braun text-sm !border-braun-600">
               Zum Werner Berg Museum ↗
             </a>
-            <a href="/kontakt" class="btn-gold text-sm">Tisch reservieren</a>
+            <a href="/kontakt/" class="btn-gold text-sm">Tisch reservieren</a>
+          </div>
+
+          <!-- Museumsbecher -->
+          <div class="mb-7 sm:mb-8 rounded-2xl overflow-hidden border border-braun-700/60 flex flex-col sm:flex-row items-stretch">
+            <div class="sm:w-32 shrink-0 overflow-hidden">
+              <img
+                src="https://www.cafemitherz.at/images/museumsbecher.jpg"
+                alt="Museumsbecher – Helnwein, Werner Berg & Giacometti"
+                width="128"
+                height="128"
+                loading="lazy"
+                class="w-full h-28 sm:h-full object-cover object-top"
+              />
+            </div>
+            <div class="flex-1 bg-braun-800/40 px-4 py-3.5">
+              <p class="font-sans text-[10px] text-gold tracking-[0.18em] uppercase font-semibold mb-1">Unsere Empfehlung zur Ausstellung</p>
+              <p class="font-display text-creme text-base leading-snug mb-1">Museumsbecher</p>
+              <p class="font-sans text-braun-400 text-xs leading-relaxed">Schokolade · Stracciatella · hausgemachte Himbeersauce</p>
+            </div>
+          </div>
+
+          <!-- Pietrowski-Hinweis -->
+          <div class="pt-5 border-t border-braun-800">
+            <p class="text-braun-500 text-xs leading-relaxed">
+              <span class="text-braun-400">Kunst direkt im Café:</span> Die Dauerausstellung von
+              <a href="https://www.pietrowski.at" target="_blank" rel="noopener noreferrer"
+                 class="text-gold hover:text-gold-light transition-colors"> Michael Pietrowski</a>
+              — Fadenbilder, Acryl &amp; CrossArt — ist täglich im Schloss-Café zu sehen und käuflich zu erwerben.
+            </p>
           </div>
         </div>
       </div>
@@ -443,6 +509,97 @@ import Footer from '../components/Footer.astro'
       </div>
     </div>
   </section>
+
+  <!-- VERANSTALTUNGEN -->
+  {activeEvents.length > 0 && (
+    <section id="events" class="py-16 sm:py-24 bg-braun-800" aria-labelledby="events-title">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 sm:mb-16">
+          <p class="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Was ist los?</p>
+          <h2 id="events-title" class="text-3xl sm:text-4xl lg:text-5xl font-display text-creme">Veranstaltungen</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
+          {activeEvents.map(e => (
+            <article>
+              {e.link ? (
+                <a href={e.link} target="_blank" rel="noopener noreferrer"
+                   class="card-hover bg-braun-700 rounded-2xl overflow-hidden block active:scale-[0.98] transition-transform">
+                  {(e as any).video ? (
+                    <div class="relative h-40 sm:h-48 overflow-hidden bg-braun-900">
+                      <video
+                        data-lazy-src={(e as any).video}
+                        muted loop playsinline preload="none"
+                        class="lazy-video w-full h-full object-cover"
+                        aria-label={e.titel}
+                      ></video>
+                      <div class="absolute inset-0 bg-gradient-to-t from-braun-900/40 to-transparent" aria-hidden="true"></div>
+                      <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm text-white font-sans text-[10px] tracking-wide px-2.5 py-1 rounded-full" aria-hidden="true">▶ Video</div>
+                      {(e as any).immer_zeigen && (
+                        <div class="absolute top-3 left-3 bg-gold text-braun-900 font-sans text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow">Aktuell</div>
+                      )}
+                    </div>
+                  ) : e.bild ? (
+                    <div class:list={[(e as any).istPlakat ? 'overflow-hidden bg-braun-900 flex items-center justify-center' : 'h-40 sm:h-48 overflow-hidden']}>
+                      <img src={e.bild} alt={e.titel} width="600" height="400" loading="lazy"
+                           class:list={[(e as any).istPlakat ? 'w-full object-contain max-h-48' : 'w-full h-full object-cover']} />
+                    </div>
+                  ) : null}
+                  <div class="p-5 sm:p-6">
+                    <div class="flex items-center gap-2 text-gold text-sm mb-2 sm:mb-3">
+                      <span aria-hidden="true">📅</span>
+                      <time datetime={e.datum} class="font-sans text-xs sm:text-sm">
+                        {e.dauerausstellung ? 'Dauerausstellung' : new Date(e.datum).toLocaleDateString('de-AT', { day: 'numeric', month: 'long', year: 'numeric' })}
+                        {(e as any).uhrzeit ? ` · ${(e as any).uhrzeit}` : ''}
+                      </time>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-display text-creme mb-1.5 sm:mb-2">{e.titel}</h3>
+                    <p class="text-braun-300 text-xs sm:text-sm leading-relaxed">{e.beschreibung}</p>
+                    <p class="text-gold-light font-sans text-xs mt-2 sm:mt-3">{e.ort}</p>
+                    <p class="text-gold font-sans text-sm mt-2 sm:mt-3 font-semibold">Mehr erfahren →</p>
+                  </div>
+                </a>
+              ) : (
+                <div class="card-hover bg-braun-700 rounded-2xl overflow-hidden">
+                  {(e as any).video ? (
+                    <div class="relative h-40 sm:h-48 overflow-hidden bg-braun-900">
+                      <video
+                        data-lazy-src={(e as any).video}
+                        muted loop playsinline preload="none"
+                        class="lazy-video w-full h-full object-cover"
+                        aria-label={e.titel}
+                      ></video>
+                      <div class="absolute inset-0 bg-gradient-to-t from-braun-900/40 to-transparent" aria-hidden="true"></div>
+                      <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm text-white font-sans text-[10px] tracking-wide px-2.5 py-1 rounded-full" aria-hidden="true">▶ Video</div>
+                      {(e as any).immer_zeigen && (
+                        <div class="absolute top-3 left-3 bg-gold text-braun-900 font-sans text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow">Aktuell</div>
+                      )}
+                    </div>
+                  ) : e.bild ? (
+                    <div class:list={[(e as any).istPlakat ? 'overflow-hidden bg-braun-900 flex items-center justify-center' : 'h-40 sm:h-48 overflow-hidden']}>
+                      <img src={e.bild} alt={e.titel} width="600" height="400" loading="lazy"
+                           class:list={[(e as any).istPlakat ? 'w-full object-contain max-h-48' : 'w-full h-full object-cover']} />
+                    </div>
+                  ) : null}
+                  <div class="p-5 sm:p-6">
+                    <div class="flex items-center gap-2 text-gold text-sm mb-2 sm:mb-3">
+                      <span aria-hidden="true">📅</span>
+                      <time datetime={e.datum} class="font-sans text-xs sm:text-sm">
+                        {e.dauerausstellung ? 'Dauerausstellung' : new Date(e.datum).toLocaleDateString('de-AT', { day: 'numeric', month: 'long', year: 'numeric' })}
+                        {(e as any).uhrzeit ? ` · ${(e as any).uhrzeit}` : ''}
+                      </time>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-display text-creme mb-1.5 sm:mb-2">{e.titel}</h3>
+                    <p class="text-braun-300 text-xs sm:text-sm leading-relaxed">{e.beschreibung}</p>
+                    <p class="text-gold-light font-sans text-xs mt-2 sm:mt-3">{e.ort}</p>
+                  </div>
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <Footer slot="footer" />
 </Layout>
