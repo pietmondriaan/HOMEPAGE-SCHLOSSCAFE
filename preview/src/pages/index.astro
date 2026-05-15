@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro'
 // Events — gefiltert wie in getActiveEvents(), Datum relativ zum Build-Datum
 const allEvents = [
   { id: 6, titel: "Ausstellung: Drei Welten im Nahbereich", datum: "2026-11-08", uhrzeit: "noch bis 8. Nov · Di–So 10–18 Uhr", beschreibung: "Mercedes Helnwein, Werner Berg & Alberto Giacometti im Dialog — direkt am 10. Oktober Platz. Zur Eröffnung war Weltkünstler Gottfried Helnwein persönlich in Bleiburg — und zu Gast im Schloss-Café.", bild: "/images/helnwein-besuch.jpg", ort: "Werner Berg Museum · 10. Oktober Platz 4", link: "https://www.wernerberg.museum", dauerausstellung: false, immer_zeigen: true, aktiv: true, istPlakat: true },
-  { id: 5, titel: "Neueröffnung nach Umbau", datum: "2026-05-01", uhrzeit: "seit 1. Mai 2026", beschreibung: "Nach einem aufwändigen Umbau erstrahlt das Schloss-Café in neuem Glanz! Frisch renovierte Räume, neue Atmosphäre — aber mit dem gewohnten Herzstück: hausgemachte Mehlspeisen, Torten und Gastfreundschaft.", video: "/videos/neueroffnung-schlosscafe.mp4", bild: null, ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, immer_zeigen: true, aktiv: true },
+  { id: 5, titel: "Neueröffnung nach Umbau", datum: "2026-05-01", uhrzeit: "seit 1. Mai 2026", beschreibung: "Nach einem aufwändigen Umbau erstrahlt das Schloss-Café in neuem Glanz! Frisch renovierte Räume, neue Atmosphäre — aber mit dem gewohnten Herzstück: hausgemachte Mehlspeisen, Torten und Gastfreundschaft.", video: "/videos/neueroffnung-schlosscafe.mp4", poster: "/images/schlosscafe-aussen.jpg", bild: null, ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, immer_zeigen: true, aktiv: true },
   { id: 4, titel: "Auszahlung Sparverein", datum: "2026-07-05", uhrzeit: "ab 12:00 Uhr", beschreibung: "Die jährliche Auszahlung des Sparvereins ab 12:00 Uhr. Wir freuen uns auf einen gemütlichen Nachmittag im Schloss-Café — mit hausgemachten Mehlspeisen und guter Gesellschaft!", bild: "/images/sparverein-auszahlung.jpg", ort: "Schloss-Café Bleiburg", link: null, dauerausstellung: false, aktiv: true },
   { id: 3, titel: "43. Bleiburger Radwandertag & Sommerfest", datum: "2026-06-20", uhrzeit: "ab 17:00 Uhr", beschreibung: "Der 43. Bleiburger Radwandertag der Kärntner Sparkasse – und wir sind dabei! Das Schloss-Café Bleiburg feiert gleichzeitig sein Sommerfest – kommt vorbei!", bild: "/images/radwandertag-2026-plakat.jpg", ort: "Kärntner Sparkasse Bleiburg, 10. Oktober Platz 38", link: null, dauerausstellung: false, aktiv: true, istPlakat: true },
   { id: 1, titel: "Dauerausstellung: Michael Pietrowski", datum: "2026-01-01", beschreibung: "Fadenbilder, Acryl, CrossArt & Beanie-Serie — Werke können vor Ort besichtigt und erworben werden.", bild: "/images/pietrowski-ausstellung.webp", ort: "Schloss-Café Bleiburg", link: "https://www.pietrowski.at", dauerausstellung: true, aktiv: true },
@@ -402,33 +402,6 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
     </div>
   </section>
 
-  <!-- INDIVIDUELLE TORTEN IMPRESSIONEN -->
-  <section class="py-16 sm:py-24 bg-creme" aria-labelledby="impressionen-title">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-10 sm:mb-14">
-        <p class="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Auf Bestellung</p>
-        <h2 id="impressionen-title" class="text-3xl sm:text-4xl lg:text-5xl font-display text-braun-800">Torten für jeden Anlass</h2>
-        <p class="text-braun-500 text-sm sm:text-base mt-3 max-w-xl mx-auto">Hochzeit, Geburtstag, Muttertag — wir gestalten Ihre Torte individuell nach Wunsch.</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-        {[
-          { src: '/images/galerie/galerie-28.jpg', alt: 'Hochzeitstorte mit roten Rosen und Ringen' },
-          { src: '/images/galerie/galerie-29.jpg', alt: 'Naked Cake mit „Amore"-Topper und Blumen' },
-          { src: '/images/galerie/galerie-30.jpg', alt: 'Festliche Torte mit Cupcakes zur besonderen Feier' },
-        ].map(img => (
-          <div class="aspect-square overflow-hidden rounded-2xl shadow-md">
-            <img src={img.src} alt={img.alt} width="600" height="600" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-        ))}
-      </div>
-      <div class="text-center mt-8 sm:mt-10">
-        <a href="/torten/" class="btn-gold inline-flex items-center gap-2">
-          🎂 Individuelle Torte bestellen
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- HELNWEIN KULTUR-MOMENT -->
   <section class="bg-[#0c0906] overflow-hidden" aria-labelledby="kultur-title">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
@@ -581,6 +554,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
                     <div class="relative h-40 sm:h-48 overflow-hidden bg-braun-900">
                       <video
                         data-lazy-src={(e as any).video}
+                        poster={(e as any).poster ?? undefined}
                         muted loop playsinline preload="none"
                         class="lazy-video w-full h-full object-cover"
                         aria-label={e.titel}
@@ -617,6 +591,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
                     <div class="relative h-40 sm:h-48 overflow-hidden bg-braun-900">
                       <video
                         data-lazy-src={(e as any).video}
+                        poster={(e as any).poster ?? undefined}
                         muted loop playsinline preload="none"
                         class="lazy-video w-full h-full object-cover"
                         aria-label={e.titel}
@@ -658,17 +633,21 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
 </Layout>
 
 <script>
-// Lazy-load videos when they scroll into view (replaces React LazyVideo)
 document.querySelectorAll('video.lazy-video').forEach(video => {
   const src = video.dataset.lazySrc
   if (!src) return
   const observer = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
-      video.src = src
-      video.play().catch(() => {})
       observer.disconnect()
+      video.muted = true
+      video.src = src
+      video.load()
+      const tryPlay = () => video.play().catch(() => {})
+      video.addEventListener('canplay', tryPlay, { once: true })
+      // Fallback: try after short delay in case canplay already fired
+      setTimeout(tryPlay, 300)
     }
-  }, { rootMargin: '150px' })
+  }, { rootMargin: '200px' })
   observer.observe(video)
 })
 </script>

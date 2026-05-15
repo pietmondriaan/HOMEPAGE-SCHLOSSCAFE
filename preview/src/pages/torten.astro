@@ -123,6 +123,28 @@ const torten = [
     </div>
   </section>
 
+  <!-- Individuelle Torten Impressionen -->
+  <section class="py-16 sm:py-24 bg-creme" aria-labelledby="impressionen-title">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10 sm:mb-14">
+        <p class="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Auf Bestellung</p>
+        <h2 id="impressionen-title" class="text-3xl sm:text-4xl lg:text-5xl font-display text-braun-800">Torten für jeden Anlass</h2>
+        <p class="text-braun-500 text-sm sm:text-base mt-3 max-w-xl mx-auto">Hochzeit, Geburtstag, Muttertag — wir gestalten Ihre Torte individuell nach Wunsch.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        {[
+          { src: '/images/galerie/galerie-28.jpg', alt: 'Hochzeitstorte mit roten Rosen und Ringen' },
+          { src: '/images/galerie/galerie-29.jpg', alt: 'Naked Cake mit Amore-Topper und Blumen' },
+          { src: '/images/galerie/galerie-30.jpg', alt: 'Festliche Torte mit Cupcakes zur besonderen Feier' },
+        ].map(img => (
+          <div class="aspect-square overflow-hidden rounded-2xl shadow-md">
+            <img src={img.src} alt={img.alt} width="600" height="600" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Bestellinfos -->
   <section class="py-12 sm:py-20 bg-braun-800" aria-labelledby="bestellung-info-title">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
