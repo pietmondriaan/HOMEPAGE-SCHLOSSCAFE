@@ -271,7 +271,7 @@ const tickerItems = activeEvents.map(e => `${e.titel} — ${e.ort}`)
           {
             name: 'Eiskreationen',
             beschreibung: 'Hausgemachte Eisbecher und Eisspezialitäten — täglich frisch, nach Saison und Laune.',
-            bild: null,
+            bild: '/images/klassiker/eiskreationen.jpg',
             video: '/images/klassiker/eiskreationen.mp4',
             badge: 'Täglich frisch',
           },
@@ -645,7 +645,17 @@ document.querySelectorAll('video.lazy-video').forEach(video => {
     video.muted = true
     video.src = src
     video.load()
-  }, { rootMargin: '200px' })
+    // Explicit play() with fallback: if iOS blocks autoplay, the poster stays visible
+    const p = video.play()
+    if (p && typeof p.catch === 'function') {
+      p.catch(() => {
+        // Autoplay blocked — start on first user tap anywhere
+        const playOnTap = () => { video.play().catch(() => {}); document.removeEventListener('touchstart', playOnTap); document.removeEventListener('click', playOnTap); }
+        document.addEventListener('touchstart', playOnTap, { once: true, passive: true })
+        document.addEventListener('click', playOnTap, { once: true })
+      })
+    }
+  }, { rootMargin: '400px' })
   observer.observe(video)
 })
 </script>
