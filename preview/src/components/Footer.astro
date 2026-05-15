@@ -1,0 +1,79 @@
+---
+const year = new Date().getFullYear()
+---
+<footer class="bg-braun-900 text-braun-300 pt-12 pb-8" role="contentinfo">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+      <!-- Brand -->
+      <div class="lg:col-span-1">
+        <img
+          src="https://www.cafemitherz.at/images/logos/schlosscafe-logo.png"
+          alt="Schloss-Café Logo"
+          width="140"
+          height="38"
+          class="h-9 w-auto mb-3"
+          loading="lazy"
+        />
+        <p class="text-sm leading-relaxed mb-4">
+          Gastfreundschaft mit ganz viel Herz — täglich frische Mehlspeisen in Bleiburg und Eberndorf.
+        </p>
+        <p class="font-sans text-xs text-braun-400">
+          Restaurant Guru – Best Coffeehouse 2023–2026
+        </p>
+      </div>
+
+      <!-- Schloss-Café -->
+      <div>
+        <h3 class="font-sans text-creme text-sm font-semibold tracking-wide mb-3">Schloss-Café Bleiburg</h3>
+        <address class="not-italic text-sm space-y-1">
+          <p>10. Oktober Platz 38</p>
+          <p>9150 Bleiburg, Kärnten</p>
+          <p class="mt-2"><a href="tel:+4342352979" class="hover:text-gold transition-colors">+43 4235 2979</a></p>
+          <p class="text-braun-400 text-xs mt-2">Mo–So 7:00–19:00 Uhr</p>
+        </address>
+      </div>
+
+      <!-- Cafe Reinhart -->
+      <div>
+        <h3 class="font-sans text-creme text-sm font-semibold tracking-wide mb-3">Café Reinhart Eberndorf</h3>
+        <address class="not-italic text-sm space-y-1">
+          <p>Kreuzbergweg 1</p>
+          <p>9141 Eberndorf, Kärnten</p>
+          <p class="mt-2"><a href="tel:+4342362140" class="hover:text-gold transition-colors">+43 4236 2140</a></p>
+          <p class="text-braun-400 text-xs mt-2">Mo–So 7:00–19:00 Uhr</p>
+        </address>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h3 class="font-sans text-creme text-sm font-semibold tracking-wide mb-3">Menü</h3>
+        <nav aria-label="Footer-Navigation">
+          <ul class="space-y-2 text-sm">
+            {[
+              ['/torten/', 'Torten bestellen'],
+              ['/standort/', 'Unsere Standorte'],
+              ['/karten/', 'Speisekarten'],
+              ['/vermietung/', 'Vermietung'],
+              ['/kontakt/', 'Kontakt'],
+              ['/impressum/', 'Impressum'],
+              ['/datenschutz/', 'Datenschutz'],
+            ].map(([href, label]) => (
+              <li>
+                <a href={href} class="hover:text-gold transition-colors">{label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="border-t border-braun-700 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="font-sans text-xs text-braun-500">
+        &copy; {year} Café mit Herz – Oliver Burkhardt. Alle Rechte vorbehalten.
+      </p>
+      <p class="font-sans text-xs text-braun-600">
+        Kunst im Café: <a href="https://www.pietrowski.at" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">Michael Pietrowski</a>
+      </p>
+    </div>
+  </div>
+</footer>

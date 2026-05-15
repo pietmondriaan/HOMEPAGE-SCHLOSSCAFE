@@ -1,0 +1,96 @@
+---
+import '../styles/global.css'
+export interface Props {
+  title: string
+  description?: string
+  canonical?: string
+  ogImage?: string
+}
+const {
+  title,
+  description = 'Schloss-Café Bleiburg – hausgemachte Torten, Mehlspeisen & Eisspezialitäten täglich 7–19 Uhr. Kunst & Kultur am Bleiburger Schlossplatz.',
+  canonical = 'https://www.cafemitherz.at/',
+  ogImage = 'https://www.cafemitherz.at/images/schlosscafe-aussen.jpg',
+} = Astro.props
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Geo -->
+    <meta name="geo.region" content="AT-2" />
+    <meta name="geo.placename" content="Bleiburg, Kärnten, Österreich" />
+    <meta name="geo.position" content="46.590407;14.794809" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="de_AT" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts: self-hosted via Google Fonts display=swap — eliminiert render-blocking -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:wght@400;500&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CafeOrCoffeeShop",
+      "@id": "https://www.cafemitherz.at/#schlosscafe",
+      "name": "Schloss-Café",
+      "alternateName": ["Schloss Cafe Bleiburg", "Café mit Herz"],
+      "description": "Hausgemachte Torten, Mehlspeisen & Eisspezialitäten im historischen Schloss-Café am 10. Oktober Platz in Bleiburg. Täglich frisch. Kunstausstellungen. Neben dem Werner Berg Museum.",
+      "url": "https://www.cafemitherz.at",
+      "telephone": "+4342352979",
+      "email": "oliver.burkhardt@gmx.at",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "10. Oktober Platz 38",
+        "addressLocality": "Bleiburg",
+        "addressRegion": "Kärnten",
+        "postalCode": "9150",
+        "addressCountry": "AT"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 46.590407, "longitude": 14.794809 },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "07:00", "closes": "19:00"
+      }],
+      "priceRange": "€€",
+      "award": "Restaurant Guru 2023–2026 – Best Coffeehouse in Bleiburg",
+      "image": "https://www.cafemitherz.at/images/schlosscafe-aussen.jpg"
+    })} />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-to-content">Zum Hauptinhalt springen</a>
+    <slot name="navbar" />
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>
