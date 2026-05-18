@@ -25,7 +25,7 @@ export default function App() {
       <a href="#main-content" className="skip-to-content">Zum Hauptinhalt springen</a>
       <ScrollToTop />
       <Navbar />
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" tabIndex={-1} className="pt-7">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/schlosscafe" element={<Standort />} />

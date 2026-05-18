@@ -261,6 +261,8 @@
       ]
     }
     </script>
+    <!-- A11y: Vor-Render-Restore um Flash zu vermeiden -->
+    <script>try{if(localStorage.getItem('a11y')==='1')document.documentElement.setAttribute('data-accessible','')}catch{}</script>
   </head>
   <body>
     <div id="root"></div>

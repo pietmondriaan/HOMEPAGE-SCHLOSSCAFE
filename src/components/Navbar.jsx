@@ -31,6 +31,17 @@ export default function Navbar() {
 
   const cafesActive = ['/schlosscafe', '/reinhardt', '/karten'].includes(location.pathname)
 
+  const [a11y, setA11y] = useState(() => {
+    if (typeof document === 'undefined') return false
+    return document.documentElement.hasAttribute('data-accessible')
+  })
+  useEffect(() => {
+    const html = document.documentElement
+    if (a11y) html.setAttribute('data-accessible', '')
+    else html.removeAttribute('data-accessible')
+    try { localStorage.setItem('a11y', a11y ? '1' : '0') } catch {}
+  }, [a11y])
+
   // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false)
@@ -78,13 +89,26 @@ export default function Navbar() {
   return (
     <>
     <nav className="fixed top-0 w-full z-50 bg-braun-800/95 backdrop-blur-md shadow-lg" aria-label="Hauptnavigation">
+      {/* A11y utility bar */}
+      <div className="bg-braun-900 border-b border-braun-800 px-4 sm:px-6 lg:px-8 flex justify-end items-center h-7">
+        <button
+          type="button"
+          onClick={() => setA11y(v => !v)}
+          aria-pressed={a11y}
+          aria-label={a11y ? 'Barrierefreie Ansicht deaktivieren' : 'Barrierefreie Ansicht aktivieren'}
+          className="a11y-bar-btn"
+        >
+          ♿ Barrierefreie Ansicht
+        </button>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
 
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <img src="./images/logos/schlosscafe-logo.png" alt="Café mit Herz" className="h-10 sm:h-14 w-auto" />
-            <span className="text-creme font-display text-lg sm:text-xl hidden sm:block">Café mit Herz</span>
+          {/* Logos: Schloss-Café + Café Reinhart */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group" aria-label="Café mit Herz – Startseite">
+            <img src="./images/logos/schlosscafe-logo.png" alt="Schloss-Café" className="h-9 sm:h-12 w-auto" />
+            <span className="text-braun-600 font-sans text-sm hidden sm:block" aria-hidden="true">·</span>
+            <img src="./images/logos/cafe-reinhart-logo.png" alt="Café Reinhart" className="h-8 sm:h-11 w-auto opacity-90 group-hover:opacity-100 transition-opacity" />
           </Link>
 
           {/* Desktop nav */}
@@ -237,7 +261,7 @@ export default function Navbar() {
     {/* Mobile overlay — outside <nav> so backdrop-blur-md doesn't trap fixed positioning */}
     <div
       id="mobile-menu"
-      className={`lg:hidden fixed inset-0 top-16 sm:top-20 z-40 bg-braun-800 transition-transform duration-300 ease-out ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      className={`lg:hidden fixed inset-0 top-[92px] sm:top-[108px] z-40 bg-braun-800 transition-transform duration-300 ease-out ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}
       aria-hidden={!mobileOpen}
     >
         <div className="flex flex-col h-full">
