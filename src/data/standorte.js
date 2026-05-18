@@ -27,5 +27,11 @@ export const standorte = {
     bild: "/images/cafe-reinhart-aussen.jpg",
     video: "/videos/cafe-reinhart-aussen.mp4",
     beschreibung: "Unser Cafe Reinhart am Klopeinersee bietet Ihnen einen gemütlichen Rückzugsort. Regionale Köstlichkeiten und hausgemachte Eisspezialitäten in entspannter Atmosphäre.",
+    impressionen: [
+      "/images/reinhart/reinhart-impression-01.jpg",
+      "/images/reinhart/reinhart-impression-02.jpg",
+      "/images/reinhart/reinhart-impression-03.jpg",
+      "/images/reinhart/reinhart-impression-04.jpg",
+    ],
   },
 }

@@ -52,11 +52,14 @@ export default function Standort() {
               <div className="mt-12">
                 <h3 className="text-2xl font-display text-braun-800 mb-6">Impressionen</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                  {[...Array(6)].map((_, i) => (
-                    <div key={i} className="rounded-xl overflow-hidden h-40">
+                  {(s.impressionen ?? [...Array(6)].map((_, i) =>
+                    `/images/galerie/galerie-${String(i + (id === 'schlosscafe' ? 1 : 21)).padStart(2, '0')}.jpg`
+                  )).map((src, i) => (
+                    <div key={src} className="rounded-xl overflow-hidden h-40">
                       <img
-                        src={`./images/galerie/galerie-${String(i + (id === 'schlosscafe' ? 1 : 21)).padStart(2, '0')}.jpg`}
-                        alt={`${s.name} Impression`}
+                        src={`.${src}`}
+                        alt={`${s.name} Impression ${i + 1}`}
+                        loading="lazy"
                         className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                       />
                     </div>
