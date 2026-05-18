@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaDirections, FaArrowRight, FaWhatsapp, FaStar } from 'react-icons/fa'
 import { standorte } from '../data/standorte'
 import { usePageTitle } from '../hooks/usePageTitle'
+import LazyVideo from '../components/LazyVideo'
 
 export default function Standort() {
   const location = useLocation()
@@ -14,7 +15,18 @@ export default function Standort() {
   return (
     <div className="pt-20">
       <section className="relative h-[50vh] min-h-[400px]">
-        <img src={`.${s.bild}`} alt={s.name} className="w-full h-full object-cover" />
+        {s.video ? (
+          <LazyVideo
+            src={`.${s.video}`}
+            poster={`.${s.bild}`}
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <img src={`.${s.bild}`} alt={s.name} className="w-full h-full object-cover" />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-braun-900/70 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-16">
           <div className="max-w-7xl mx-auto">

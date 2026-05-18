@@ -25,6 +25,7 @@ export const standorte = {
     maps: "https://www.google.at/maps/dir//Cafe+Reinhart,+Kreuzberglweg+1,+9141+Eberndorf/@46.5910418,14.6073595,13z",
     logo: "/images/logos/cafe-reinhart-logo.png",
     bild: "/images/cafe-reinhart-aussen.jpg",
+    video: "/videos/cafe-reinhart-aussen.mp4",
     beschreibung: "Unser Cafe Reinhart am Klopeinersee bietet Ihnen einen gemütlichen Rückzugsort. Regionale Köstlichkeiten und hausgemachte Eisspezialitäten in entspannter Atmosphäre.",
   },
 }
