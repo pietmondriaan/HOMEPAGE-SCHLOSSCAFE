@@ -1,10 +1,84 @@
 import { useState } from 'react'
-import { FaWhatsapp, FaEnvelope, FaShoppingBag, FaStar, FaPalette } from 'react-icons/fa'
+import { FaWhatsapp, FaEnvelope, FaShoppingBag, FaStar, FaPalette, FaInfoCircle, FaExclamationTriangle } from 'react-icons/fa'
 import LazyVideo from '../components/LazyVideo'
 import { torten, aktionstorte } from '../data/torten'
 import { usePageTitle } from '../hooks/usePageTitle'
 
-function TortenKarte({ torte, onBestellen }) {
+// EU-LMIV 1169/2011 — die 14 deklarationspflichtigen Allergene (Buchstabencode österr. Wirteliste).
+const ALLERGEN_LISTE = [
+  { code: 'A', name: 'Glutenhaltige Getreide', detail: 'Weizen, Roggen, Gerste, Hafer, Dinkel, Kamut' },
+  { code: 'B', name: 'Krebstiere' },
+  { code: 'C', name: 'Eier' },
+  { code: 'D', name: 'Fische' },
+  { code: 'E', name: 'Erdnüsse' },
+  { code: 'F', name: 'Sojabohnen' },
+  { code: 'G', name: 'Milch und Laktose' },
+  { code: 'H', name: 'Schalenfrüchte', detail: 'Mandeln, Haselnüsse, Walnüsse, Cashews, Pekan, Para, Pistazien, Macadamia' },
+  { code: 'L', name: 'Sellerie' },
+  { code: 'M', name: 'Senf' },
+  { code: 'N', name: 'Sesamsamen' },
+  { code: 'O', name: 'Sulfite / Schwefeldioxid' },
+  { code: 'P', name: 'Lupinen' },
+  { code: 'R', name: 'Weichtiere' },
+]
+const ALLERGEN_MAP = Object.fromEntries(ALLERGEN_LISTE.map(a => [a.code, a]))
+
+function AllergenModal({ torte, onClose }) {
+  const codes = torte.allergene || []
+  return (
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-braun-900/70 backdrop-blur-sm" onClick={onClose}>
+      <div className="bg-white rounded-t-2xl sm:rounded-2xl max-w-md w-full p-5 sm:p-7 shadow-2xl max-h-[90svh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+        <div className="w-10 h-1 bg-braun-200 rounded-full mx-auto mb-4 sm:hidden" />
+        <div className="flex items-start gap-3 mb-1">
+          <FaInfoCircle className="text-gold text-xl shrink-0 mt-1" />
+          <div>
+            <p className="font-sans text-gold text-[10px] tracking-[0.2em] uppercase font-semibold">Allergeninformation</p>
+            <h3 className="text-xl sm:text-2xl font-display text-braun-800">{torte.name}</h3>
+          </div>
+        </div>
+        <p className="text-braun-500 text-xs mb-5 ml-8">gem. EU-Verordnung 1169/2011 (LMIV)</p>
+
+        {codes.length === 0 ? (
+          <p className="text-braun-600 text-sm">Keine deklarationspflichtigen Allergene bekannt.</p>
+        ) : (
+          <>
+            <p className="text-braun-700 text-sm font-semibold mb-3">Enthält:</p>
+            <ul className="space-y-2 mb-5">
+              {codes.map(c => {
+                const a = ALLERGEN_MAP[c]
+                if (!a) return null
+                return (
+                  <li key={c} className="flex items-start gap-3 bg-creme rounded-lg p-3">
+                    <span className="bg-gold text-braun-900 font-sans font-bold text-xs w-7 h-7 rounded-full flex items-center justify-center shrink-0">
+                      {c}
+                    </span>
+                    <div>
+                      <p className="font-sans text-braun-800 text-sm font-semibold">{a.name}</p>
+                      {a.detail && <p className="text-braun-500 text-xs mt-0.5">{a.detail}</p>}
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </>
+        )}
+
+        <div className="bg-braun-100 border-l-4 border-gold rounded-r-lg p-3 mb-5 flex gap-2.5">
+          <FaExclamationTriangle className="text-gold shrink-0 mt-0.5" size={14} />
+          <p className="text-braun-700 text-xs leading-relaxed">
+            Angaben ohne Gewähr. Spuren weiterer Allergene können produktionsbedingt enthalten sein.
+            Bei Allergien oder Unverträglichkeiten bitte vor der Bestellung im Café nachfragen
+            (<a href="tel:+436645336243" className="text-gold underline">+43 664 533 6243</a>).
+          </p>
+        </div>
+
+        <button onClick={onClose} className="w-full btn-braun text-sm">Schließen</button>
+      </div>
+    </div>
+  )
+}
+
+function TortenKarte({ torte, onBestellen, onAllergene }) {
   return (
     <div className="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
       <div className="relative h-56 overflow-hidden">
@@ -38,12 +112,21 @@ function TortenKarte({ torte, onBestellen }) {
         {torte.preis && !torte.normalpreis && (
           <p className="text-gold font-sans font-bold text-lg mb-4">€ {torte.preis.toFixed(2)}</p>
         )}
-        <button
-          onClick={() => onBestellen(torte)}
-          className="btn-gold w-full text-center text-sm flex items-center justify-center gap-2"
-        >
-          <FaShoppingBag size={14} /> Ganze Torte bestellen
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => onAllergene(torte)}
+            className="text-braun-500 hover:text-gold font-sans text-xs flex items-center gap-1.5 transition-colors shrink-0 underline-offset-2 hover:underline"
+            aria-label={`Allergene für ${torte.name} anzeigen`}
+          >
+            <FaInfoCircle size={12} /> Allergene
+          </button>
+          <button
+            onClick={() => onBestellen(torte)}
+            className="btn-gold flex-1 text-center text-sm flex items-center justify-center gap-2"
+          >
+            <FaShoppingBag size={14} /> Bestellen
+          </button>
+        </div>
       </div>
     </div>
   )
@@ -140,6 +223,7 @@ function BestellModal({ torte, onClose }) {
 export default function Tortenshop() {
   usePageTitle('Torten online bestellen – hausgemachte Konditorei-Torten')
   const [selected, setSelected] = useState(null)
+  const [allergenTorte, setAllergenTorte] = useState(null)
 
   return (
     <div className="pt-20">
@@ -162,7 +246,7 @@ export default function Tortenshop() {
                 <span className="text-braun-400 font-sans text-sm font-normal">— {aktionstorte.monat}</span>
               </h2>
               <div className="max-w-sm">
-                <TortenKarte torte={aktionstorte} onBestellen={setSelected} />
+                <TortenKarte torte={aktionstorte} onBestellen={setSelected} onAllergene={setAllergenTorte} />
               </div>
             </div>
           )}
@@ -170,9 +254,15 @@ export default function Tortenshop() {
           <h2 className="text-2xl font-display text-braun-800 mb-8">Unsere Klassiker</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
             {torten.map(t => (
-              <TortenKarte key={t.id} torte={t} onBestellen={setSelected} />
+              <TortenKarte key={t.id} torte={t} onBestellen={setSelected} onAllergene={setAllergenTorte} />
             ))}
           </div>
+
+          <p className="mt-8 text-center text-braun-500 text-xs max-w-2xl mx-auto">
+            <FaInfoCircle className="inline mb-0.5 mr-1" size={11} />
+            Allergeninformation gem. EU-Verordnung 1169/2011 — auf jeder Torte verfügbar.
+            Angaben ohne Gewähr; bei Unverträglichkeiten bitte vor Bestellung im Café nachfragen.
+          </p>
 
           <div className="mt-12 sm:mt-20 bg-braun-100 rounded-2xl p-6 sm:p-10 text-center">
             <FaPalette className="mx-auto text-gold text-3xl sm:text-4xl mb-3 sm:mb-4" />
@@ -202,6 +292,7 @@ export default function Tortenshop() {
       </section>
 
       {selected && <BestellModal torte={selected} onClose={() => setSelected(null)} />}
+      {allergenTorte && <AllergenModal torte={allergenTorte} onClose={() => setAllergenTorte(null)} />}
     </div>
   )
 }

@@ -1,3 +1,5 @@
+// Allergene nach EU-LMIV 1169/2011 / österr. Allergeninformationsverordnung.
+// Codes A–R = die in Österreich verbreitete Wirteliste, Klartext im AllergenModal.
 export const torten = [
   {
     id: 1,
@@ -7,6 +9,7 @@ export const torten = [
     bild: "/images/torten/topfentorte.jpg",
     video: "/images/torten/topfentorte.mp4",
     kategorie: "klassiker",
+    allergene: ["A", "C", "G"],
   },
   {
     id: 2,
@@ -15,6 +18,7 @@ export const torten = [
     preis: 58,
     bild: "/images/torten/schwarzwaelder.jpg",
     kategorie: "klassiker",
+    allergene: ["A", "C", "F", "G", "O"],
   },
   {
     id: 3,
@@ -23,6 +27,7 @@ export const torten = [
     preis: 58,
     bild: "/images/torten/mokkatorte-2.jpg",
     kategorie: "klassiker",
+    allergene: ["A", "C", "F", "G"],
   },
   {
     id: 11,
@@ -31,6 +36,7 @@ export const torten = [
     preis: 58,
     bild: "/images/torten/schokosahnetorte-4.jpg",
     kategorie: "klassiker",
+    allergene: ["A", "C", "F", "G"],
   },
   {
     id: 12,
@@ -39,6 +45,7 @@ export const torten = [
     preis: 58,
     bild: "/images/torten/joghurt-erdbeer.jpg",
     kategorie: "klassiker",
+    allergene: ["A", "C", "F", "G"],
   },
   {
     id: 13,
@@ -47,6 +54,7 @@ export const torten = [
     preis: 58,
     bild: "/images/torten/fruchttorte.jpg",
     kategorie: "klassiker",
+    allergene: ["A", "C", "G"],
   },
 ]
 
@@ -60,4 +68,5 @@ export const aktionstorte = {
   kategorie: "aktion",
   monat: "Mai 2026",
   aktiv: true,
+  allergene: ["A", "C", "F", "G"],
 }
