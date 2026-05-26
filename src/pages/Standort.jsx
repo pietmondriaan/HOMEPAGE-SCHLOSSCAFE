@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaDirections, FaArrowRight, FaWhatsapp, FaStar } from 'react-icons/fa'
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaDirections, FaArrowRight, FaWhatsapp, FaStar, FaStreetView } from 'react-icons/fa'
 import { standorte } from '../data/standorte'
 import { usePageTitle } from '../hooks/usePageTitle'
 import LazyVideo from '../components/LazyVideo'
@@ -109,6 +109,16 @@ export default function Standort() {
                 >
                   <FaDirections /> Route planen
                 </a>
+                {s.streetView && (
+                  <a
+                    href={s.streetView}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-gold mt-3 w-full text-center flex items-center justify-center gap-2 text-sm"
+                  >
+                    <FaStreetView /> 360°-Rundgang
+                  </a>
+                )}
               </div>
 
               <div className="bg-braun-700 rounded-2xl p-8 text-center">
