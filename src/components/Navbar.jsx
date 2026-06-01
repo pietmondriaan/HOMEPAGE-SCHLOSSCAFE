@@ -184,6 +184,7 @@ export default function Navbar() {
             {/* Flat nav items */}
             {[
               { to: '/torten', label: 'Tortenshop' },
+              { to: '/anlasstorten', label: 'Anlasstorten' },
               { to: '/vermietung', label: 'Vermietung' },
             ].map(l => (
               <Link
@@ -302,6 +303,9 @@ export default function Navbar() {
             {/* Flat mobile links */}
             <Link to="/torten" className={`block px-6 py-4 font-sans text-base active:bg-braun-700 transition-colors ${isActive('/torten') ? 'text-gold bg-braun-700/50 font-semibold' : 'text-braun-200'}`}>
               Tortenshop
+            </Link>
+            <Link to="/anlasstorten" className={`block px-6 py-4 font-sans text-base active:bg-braun-700 transition-colors ${isActive('/anlasstorten') ? 'text-gold bg-braun-700/50 font-semibold' : 'text-braun-200'}`}>
+              Anlasstorten
             </Link>
             <Link to="/vermietung" className={`block px-6 py-4 font-sans text-base active:bg-braun-700 transition-colors ${isActive('/vermietung') ? 'text-gold bg-braun-700/50 font-semibold' : 'text-braun-200'}`}>
               Vermietung

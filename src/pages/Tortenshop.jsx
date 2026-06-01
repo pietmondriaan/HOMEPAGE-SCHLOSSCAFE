@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FaWhatsapp, FaEnvelope, FaShoppingBag, FaStar, FaPalette, FaInfoCircle, FaExclamationTriangle } from 'react-icons/fa'
 import LazyVideo from '../components/LazyVideo'
 import { torten, aktionstorte } from '../data/torten'
@@ -269,7 +270,8 @@ export default function Tortenshop() {
             <h2 className="text-2xl sm:text-3xl font-display text-braun-800 mb-2 sm:mb-3">Individuelle Torte gewünscht?</h2>
             <p className="text-braun-600 max-w-xl mx-auto mb-6">
               Hochzeitstorten, Geburtstagstorten, Tauftorten — unsere Profis fertigen Ihre Traumtorte
-              nach Ihren Wünschen. Senden Sie uns einfach Ihre Vorstellungen!
+              nach Ihren Wünschen, mit Lieferung in ganz Kärnten.{' '}
+              <Link to="/anlasstorten" className="text-gold underline underline-offset-2">Mehr zu unseren Anlasstorten →</Link>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
