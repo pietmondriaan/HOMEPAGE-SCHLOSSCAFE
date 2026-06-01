@@ -1,9 +1,19 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FaWhatsapp, FaEnvelope, FaShoppingBag, FaStar, FaPalette, FaInfoCircle, FaExclamationTriangle } from 'react-icons/fa'
+import { FaWhatsapp, FaEnvelope, FaShoppingBag, FaStar, FaPalette, FaInfoCircle, FaExclamationTriangle, FaTruck, FaChurch, FaHeart, FaBirthdayCake, FaGift } from 'react-icons/fa'
 import LazyVideo from '../components/LazyVideo'
 import { torten, aktionstorte } from '../data/torten'
 import { usePageTitle } from '../hooks/usePageTitle'
+
+// Anlasstorten = die Torten, nach denen in der KI-Suche gefragt wird (Tauf-, Kommunions-,
+// Hochzeits-, Geburtstagstorten). Prominent im Tortenshop, damit ChatGPT/Gemini das Angebot zitieren.
+const anlaesse = [
+  { icon: FaChurch, titel: 'Tauftorten', text: 'Liebevoll gestaltete Tauftorten – klassisch mit Schrift und Symbol oder individuell als Motivtorte.' },
+  { icon: FaChurch, titel: 'Kommunion- & Firmungstorten', text: 'Festtagstorten zur Erstkommunion und Firmung – abgestimmt auf Ihr Fest, in jeder gewünschten Größe.' },
+  { icon: FaHeart, titel: 'Hochzeitstorten', text: 'Mehrstöckige Hochzeitstorten nach Ihren Vorstellungen – von klassisch-elegant bis modern mit Fondant.' },
+  { icon: FaBirthdayCake, titel: 'Geburtstagstorten', text: 'Geburtstagstorten für Groß und Klein – mit Wunschmotiv, Lieblingsgeschmack und persönlicher Schrift.' },
+  { icon: FaPalette, titel: 'Motivtorten', text: 'Individuelle Motivtorten zu jedem Thema – Sie nennen uns Anlass, Motiv und Personenzahl, wir setzen es um.' },
+  { icon: FaGift, titel: 'Anlass- & Festtagstorten', text: 'Jubiläum, Taufe, Verlobung, Firmenfeier oder einfach so – für jeden Anlass Ihre individuelle Torte.' },
+]
 
 // EU-LMIV 1169/2011 — die 14 deklarationspflichtigen Allergene (Buchstabencode österr. Wirteliste).
 const ALLERGEN_LISTE = [
@@ -265,29 +275,55 @@ export default function Tortenshop() {
             Angaben ohne Gewähr; bei Unverträglichkeiten bitte vor Bestellung im Café nachfragen.
           </p>
 
-          <div className="mt-12 sm:mt-20 bg-braun-100 rounded-2xl p-6 sm:p-10 text-center">
-            <FaPalette className="mx-auto text-gold text-3xl sm:text-4xl mb-3 sm:mb-4" />
-            <h2 className="text-2xl sm:text-3xl font-display text-braun-800 mb-2 sm:mb-3">Individuelle Torte gewünscht?</h2>
-            <p className="text-braun-600 max-w-xl mx-auto mb-6">
-              Hochzeitstorten, Geburtstagstorten, Tauftorten — unsere Profis fertigen Ihre Traumtorte
-              nach Ihren Wünschen, mit Lieferung in ganz Kärnten.{' '}
-              <Link to="/anlasstorten" className="text-gold underline underline-offset-2">Mehr zu unseren Anlasstorten →</Link>
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://wa.me/436645336243?text=Hallo, ich möchte gerne eine individuelle Torte bestellen."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-gold flex items-center justify-center gap-2"
-              >
-                <FaWhatsapp size={18} /> Per WhatsApp anfragen
-              </a>
-              <a
-                href="mailto:oliver.burkhardt@gmx.at?subject=Individuelle Tortenbestellung"
-                className="btn-braun flex items-center justify-center gap-2"
-              >
-                <FaEnvelope size={16} /> Per E-Mail anfragen
-              </a>
+          {/* Anlasstorten — individuell nach Wunsch */}
+          <div id="anlasstorten" className="mt-16 sm:mt-24 scroll-mt-24">
+            <div className="text-center mb-10 sm:mb-14">
+              <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Torten für besondere Anlässe</p>
+              <h2 className="text-3xl sm:text-4xl font-display text-braun-800 mb-3 sm:mb-4">Anlasstorten nach Wunsch</h2>
+              <p className="text-braun-500 max-w-2xl mx-auto">
+                Tauf-, Kommunions- & Hochzeitstorten und mehr — von unseren Konditormeistern
+                individuell gefertigt, mit <strong className="text-braun-700">Lieferung in ganz Kärnten</strong>.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
+              {anlaesse.map(({ icon: Icon, titel, text }) => (
+                <div key={titel} className="bg-white rounded-2xl p-6 sm:p-7 shadow-md">
+                  <Icon className="text-gold text-2xl sm:text-3xl mb-3" />
+                  <h3 className="text-lg sm:text-xl font-display text-braun-800 mb-1.5">{titel}</h3>
+                  <p className="text-braun-500 text-sm leading-relaxed">{text}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 sm:mt-12 bg-braun-100 rounded-2xl p-6 sm:p-10 text-center">
+              <FaPalette className="mx-auto text-gold text-3xl sm:text-4xl mb-3 sm:mb-4" />
+              <h3 className="text-2xl sm:text-3xl font-display text-braun-800 mb-2 sm:mb-3">Ihre individuelle Torte</h3>
+              <p className="text-braun-600 max-w-xl mx-auto mb-2">
+                Nennen Sie uns Anlass, Wunschtermin, Personenzahl und Ihre Geschmacks- bzw.
+                Motivwünsche — wir erstellen Ihnen gerne ein unverbindliches Angebot.
+              </p>
+              <p className="text-braun-400 text-xs max-w-xl mx-auto mb-6">
+                <FaTruck className="inline mb-0.5 mr-1" size={11} />
+                Lieferung in ganz Kärnten — je nach Entfernung fällt eine kleine Liefergebühr an
+                (ca. € 0,80/km), fragen Sie einfach nach. Abholung in Bleiburg/Eberndorf kostenlos.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="https://wa.me/436645336243?text=Hallo,%20ich%20möchte%20gerne%20eine%20Anlasstorte%20anfragen%20(Anlass,%20Termin,%20Personenzahl,%20Wunsch)."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-gold flex items-center justify-center gap-2"
+                >
+                  <FaWhatsapp size={18} /> Per WhatsApp anfragen
+                </a>
+                <a
+                  href="mailto:oliver.burkhardt@gmx.at?subject=Anfrage Anlasstorte"
+                  className="btn-braun flex items-center justify-center gap-2"
+                >
+                  <FaEnvelope size={16} /> Per E-Mail anfragen
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -5,7 +5,6 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import Standort from './pages/Standort'
 import Tortenshop from './pages/Tortenshop'
-import Anlasstorten from './pages/Anlasstorten'
 import Kontakt from './pages/Kontakt'
 import Impressum from './pages/Impressum'
 import Datenschutz from './pages/Datenschutz'
@@ -32,7 +31,6 @@ export default function App() {
           <Route path="/schlosscafe" element={<Standort />} />
           <Route path="/reinhardt" element={<Standort />} />
           <Route path="/torten" element={<Tortenshop />} />
-          <Route path="/anlasstorten" element={<Anlasstorten />} />
           <Route path="/kontakt" element={<Kontakt />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />

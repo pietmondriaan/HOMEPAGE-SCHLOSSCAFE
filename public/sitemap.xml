@@ -21,11 +21,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.cafemitherz.at/#/anlasstorten</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.cafemitherz.at/#/karten</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
