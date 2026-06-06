@@ -49,14 +49,26 @@ export default function Datenschutz() {
             eingesetzt, die für den Betrieb der Website erforderlich sind.
           </p>
 
-          <h2>6. Google Fonts</h2>
+          <h2>6. Anonyme Besuchszählung (Reichweitenmessung)</h2>
+          <p>
+            Zur eigenen Erfolgskontrolle zählen wir, wie viele Personen unsere Website besuchen. Diese
+            Messung erfolgt anonym und cookielos: Es werden keine personenbezogenen Daten und insbesondere
+            keine IP-Adressen im Klartext gespeichert. Zur Vermeidung von Doppelzählungen innerhalb eines
+            Tages wird lediglich ein anonymisierter Prüfwert (Hash) gebildet, der nach 48 Stunden
+            automatisch gelöscht wird. Gespeichert werden ausschließlich zusammengefasste Gesamtzahlen.
+            Die Verarbeitung erfolgt auf unserem eigenen Hosting (Cloudflare); eine Weitergabe an Dritte
+            findet nicht statt. Rechtsgrundlage ist unser berechtigtes Interesse an einer datensparsamen
+            Reichweitenmessung gemäß Art. 6 Abs. 1 lit. f DSGVO.
+          </p>
+
+          <h2>7. Google Fonts</h2>
           <p>
             Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts.
             Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in ihren Browsercache.
             Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google aufnehmen.
           </p>
 
-          <h2>7. Kontakt zum Datenschutz</h2>
+          <h2>8. Kontakt zum Datenschutz</h2>
           <p>
             Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine E-Mail an:
             oliver.burkhardt@gmx.at

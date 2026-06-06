@@ -12,6 +12,7 @@ import AGB from './pages/AGB'
 import Widerruf from './pages/Widerruf'
 import Karten from './pages/Karten'
 import Vermietung from './pages/Vermietung'
+import Stats from './pages/Stats'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -20,6 +21,12 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  // Anonyme Besuchszählung: einmal pro Seitenaufruf pingen (nicht auf der Statistik-Seite selbst).
+  useEffect(() => {
+    if (window.location.hash.includes('/stats')) return
+    fetch('/api/track').catch(() => {})
+  }, [])
+
   return (
     <>
       <a href="#main-content" className="skip-to-content">Zum Hauptinhalt springen</a>
@@ -38,6 +45,7 @@ export default function App() {
           <Route path="/widerruf" element={<Widerruf />} />
           <Route path="/karten" element={<Karten />} />
           <Route path="/vermietung" element={<Vermietung />} />
+          <Route path="/stats" element={<Stats />} />
         </Routes>
       </main>
       <Footer />
