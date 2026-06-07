@@ -10,6 +10,8 @@ export default function Stats() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
+    setData(null)
+    setError(false)
     if (!key) { setError(true); return }
     fetch(`/api/stats?key=${encodeURIComponent(key)}`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
