@@ -4,7 +4,7 @@
 export async function onRequestGet({ request, env }) {
   const kv = env.COUNTER
   // Fail-safe: ohne KV-Bindung niemals die Seite stören.
-  if (!kv) return new Response('', { status: 204, headers: { 'Cache-Control': 'no-store' } })
+  if (!kv) return new Response(null, { status: 204, headers: { 'Cache-Control': 'no-store' } })
 
   try {
     const today = new Date().toISOString().slice(0, 10) // YYYY-MM-DD (UTC)
@@ -26,7 +26,7 @@ export async function onRequestGet({ request, env }) {
   } catch (e) {
     // Zählfehler dürfen die Website nie beeinträchtigen.
   }
-  return new Response('', { status: 204, headers: { 'Cache-Control': 'no-store' } })
+  return new Response(null, { status: 204, headers: { 'Cache-Control': 'no-store' } })
 }
 
 async function sha256(str) {
