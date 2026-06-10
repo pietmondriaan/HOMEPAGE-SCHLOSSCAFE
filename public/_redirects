@@ -1,1 +1,6 @@
+# vavadmin läuft auf dem zentralen Vis-à-Vision-Worker (admin-Subdomain) —
+# Workers-Routes feuern nicht auf Pages-Custom-Domains, daher Redirect.
+/vavadmin https://admin.cafemitherz.at/vavadmin 302
+/vavadmin/* https://admin.cafemitherz.at/vavadmin/:splat 302
+/preview https://admin.cafemitherz.at/preview 302
 /* /index.html 200
