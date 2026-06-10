@@ -46,7 +46,7 @@ function Hero() {
   return (
     <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src="./images/galerie/galerie-01.jpg" alt="Café mit Herz" className="w-full h-full object-cover" />
+        <img src="./images/hero-torten.jpg" alt="Hausgemachte Torten im Café mit Herz" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-braun-900/70 via-braun-900/50 to-braun-900/80" />
       </div>
       <div className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none hidden sm:block">
