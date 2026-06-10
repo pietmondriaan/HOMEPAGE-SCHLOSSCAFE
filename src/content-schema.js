@@ -47,6 +47,10 @@ export const DEFAULT_CONTENT = {
   anlasstorten: {
     lieferung_text: 'Lieferung in ganz Kärnten — je nach Entfernung fällt eine kleine Liefergebühr an (ca. € 0,80/km), fragen Sie einfach nach. Abholung in Bleiburg/Eberndorf kostenlos.',
   },
+  gewinnspiel: {
+    aktiv: true,
+    plakat: '/wm-gewinnspiel/plakat.jpg',
+  },
   footer: {
     copyright: 'Café mit Herz – Schloss-Café & Cafe Reinhart. Alle Rechte vorbehalten.',
   },
@@ -87,6 +91,9 @@ export const FIELD_META = {
 
   'anlasstorten.lieferung_text': { label: 'Anlasstorten — Liefer-Hinweis', type: 'text', max: 400 },
 
+  'gewinnspiel.aktiv':  { label: 'Gewinnspiel/Event — sichtbar', type: 'bool' },
+  'gewinnspiel.plakat': { label: 'Gewinnspiel/Event — Plakat (Bild)', type: 'image' },
+
   'footer.copyright': { label: 'Fußzeile — Copyright (Text nach der Jahreszahl)', type: 'string', max: 120 },
 }
 
@@ -98,6 +105,7 @@ export const SECTION_META = {
   klassiker:    { label: 'Unsere Klassiker', editable: true },
   vermietung:   { label: 'Events & Vermietung', editable: true },
   anlasstorten: { label: 'Anlasstorten', editable: true },
+  gewinnspiel:  { label: 'Gewinnspiel / Event', editable: true },
   footer:       { label: 'Fußzeile', editable: true },
   allergene:    { label: 'Allergeninformation', editable: false },
 }

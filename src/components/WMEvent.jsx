@@ -1,4 +1,5 @@
 import { FaFutbol, FaCalendarAlt, FaArrowRight } from 'react-icons/fa'
+import { useContent } from '../hooks/useContent'
 
 // Gewinnspiel-Laufzeit: nach diesem Datum (Europe/Vienna) wird der Event-Block ausgeblendet.
 const WM_ENDE = '2026-07-19'
@@ -13,20 +14,25 @@ function heuteWien() {
 }
 
 export default function WMEvent() {
-  if (heuteWien() > WM_ENDE) return null
+  const content = useContent()
+  const g = content.gewinnspiel || {}
+  // Ausgeblendet: nach Laufzeitende ODER wenn im vavadmin auf "nicht sichtbar" gestellt.
+  if (heuteWien() > WM_ENDE || g.aktiv === false) return null
+  const plakat = g.plakat || '/wm-gewinnspiel/plakat.jpg'
 
   return (
-    <div className="mb-10 sm:mb-16 bg-gradient-to-br from-braun-700 to-braun-900 rounded-2xl border border-gold/30 overflow-hidden shadow-xl">
+    <div data-cms-section="gewinnspiel" className="mb-10 sm:mb-16 bg-gradient-to-br from-braun-700 to-braun-900 rounded-2xl border border-gold/30 overflow-hidden shadow-xl">
       <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-6 sm:gap-8">
 
-        {/* Plakat */}
+        {/* Plakat — über vavadmin austauschbar (gewinnspiel.plakat) */}
         <a
           href="/wm-gewinnspiel"
           aria-label="Zum WM-Gewinnspiel"
           className="block group p-5 sm:p-8 flex items-center justify-center"
         >
           <img
-            src="./wm-gewinnspiel/plakat.jpg"
+            src={plakat}
+            data-cms="gewinnspiel.plakat"
             alt="WM-Gewinnspiel Plakat – 50-Zoll QLED-Fernseher gewinnen"
             loading="lazy"
             className="w-auto max-h-[55vh] sm:max-h-[70vh] rounded-xl border border-gold/30 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]"
