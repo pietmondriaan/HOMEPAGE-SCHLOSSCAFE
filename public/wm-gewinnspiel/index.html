@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>WM-Stempelkarte — Café mit Herz</title>
+<meta name="description" content="WM-Gewinnspiel im Café mit Herz: Sammle 5 Bälle und gewinne einen 50-Zoll-QLED-Fernseher, gesponsert von Elektro Enzi.">
+<style>
+  :root{
+    --braun:#5C3A21;
+    --braun-dunkel:#3E2715;
+    --braun-hell:#8A5C36;
+    --creme:#F7F1E5;
+    --creme-hell:#FDFAF3;
+    --gold:#C9A227;
+    --gold-hell:#E6C963;
+    --gruen:#3E6B3A;
+    --rot:#A33B2E;
+    --schatten:0 10px 30px rgba(62,39,21,.18);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--sans);
+    color:var(--braun-dunkel);
+    background-color:var(--creme);
+    background-image:
+      radial-gradient(ellipse at 50% -10%, rgba(201,162,39,.14), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(92,58,33,.025) 0 1px, transparent 1px 4px);
+    min-height:100vh;
+    line-height:1.55;
+  }
+  .wrap{max-width:480px;margin:0 auto;padding:1.25rem 1rem 3rem}
+
+  /* Kopf */
+  header{text-align:center;padding:1.5rem 0 1rem}
+  .kicker{
+    font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--braun-hell);font-weight:600;
+  }
+  h1{
+    font-family:var(--serif);font-weight:700;font-size:2rem;line-height:1.15;
+    color:var(--braun);margin:.35rem 0 .2rem;
+  }
+  h1 .ball{font-size:1.5rem;vertical-align:.1em}
+  .untertitel{font-size:.95rem;color:var(--braun-hell);max-width:34ch;margin:0 auto}
+  .zierlinie{
+    display:flex;align-items:center;gap:.6rem;justify-content:center;margin:.9rem auto 0;color:var(--gold);
+  }
+  .zierlinie::before,.zierlinie::after{
+    content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--gold));
+  }
+  .zierlinie::after{background:linear-gradient(90deg,var(--gold),transparent)}
+
+  /* Preis-Banner */
+  .preis{
+    background:linear-gradient(140deg,var(--braun) 0%,var(--braun-dunkel) 100%);
+    color:var(--creme);border-radius:14px;padding:1.1rem 1.2rem;margin:1.1rem 0;
+    box-shadow:var(--schatten);position:relative;overflow:hidden;text-align:center;
+  }
+  .preis::after{
+    content:"⚽";position:absolute;right:-14px;bottom:-18px;font-size:5.5rem;opacity:.08;transform:rotate(-15deg);
+  }
+  .preis .label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hell)}
+  .preis .titel{font-family:var(--serif);font-size:1.25rem;font-weight:700;margin:.25rem 0 .15rem}
+  .preis .sub{font-size:.85rem;opacity:.85}
+
+  /* Stempelkarte */
+  .karte{
+    background:var(--creme-hell);border:2px dashed var(--gold);border-radius:16px;
+    padding:1.4rem 1.1rem 1.2rem;margin:1.4rem 0;box-shadow:var(--schatten);text-align:center;
+  }
+  .karte h2{font-family:var(--serif);font-size:1.15rem;color:var(--braun);margin-bottom:.9rem}
+  .slots{display:flex;justify-content:center;gap:.55rem;margin-bottom:.5rem}
+  .slot{
+    width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:1.7rem;border:2px solid rgba(138,92,54,.4);background:var(--creme);
+    color:rgba(138,92,54,.45);transition:transform .25s ease;
+  }
+  .slot.voll{
+    border-color:var(--gold);background:radial-gradient(circle at 35% 30%, #fff 0%, var(--creme) 70%);
+    box-shadow:0 0 0 3px rgba(201,162,39,.25);color:inherit;
+  }
+  .slot.neu{animation:tor .7s cubic-bezier(.34,1.56,.64,1)}
+  @keyframes tor{
+    0%{transform:scale(0) rotate(-180deg)}
+    60%{transform:scale(1.3) rotate(10deg)}
+    100%{transform:scale(1) rotate(0)}
+  }
+  .fortschritt{font-size:.85rem;color:var(--braun-hell);font-weight:600}
+
+  /* Eingabe */
+  .eingabe{margin-top:1.2rem}
+  label{display:block;font-size:.85rem;font-weight:600;color:var(--braun);margin-bottom:.4rem;text-align:left}
+  input[type=text],input[type=email]{
+    width:100%;padding:.9rem 1rem;font-size:1.05rem;font-family:var(--sans);
+    border:2px solid var(--braun-hell);border-radius:10px;background:#fff;color:var(--braun-dunkel);
+    -webkit-appearance:none;appearance:none;
+  }
+  input:focus{outline:3px solid rgba(201,162,39,.45);border-color:var(--gold)}
+  button{
+    width:100%;margin-top:.7rem;padding:1rem;font-size:1.05rem;font-weight:700;font-family:var(--sans);
+    background:linear-gradient(140deg,var(--gold) 0%,#B08A1E 100%);color:var(--braun-dunkel);
+    border:none;border-radius:10px;cursor:pointer;letter-spacing:.02em;
+    box-shadow:0 4px 12px rgba(201,162,39,.4);transition:transform .12s ease;
+  }
+  button:active{transform:scale(.97)}
+  button:disabled{opacity:.5;cursor:not-allowed}
+
+  /* Meldungen */
+  .meldung{
+    display:none;margin-top:.9rem;padding:.85rem 1rem;border-radius:10px;font-size:.95rem;font-weight:600;text-align:left;
+  }
+  .meldung.ok{display:block;background:rgba(62,107,58,.12);color:var(--gruen);border:1px solid rgba(62,107,58,.3)}
+  .meldung.fehler{display:block;background:rgba(163,59,46,.1);color:var(--rot);border:1px solid rgba(163,59,46,.3)}
+  .meldung.info{display:block;background:rgba(201,162,39,.12);color:#7a6014;border:1px solid rgba(201,162,39,.35)}
+
+  .speicher-hinweis{
+    margin-top:.8rem;font-size:.78rem;color:var(--braun-hell);text-align:left;line-height:1.45;
+    padding-left:1.3rem;position:relative;
+  }
+  .speicher-hinweis::before{content:"ⓘ";position:absolute;left:0;top:0;color:var(--gold)}
+
+  /* Status-Sperren (vor Start / nach Ende) */
+  .sperre{
+    background:var(--creme-hell);border:2px solid var(--gold);border-radius:16px;
+    padding:1.6rem 1.2rem;margin:1.4rem 0;text-align:center;box-shadow:var(--schatten);
+  }
+  .sperre .emoji{font-size:2.2rem;display:block;margin-bottom:.5rem}
+  .sperre p{font-family:var(--serif);font-size:1.1rem;color:var(--braun)}
+
+  /* Teilnahmeformular */
+  .formular{
+    background:var(--creme-hell);border:2px solid var(--gold);border-radius:16px;
+    padding:1.4rem 1.2rem;margin:1.4rem 0;box-shadow:var(--schatten);
+  }
+  .formular h2{font-family:var(--serif);font-size:1.25rem;color:var(--braun);text-align:center;margin-bottom:.3rem}
+  .formular .jubel{text-align:center;font-size:.9rem;color:var(--braun-hell);margin-bottom:1rem}
+  .feld{margin-bottom:.9rem}
+  .check{display:flex;gap:.6rem;align-items:flex-start;margin-bottom:.8rem;text-align:left}
+  .check input{width:22px;height:22px;margin-top:.1rem;flex-shrink:0;accent-color:var(--braun)}
+  .check span{font-size:.85rem;line-height:1.45}
+
+  /* Aufklapper */
+  details{
+    background:var(--creme-hell);border:1px solid rgba(138,92,54,.3);border-radius:12px;
+    margin:.7rem 0;overflow:hidden;
+  }
+  summary{
+    padding:.95rem 1.1rem;font-weight:700;font-size:.95rem;color:var(--braun);cursor:pointer;
+    list-style:none;display:flex;justify-content:space-between;align-items:center;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:1.3rem;color:var(--gold);font-weight:400;transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details .inhalt{padding:0 1.1rem 1rem;font-size:.83rem;color:var(--braun-dunkel)}
+  details ul{padding-left:1.1rem}
+  details li{margin-bottom:.45rem}
+
+  /* Sponsor */
+  .sponsor{
+    text-align:center;margin:1.8rem 0 .5rem;padding:1.3rem 1rem;
+    border-top:1px solid rgba(201,162,39,.4);border-bottom:1px solid rgba(201,162,39,.4);
+  }
+  .sponsor .label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--braun-hell);margin-bottom:.7rem}
+  .sponsor img{max-width:200px;max-height:90px;width:auto;height:auto;border-radius:8px}
+  .sponsor .logo-fallback{
+    display:none;font-family:var(--sans);font-weight:800;font-size:1.5rem;letter-spacing:.02em;color:#222;
+  }
+  .sponsor .logo-fallback .punkt{color:#D7261D}
+  .sponsor .text{font-size:.85rem;color:var(--braun-hell);margin-top:.6rem}
+
+  footer{text-align:center;font-size:.75rem;color:var(--braun-hell);margin-top:1.5rem;line-height:1.6}
+  footer a{color:var(--braun);font-weight:600}
+
+  .versteckt{display:none !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">Café mit Herz · WM 2026</div>
+    <h1><span class="ball">⚽</span> WM-Stempelkarte</h1>
+    <p class="untertitel">5 Besuche, 5 Bälle — und mit etwas Glück gehört der Hauptpreis dir.</p>
+    <div class="zierlinie">⚽</div>
+  </header>
+
+  <section class="preis" aria-label="Hauptpreis">
+    <div class="label">Hauptpreis</div>
+    <div class="titel">Hisense 50A7Q QLED 4K UHD</div>
+    <div class="sub">50-Zoll-Fernseher · gesponsert von Elektro Enzi, Bleiburg</div>
+  </section>
+
+  <!-- Vor Start -->
+  <section id="vorStart" class="sperre versteckt">
+    <span class="emoji">⏳</span>
+    <p>Das Gewinnspiel startet zum WM-Anpfiff am 11.&nbsp;Juni&nbsp;2026!</p>
+  </section>
+
+  <!-- Nach Ende -->
+  <section id="nachEnde" class="sperre versteckt">
+    <span class="emoji">🏆</span>
+    <p>Das Gewinnspiel ist beendet — danke fürs Mitspielen! Die Gewinnerin/der Gewinner wird per E-Mail verständigt.</p>
+  </section>
+
+  <!-- Stempelkarte -->
+  <section id="spiel" class="karte versteckt">
+    <h2>Deine Stempelkarte</h2>
+    <div class="slots" id="slots" aria-label="Gesammelte Bälle"></div>
+    <div class="fortschritt" id="fortschritt"></div>
+
+    <div class="eingabe" id="eingabeBereich">
+      <label for="codewort">Heutiges Codewort (steht auf der Kreidetafel):</label>
+      <input type="text" id="codewort" inputmode="text" autocomplete="off" autocapitalize="none" placeholder="Codewort eintippen …">
+      <button id="stempelnBtn" type="button">⚽ Ball sichern</button>
+      <div class="meldung" id="meldung" role="status"></div>
+      <p class="speicher-hinweis">Deine Bälle werden nur auf diesem Gerät in diesem Browser gespeichert. Browserdaten gelöscht oder Handy gewechselt = Bälle weg — wir können nichts wiederherstellen.</p>
+    </div>
+  </section>
+
+  <!-- Teilnahmeformular bei 5 Bällen -->
+  <section id="formular" class="formular versteckt">
+    <h2>🎉 Karte voll — du bist dabei!</h2>
+    <p class="jubel">Trag dich ein und nimm an der Verlosung des 50-Zoll-QLED-Fernsehers teil.</p>
+    <form id="teilnahmeForm" novalidate>
+      <div class="feld">
+        <label for="tnName">Name *</label>
+        <input type="text" id="tnName" name="name" required autocomplete="name">
+      </div>
+      <div class="feld">
+        <label for="tnEmail">E-Mail *</label>
+        <input type="email" id="tnEmail" name="email" required autocomplete="email" inputmode="email">
+      </div>
+      <label class="check">
+        <input type="checkbox" id="tnAlter" required>
+        <span>Ich bin mindestens 18 Jahre alt und akzeptiere die Teilnahmebedingungen. *</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="tnNewsletter">
+        <span>Ich möchte den Café-mit-Herz-Newsletter erhalten. (optional)</span>
+      </label>
+      <button type="submit" id="absendenBtn">An der Verlosung teilnehmen</button>
+      <div class="meldung" id="formMeldung" role="status"></div>
+    </form>
+  </section>
+
+  <!-- Bereits teilgenommen -->
+  <section id="fertig" class="sperre versteckt">
+    <span class="emoji">✅</span>
+    <p>Deine Teilnahme ist eingetragen — wir drücken die Daumen! Die Gewinnerin/der Gewinner wird per E-Mail verständigt.</p>
+  </section>
+
+  <!-- Rechtliches -->
+  <details>
+    <summary>Teilnahmebedingungen</summary>
+    <div class="inhalt">
+      <ul>
+        <li><strong>Teilnahme ab 18 Jahren.</strong> Die Bestätigung der Volljährigkeit (Pflicht-Häkchen) ist Voraussetzung für die Teilnahme an der Verlosung.</li>
+        <li><strong>So funktioniert's:</strong> Pro Tag und Gerät kann genau ein Stempel (Ball) gesammelt werden — mit dem Codewort des Tages von der Kreidetafel. Für die Teilnahme an der Verlosung sind 5 Stempel, also 5 Besuche an verschiedenen Tagen, nötig.</li>
+        <li><strong>Zeitraum:</strong> 11. Juni bis 19. Juli 2026 (gesamte WM). Danach ist keine Stempel-Sammlung und keine Teilnahme mehr möglich.</li>
+        <li><strong>Haftungsausschluss Stempelverlust:</strong> Die Stempel werden ausschließlich lokal im Browser des verwendeten Geräts gespeichert. Bei Löschung der Browserdaten, Gerätewechsel oder automatischer Bereinigung durch den Browser gehen gesammelte Stempel verloren. Ein Anspruch auf Wiederherstellung besteht nicht.</li>
+        <li><strong>Verlosung:</strong> Der Hauptpreis wird unter allen vollständigen Teilnahmen (5 Stempel + abgesendetes Formular) verlost. Eine Teilnahme pro Person. Die Gewinnbenachrichtigung erfolgt per E-Mail. Keine Barablöse. Der Rechtsweg ist ausgeschlossen.</li>
+        <li><strong>Veranstalter:</strong> Café mit Herz (Oliver Burkhardt) — Schloss-Café Bleiburg &amp; Cafe Reinhart Eberndorf. <strong>Hauptpreis-Sponsor:</strong> Elektro Enzi, Bleiburg.</li>
+      </ul>
+      <p style="margin-top:.5rem;font-size:.78rem;color:var(--braun-hell)">Diese Bedingungen wurden sorgfältig formuliert, stellen aber keine Rechtsberatung dar.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Datenschutz</summary>
+    <div class="inhalt">
+      <ul>
+        <li>Die im Teilnahmeformular angegebenen Daten (Name, E-Mail) werden ausschließlich zur Durchführung der Verlosung und zur Gewinnbenachrichtigung verwendet.</li>
+        <li>Alle Teilnahmedaten werden spätestens 4 Wochen nach Ende des Gewinnspiels gelöscht — ausgenommen die E-Mail-Adresse bei ausdrücklichem Newsletter-Opt-in.</li>
+        <li>Die Stempel selbst werden nur lokal auf deinem Gerät gespeichert (localStorage); es findet kein Tracking statt und es werden keine Cookies gesetzt.</li>
+        <li>Verantwortlich: Café mit Herz, Oliver Burkhardt (Bleiburg/Eberndorf).</li>
+      </ul>
+      <p style="margin-top:.5rem;font-size:.78rem;color:var(--braun-hell)">Sorgfältig formuliert — keine Rechtsberatung.</p>
+    </div>
+  </details>
+
+  <!-- Sponsor -->
+  <section class="sponsor">
+    <div class="label">Hauptpreis gesponsert von</div>
+    <img src="elektro-enzi-logo.jpg" alt="Elektro Enzi, Bleiburg"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+    <div class="logo-fallback">elektro enzi<span class="punkt">●</span></div>
+    <p class="text">Hauptpreis gesponsert von Elektro Enzi, Bleiburg · Tel. 04235&nbsp;/&nbsp;22&nbsp;92</p>
+  </section>
+
+  <footer>
+    Ein Gewinnspiel vom <a href="https://www.cafemitherz.at">Café mit Herz</a><br>
+    Schloss-Café Bleiburg · Cafe Reinhart Eberndorf
+  </footer>
+
+</div>
+
+<script>
+/* =====================================================================
+   KONFIG — hier stellt ihr alles ein, was sich ändern kann.
+   - formEndpoint:      Formspree-Endpoint, z. B. "https://formspree.io/f/abcdwxyz"
+                        Leer lassen ("") = Teilnahme geht als E-Mail-Entwurf
+                        an fallbackEmail (mailto-Fallback).
+   - fallbackEmail:     Empfänger für den mailto-Fallback.
+   - start:             Erster Gewinnspiel-Tag (YYYY-MM-DD).
+   - teilnahmeschluss:  Letzter Gewinnspiel-Tag, INKLUSIV — ab dem Tag
+                        danach sperrt die Seite komplett.
+   - codewoerter:       Ein Codewort pro Tag ("YYYY-MM-DD": "wort").
+                        Das Wort des Tages gehört auf die Kreidetafel!
+   ===================================================================== */
+const KONFIG = {
+  formEndpoint: "",            // Formspree-Endpoint, z. B. "https://formspree.io/f/abcdwxyz" — leer = mailto-Fallback
+  fallbackEmail: "oliver.burkhardt@gmx.at",
+  teilnahmeschluss: "2026-07-19",   // inklusiv; ab 20.07. sperrt die Seite
+  start: "2026-06-11",
+  codewoerter: { /* "YYYY-MM-DD": "wort" */
+    "2026-06-11":"anpfiff","2026-06-12":"cappuccino","2026-06-13":"eckball","2026-06-14":"schaumrolle",
+    "2026-06-15":"doppelpass","2026-06-16":"melange","2026-06-17":"abseits","2026-06-18":"erdbeertorte",
+    "2026-06-19":"flanke","2026-06-20":"eisbecher","2026-06-21":"elfmeter","2026-06-22":"gugelhupf",
+    "2026-06-23":"konter","2026-06-24":"buchteln","2026-06-25":"hattrick","2026-06-26":"sachertorte",
+    "2026-06-27":"dribbling","2026-06-28":"apfelstrudel","2026-06-29":"torjubel","2026-06-30":"topfengolatsche",
+    "2026-07-01":"fankurve","2026-07-02":"museumsbecher","2026-07-03":"traumtor","2026-07-04":"cremeschnitte",
+    "2026-07-05":"heimspiel","2026-07-06":"krapfen","2026-07-07":"zuckerpass","2026-07-08":"topfentorte",
+    "2026-07-09":"lattenkracher","2026-07-10":"eiskaffee","2026-07-11":"fairplay","2026-07-12":"kardinalschnitte",
+    "2026-07-13":"joker","2026-07-14":"reindling","2026-07-15":"notbremse","2026-07-16":"punschkrapfen",
+    "2026-07-17":"sechzehner","2026-07-18":"laolawelle","2026-07-19":"schlusspfiff"
+  }
+};
+
+/* ============== TESTBARE-LOGIK-START ==============
+   Reine Funktionen ohne DOM-Zugriff — werden vom
+   Node-Testscript extrahiert und direkt getestet.   */
+
+// Heutiges Datum als "YYYY-MM-DD" — IMMER in Europe/Vienna, egal wo das Handy steht.
+function wienDatum(d) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Vienna' }).format(d || new Date());
+}
+
+// Tolerante Normalisierung: trim, Kleinschreibung, Umlaute -> Umschreibung.
+// Damit matchen "Anpfiff", " ANPFIFF " und auch "Müsli" == "muesli" in beide Richtungen.
+function normalisiere(s) {
+  return String(s == null ? '' : s)
+    .trim()
+    .toLowerCase()
+    .replace(/ä/g, 'ae')
+    .replace(/ö/g, 'oe')
+    .replace(/ü/g, 'ue')
+    .replace(/ß/g, 'ss');
+}
+
+// Codewort für ein Datum (oder null).
+function wortFuerTag(datum, konfig) {
+  return (konfig.codewoerter && konfig.codewoerter[datum]) || null;
+}
+
+// Stimmt die Eingabe mit dem Tageswort überein? (tolerant)
+function pruefeWort(eingabe, datum, konfig) {
+  const soll = wortFuerTag(datum, konfig);
+  if (!soll) return false;
+  return normalisiere(eingabe) === normalisiere(soll);
+}
+
+// Spielphase: 'vor' (noch nicht gestartet), 'laufend', 'nach' (Teilnahmeschluss vorbei).
+// ISO-Datumsstrings lassen sich lexikographisch vergleichen.
+function spielPhase(datum, konfig) {
+  if (datum < konfig.start) return 'vor';
+  if (datum > konfig.teilnahmeschluss) return 'nach';
+  return 'laufend';
+}
+/* ============== TESTBARE-LOGIK-ENDE ============== */
+
+(function () {
+  const MAX_BAELLE = 5;
+  const SPEICHER_KEY = 'cmh-wm2026';
+
+  /* --- Speicher (localStorage, abgesichert) --- */
+  function ladeStand() {
+    try {
+      const roh = localStorage.getItem(SPEICHER_KEY);
+      if (!roh) return { stamps: [], teilgenommen: false };
+      const obj = JSON.parse(roh);
+      return {
+        stamps: Array.isArray(obj.stamps) ? obj.stamps : [],
+        teilgenommen: !!obj.teilgenommen
+      };
+    } catch (e) {
+      return { stamps: [], teilgenommen: false };
+    }
+  }
+  function speichereStand(stand) {
+    try { localStorage.setItem(SPEICHER_KEY, JSON.stringify(stand)); } catch (e) { /* z. B. Privatmodus */ }
+  }
+
+  /* --- DOM --- */
+  const el = function (id) { return document.getElementById(id); };
+  const heute = wienDatum();
+  let stand = ladeStand();
+
+  function zeigeSlots(animierterIndex) {
+    const slots = el('slots');
+    slots.innerHTML = '';
+    for (let i = 0; i < MAX_BAELLE; i++) {
+      const s = document.createElement('div');
+      const voll = i < stand.stamps.length;
+      s.className = 'slot' + (voll ? ' voll' : '') + (i === animierterIndex ? ' neu' : '');
+      s.textContent = voll ? '⚽' : '○';
+      slots.appendChild(s);
+    }
+    el('fortschritt').textContent = stand.stamps.length + ' von ' + MAX_BAELLE + ' Bällen gesammelt';
+  }
+
+  function meldung(text, art) {
+    const m = el('meldung');
+    m.className = 'meldung ' + art;
+    m.textContent = text;
+  }
+
+  function aktualisiereAnsicht(animierterIndex) {
+    const phase = spielPhase(heute, KONFIG);
+
+    if (phase === 'vor') {
+      el('vorStart').classList.remove('versteckt');
+      return;
+    }
+    if (phase === 'nach') {
+      el('nachEnde').classList.remove('versteckt');
+      return;
+    }
+
+    // Laufend:
+    el('spiel').classList.remove('versteckt');
+    zeigeSlots(animierterIndex);
+
+    if (stand.teilgenommen) {
+      el('eingabeBereich').classList.add('versteckt');
+      el('formular').classList.add('versteckt');
+      el('fertig').classList.remove('versteckt');
+      return;
+    }
+    if (stand.stamps.length >= MAX_BAELLE) {
+      el('eingabeBereich').classList.add('versteckt');
+      el('formular').classList.remove('versteckt');
+    }
+  }
+
+  /* --- Stempeln --- */
+  el('stempelnBtn').addEventListener('click', function () {
+    const eingabe = el('codewort').value;
+
+    if (stand.stamps.indexOf(heute) !== -1) {
+      meldung('Heute hast du deinen Ball schon — bis morgen! ⚽', 'info');
+      return;
+    }
+    if (!pruefeWort(eingabe, heute, KONFIG)) {
+      meldung('Das ist nicht das heutige Codewort — schau auf die Kreidetafel!', 'fehler');
+      return;
+    }
+
+    stand.stamps.push(heute);
+    speichereStand(stand);
+    el('codewort').value = '';
+    const neuerIndex = stand.stamps.length - 1;
+    meldung('⚽ Tooor! Ball ' + stand.stamps.length + ' von ' + MAX_BAELLE + '!', 'ok');
+    aktualisiereAnsicht(neuerIndex);
+  });
+
+  el('codewort').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); el('stempelnBtn').click(); }
+  });
+
+  /* --- Teilnahmeformular --- */
+  function formMeldung(text, art) {
+    const m = el('formMeldung');
+    m.className = 'meldung ' + art;
+    m.textContent = text;
+  }
+
+  function teilnahmeErfolgreich() {
+    stand.teilgenommen = true;
+    speichereStand(stand);
+    el('formular').classList.add('versteckt');
+    el('fertig').classList.remove('versteckt');
+  }
+
+  el('teilnahmeForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = el('tnName').value.trim();
+    const email = el('tnEmail').value.trim();
+    const alterOk = el('tnAlter').checked;
+    const newsletter = el('tnNewsletter').checked;
+
+    if (!name) { formMeldung('Bitte gib deinen Namen an.', 'fehler'); return; }
+    if (!email || email.indexOf('@') === -1) { formMeldung('Bitte gib eine gültige E-Mail-Adresse an.', 'fehler'); return; }
+    if (!alterOk) { formMeldung('Bitte bestätige, dass du mindestens 18 bist und die Teilnahmebedingungen akzeptierst.', 'fehler'); return; }
+
+    const stempeltage = stand.stamps.slice(0, MAX_BAELLE).join(', ');
+
+    if (KONFIG.formEndpoint) {
+      // Formspree-POST
+      el('absendenBtn').disabled = true;
+      formMeldung('Wird gesendet …', 'info');
+      fetch(KONFIG.formEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          newsletter: newsletter ? 'ja' : 'nein',
+          stempeltage: stempeltage,
+          _subject: 'WM-Gewinnspiel Teilnahme: ' + name
+        })
+      }).then(function (res) {
+        if (res.ok) {
+          teilnahmeErfolgreich();
+        } else {
+          el('absendenBtn').disabled = false;
+          formMeldung('Senden hat nicht geklappt — bitte versuch es gleich noch einmal.', 'fehler');
+        }
+      }).catch(function () {
+        el('absendenBtn').disabled = false;
+        formMeldung('Keine Verbindung — bitte versuch es gleich noch einmal.', 'fehler');
+      });
+    } else {
+      // mailto-Fallback: E-Mail-Entwurf öffnen
+      const betreff = 'WM-Gewinnspiel Teilnahme: ' + name;
+      const body =
+        'Hallo Café mit Herz!\n\n' +
+        'Ich habe 5 Bälle gesammelt und nehme an der Verlosung teil.\n\n' +
+        'Name: ' + name + '\n' +
+        'E-Mail: ' + email + '\n' +
+        'Newsletter: ' + (newsletter ? 'ja' : 'nein') + '\n' +
+        'Stempeltage: ' + stempeltage + '\n\n' +
+        'Ich bin mindestens 18 Jahre alt und akzeptiere die Teilnahmebedingungen.';
+      window.location.href = 'mailto:' + KONFIG.fallbackEmail +
+        '?subject=' + encodeURIComponent(betreff) +
+        '&body=' + encodeURIComponent(body);
+      teilnahmeErfolgreich();
+      formMeldung('Dein E-Mail-Programm hat sich geöffnet — bitte die E-Mail noch absenden!', 'info');
+    }
+  });
+
+  aktualisiereAnsicht(-1);
+})();
+</script>
+</body>
+</html>
