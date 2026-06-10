@@ -47,6 +47,12 @@
     content:"⚽";position:absolute;right:-60px;bottom:-70px;font-size:340px;
     color:rgba(247,241,229,.04);transform:rotate(-12deg);pointer-events:none;z-index:0;
   }
+  /* Fußballer-Silhouette (lizenzfrei, selbst gezeichnet — KEIN realer Spieler) */
+  .fussballer{
+    position:absolute;top:150px;right:30px;width:230px;height:auto;z-index:0;
+    opacity:.13;pointer-events:none;transform:rotate(-4deg);
+  }
+  .fussballer path,.fussballer circle{fill:var(--gold-hell)}
 
   .inhalt{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;
     padding:34px 48px 22px;}
@@ -175,7 +181,12 @@
     font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5C3A21;
     font-weight:700;flex-shrink:0;line-height:1.4;max-width:150px;
   }
-  .sponsor img{height:58px;width:auto;max-width:300px;object-fit:contain;margin-left:auto}
+  .sponsor img{height:74px;width:auto;max-width:300px;object-fit:contain;margin-left:auto}
+  .sponsor .s-cafe{
+    font-family:var(--serif);font-weight:700;font-size:21px;color:#5C3A21;line-height:1.05;flex-shrink:0;
+  }
+  .sponsor .s-cafe small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.06em;color:#8A5C36;font-weight:600}
+  .sponsor .s-amp{font-family:var(--serif);font-size:22px;color:var(--gold);font-weight:700;flex-shrink:0}
   .sponsor .s-fallback{
     display:none;font-family:var(--sans);font-weight:800;font-size:26px;color:#1a1a1a;margin-left:auto;
   }
@@ -201,6 +212,29 @@
 <div class="plakat">
   <div class="inhalt">
 
+    <!-- Deko: Fußballer-Silhouette (lizenzfrei, generisch — kein realer Spieler) -->
+    <svg class="fussballer" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Kopf -->
+      <circle cx="118" cy="30" r="15"/>
+      <!-- Rumpf, nach vorne gebeugt -->
+      <path d="M126 44 C118 60 110 78 96 92 C88 100 84 110 92 116 C100 122 112 116 120 106 C132 90 140 70 142 52 C143 44 134 38 126 44 Z"/>
+      <!-- vorderer Arm (Schwung) -->
+      <path d="M128 58 C146 56 162 50 174 40 C180 36 178 28 170 30 C158 34 144 40 130 44 C124 46 122 58 128 58 Z"/>
+      <!-- hinterer Arm -->
+      <path d="M108 70 C96 76 84 86 78 98 C75 104 82 110 88 105 C98 96 108 88 116 82 C122 78 114 66 108 70 Z"/>
+      <!-- Standbein -->
+      <path d="M96 110 C92 130 90 152 92 174 C92 184 104 184 106 174 C108 154 110 132 112 114 C113 106 98 102 96 110 Z"/>
+      <!-- Schussbein, gestreckt zum Ball -->
+      <path d="M104 104 C124 112 146 124 164 140 C172 147 164 158 156 152 C140 140 120 128 102 120 C94 116 96 100 104 104 Z"/>
+      <!-- Fuß am Ball -->
+      <path d="M160 140 C168 140 176 144 178 152 C179 158 170 160 164 156 C160 153 154 148 156 144 Z"/>
+      <!-- Schuhe -->
+      <path d="M90 174 C86 178 82 184 90 187 C100 190 112 188 110 180 C109 175 96 170 90 174 Z"/>
+      <!-- fliegender Ball + Bewegungslinien -->
+      <circle cx="190" cy="158" r="12"/>
+      <path d="M150 150 L168 152 M148 162 L166 163 M152 174 L168 172" stroke="var(--gold-hell)" stroke-width="2.5" fill="none" opacity=".7"/>
+    </svg>
+
     <!-- 1. Kopf -->
     <div class="kopf">
       <img class="logo" src="../images/logos/schlosscafe-logo.png" alt="Schloss-Café Bleiburg">
@@ -214,7 +248,7 @@
       <span class="gross">GEWINNE</span>
       <span class="tv">einen 50-Zoll QLED-Fernseher!</span>
     </h1>
-    <div class="subline"><b>Hisense 50A7Q</b> · 4K UHD · gesponsert von <b>Elektro Enzi</b></div>
+    <div class="subline"><b>Hisense 50A7Q</b> · 4K UHD · ein Preis von <b>Café mit Herz</b> &amp; <b>Elektro Enzi</b></div>
 
     <!-- 3. TV-Produktbild (Platzhalter bis tv.png vorliegt) -->
     <div class="tv-zone">
@@ -258,9 +292,11 @@
       </div>
     </div>
 
-    <!-- 6/7. Sponsor-Leiste -->
+    <!-- 6/7. Sponsor-Leiste: Hauptpreis gemeinsam von Café mit Herz & Elektro Enzi -->
     <div class="sponsor">
-      <div class="s-label">Hauptpreis gesponsert von</div>
+      <div class="s-label">Hauptpreis<br>gesponsert von</div>
+      <span class="s-cafe">Café mit Herz<small>Schloss-Café · Cafe Reinhart</small></span>
+      <span class="s-amp">&amp;</span>
       <img src="elektro-enzi-logo.jpg" alt="Elektro Enzi, Bleiburg · Tel. 04235 / 22 92"
            onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div class="s-fallback">elektro enzi<span class="pkt">●</span></div>
@@ -273,7 +309,7 @@
       bei Löschung der Browserdaten oder Gerätewechsel verfallen sie; kein Anspruch auf Wiederherstellung.
       Verlosung unter allen vollständigen Teilnahmen, eine Teilnahme pro Person, Gewinn kann nicht in bar abgelöst werden,
       der Rechtsweg ist ausgeschlossen. Veranstalter: Café mit Herz, Oliver Burkhardt, Bleiburg.
-      Hauptpreis-Sponsor: Elektro Enzi, Bleiburg · Tel. 04235 / 22 92. Keine Rechtsberatung.
+      Hauptpreis gesponsert von Café mit Herz &amp; Elektro Enzi, Bleiburg · Tel. 04235 / 22 92. Keine Rechtsberatung.
     </footer>
 
   </div>

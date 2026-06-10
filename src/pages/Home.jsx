@@ -7,6 +7,8 @@ import { getActiveEvents } from '../data/events'
 import { standorte } from '../data/standorte'
 import SpiralAnimation from '../components/SpiralAnimation'
 import EventTicker from '../components/EventTicker'
+import WMBanner from '../components/WMBanner'
+import WMEvent from '../components/WMEvent'
 import LazyVideo from '../components/LazyVideo'
 import { useContent } from '../hooks/useContent'
 
@@ -563,6 +565,7 @@ function Events() {
           <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Was ist los?</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-creme">Veranstaltungen</h2>
         </div>
+        <WMEvent />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {aktiveEvents.map(e => (
             <a key={e.id} href={e.link || '#'} target={e.link ? '_blank' : ''} rel="noopener noreferrer" className="card-hover bg-braun-700 rounded-2xl overflow-hidden block active:scale-[0.98] transition-transform">
@@ -660,6 +663,7 @@ export default function Home() {
   usePageTitle(null)
   return (
     <>
+      <WMBanner />
       <Hero />
       <Standorte />
       <Klassiker />
