@@ -26,7 +26,7 @@ export default function WMEvent() {
           className="block group p-5 sm:p-8 flex items-center justify-center"
         >
           <img
-            src="./wm-gewinnspiel/plakat.png"
+            src="./wm-gewinnspiel/plakat.png?v=2"
             alt="WM-Gewinnspiel Plakat – 50-Zoll QLED-Fernseher gewinnen"
             loading="lazy"
             className="w-auto max-h-[55vh] sm:max-h-[70vh] rounded-xl border border-gold/30 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]"
