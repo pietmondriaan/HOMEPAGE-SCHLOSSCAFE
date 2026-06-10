@@ -35,6 +35,20 @@ export default function WMEvent() {
 
         {/* Text */}
         <div className="px-5 pb-7 sm:px-8 sm:pb-10 lg:py-10 lg:pr-12">
+          {/* Mitgesponsert — Elektro Enzi prominent vorangestellt */}
+          <div className="flex items-center gap-3 mb-5">
+            <div className="bg-white rounded-lg px-3 py-2 shadow-md shrink-0">
+              <img
+                src="./images/logos/elektro-enzi-logo.jpg"
+                alt="Elektro Enzi Bleiburg"
+                className="h-8 sm:h-10 w-auto block"
+              />
+            </div>
+            <span className="font-sans text-gold text-[10px] sm:text-xs tracking-[0.18em] uppercase font-semibold leading-tight">
+              Hauptpreis<br className="hidden sm:block" /> mitgesponsert von Elektro Enzi
+            </span>
+          </div>
+
           <div className="flex items-center gap-2 mb-4">
             <FaFutbol className="text-gold" size={14} />
             <span className="font-sans text-gold text-[10px] sm:text-xs tracking-[0.2em] uppercase font-semibold">

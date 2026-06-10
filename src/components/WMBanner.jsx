@@ -16,9 +16,11 @@ function heuteWien() {
 export default function WMBanner() {
   if (heuteWien() > WM_ENDE) return null
 
-  // Lauftext einmal definiert, dreifach gerendert für nahtlose Endlos-Schleife.
+  // EINE Botschaft, die je Bildschirmbreite zentriert durchläuft.
+  // Zwei identische Kopien (min-w-full) → nahtlose Endlos-Schleife (translateX -50%),
+  // dabei ist immer nur EINE Botschaft sichtbar — wirkt wie ein einzelnes Laufband.
   const Inhalt = () => (
-    <span className="inline-flex items-center gap-2 px-6 sm:px-10 whitespace-nowrap">
+    <span className="flex shrink-0 min-w-full items-center justify-center gap-2 whitespace-nowrap px-6">
       <FaFutbol className="text-braun-900/80 shrink-0" size={13} />
       <span className="font-sans text-xs sm:text-sm font-semibold tracking-wide text-braun-900">
         WM-GEWINNSPIEL: Gewinne einen 50-Zoll QLED-Fernseher!
@@ -29,7 +31,6 @@ export default function WMBanner() {
       <span className="font-sans text-xs sm:text-sm font-bold text-braun-900 underline underline-offset-2">
         Jetzt mitspielen →
       </span>
-      <span className="text-braun-900/30 mx-3 sm:mx-5">◆</span>
     </span>
   )
 
@@ -40,8 +41,7 @@ export default function WMBanner() {
       className="fixed top-[92px] sm:top-[108px] left-0 right-0 z-40 block overflow-hidden bg-gradient-to-r from-gold via-gold-light to-gold shadow-md group"
     >
       <div className="border-y border-braun-900/15 py-1.5 sm:py-2 overflow-hidden">
-        <div className="inline-flex wm-marquee group-hover:[animation-play-state:paused]">
-          <Inhalt />
+        <div className="flex wm-marquee group-hover:[animation-play-state:paused]">
           <Inhalt />
           <Inhalt />
         </div>

@@ -127,13 +127,14 @@ footer *:focus-visible {
   animation-play-state: paused;
 }
 
-/* WM-Gewinnspiel Laufband */
+/* WM-Gewinnspiel Laufband — zwei min-w-full-Kopien, daher -50% pro Durchlauf */
 @keyframes wm-marquee {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  100% { transform: translateX(-50%); }
 }
 .wm-marquee {
-  animation: wm-marquee 30s linear infinite;
+  animation: wm-marquee 18s linear infinite;
+  will-change: transform;
 }
 /* Bei reduzierter Bewegung bzw. barrierefreier Ansicht: statisch, nicht laufend */
 @media (prefers-reduced-motion: reduce) {
