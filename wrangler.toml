@@ -1,0 +1,27 @@
+# wrangler.toml — Cloudflare Pages Projekt "schlosscafe" (cafemitherz.at)
+#
+# ACHTUNG: Sobald diese Datei deployt wird, ist sie die Quelle der Wahrheit für
+# Bindings/Vars — Dashboard-Bindings werden überschrieben. Deshalb MUSS das
+# bestehende COUNTER-Binding (Besucherzähler, /api/track + /api/stats) hier
+# mitgeführt werden. Secrets (HASH_SALT, STATS_KEY) bleiben im Dashboard
+# erhalten — Secrets gehören nie in diese Datei.
+name = "schlosscafe"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-01-01"
+
+# vavadmin-Content: GLEICHER Namespace wie Silke/vav-admin —
+# Mandantentrennung über Key-Präfix content-<CUSTOMER_ID>.
+[[kv_namespaces]]
+binding = "CONTENT_KV"
+id = "6e541cb414d64bdd8201e4e022844d66"
+preview_id = "ba03ed1850fb4fa48e86c294b39e55b7"
+
+# Bestehender Besucherzähler (KV "schlosscafe-counter") — war bisher nur im
+# Dashboard gebunden (Production + Preview auf denselben Namespace).
+[[kv_namespaces]]
+binding = "COUNTER"
+id = "53440fe2f1fd402b8889b334fbccab5e"
+preview_id = "53440fe2f1fd402b8889b334fbccab5e"
+
+[vars]
+CUSTOMER_ID = "cafemitherz"
