@@ -127,6 +127,22 @@ footer *:focus-visible {
   animation-play-state: paused;
 }
 
+/* WM-Gewinnspiel Laufband */
+@keyframes wm-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+.wm-marquee {
+  animation: wm-marquee 30s linear infinite;
+}
+/* Bei reduzierter Bewegung bzw. barrierefreier Ansicht: statisch, nicht laufend */
+@media (prefers-reduced-motion: reduce) {
+  .wm-marquee { animation: none; }
+}
+html[data-accessible] .wm-marquee {
+  animation: none !important;
+}
+
 
 /* === A11y Toggle Button === */
 .a11y-bar-btn {

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>WM-Gewinnspiel Plakat — Café mit Herz</title>
+<style>
+  :root{
+    --braun:#5C3A21;
+    --braun-dunkel:#3A2417;
+    --braun-hell:#8A5C36;
+    --creme:#F7F1E5;
+    --creme-hell:#FDFAF3;
+    --gold:#C9A227;
+    --gold-hell:#E6C963;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#e8e3d8}
+  body{
+    font-family:var(--sans);
+    color:var(--creme);
+    display:flex;justify-content:center;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+
+  /* ===== A4-Hochformat (96 dpi): 794 x 1123 px ===== */
+  .plakat{
+    position:relative;
+    width:794px;height:1123px;
+    margin:0 auto;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(201,162,39,.20), transparent 55%),
+      linear-gradient(168deg,#5C3A21 0%,#3A2417 60%,#2C1A0F 100%);
+    display:flex;flex-direction:column;
+  }
+  /* dezenter Gold-Innenrahmen */
+  .plakat::before{
+    content:"";position:absolute;inset:18px;border:2px solid rgba(201,162,39,.55);
+    border-radius:14px;pointer-events:none;z-index:2;
+  }
+  /* großes Deko-Ball-Wasserzeichen */
+  .plakat::after{
+    content:"⚽";position:absolute;right:-60px;bottom:-70px;font-size:340px;
+    color:rgba(247,241,229,.04);transform:rotate(-12deg);pointer-events:none;z-index:0;
+  }
+  /* Fußballer-Silhouette (lizenzfrei, selbst gezeichnet — KEIN realer Spieler) */
+  .fussballer{
+    position:absolute;top:150px;right:30px;width:230px;height:auto;z-index:0;
+    opacity:.13;pointer-events:none;transform:rotate(-4deg);
+  }
+  .fussballer path,.fussballer circle{fill:var(--gold-hell)}
+
+  .inhalt{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;
+    padding:34px 48px 22px;}
+
+  /* ----- 1. Kopf ----- */
+  .kopf{text-align:center}
+  .kopf .logo{height:56px;width:auto;max-width:480px;object-fit:contain;display:inline-block}
+  .kopf .standorte{
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gold-hell);margin-top:8px;font-weight:600;
+  }
+  .trenner{
+    display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);
+    margin:10px auto 0;font-size:14px;
+  }
+  .trenner::before,.trenner::after{
+    content:"";height:1px;width:90px;background:linear-gradient(90deg,transparent,var(--gold));
+  }
+  .trenner::after{background:linear-gradient(90deg,var(--gold),transparent)}
+
+  /* ----- 2. Headline ----- */
+  .kicker{
+    text-align:center;font-size:13px;letter-spacing:.30em;text-transform:uppercase;
+    color:var(--gold-hell);font-weight:700;margin-top:14px;
+  }
+  h1{
+    font-family:var(--serif);font-weight:700;text-align:center;
+    font-size:48px;line-height:1.04;margin:5px auto 0;letter-spacing:-.5px;
+    text-shadow:0 2px 8px rgba(0,0,0,.35);
+  }
+  h1 .gross{color:var(--gold-hell);display:block;font-size:60px}
+  h1 .tv{color:var(--creme)}
+  .subline{
+    text-align:center;font-size:17px;color:var(--creme);opacity:.92;margin-top:9px;font-weight:500;
+  }
+  .subline b{color:var(--gold-hell)}
+
+  /* ----- 3. TV-Bild ----- */
+  .tv-zone{
+    margin:14px auto 0;width:330px;height:166px;
+    border-radius:14px;background:#1b120a;
+    border:1px solid rgba(201,162,39,.4);
+    box-shadow:0 14px 36px rgba(0,0,0,.45);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;
+  }
+  .tv-zone img{width:100%;height:100%;object-fit:contain;display:block}
+  .tv-platzhalter{
+    text-align:center;color:var(--creme);padding:14px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    width:100%;height:100%;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(201,162,39,.18), transparent 70%),
+      linear-gradient(160deg,#241710,#120b06);
+  }
+  .tv-platzhalter .screen{
+    width:78%;height:96px;border-radius:6px;border:3px solid var(--gold);
+    background:linear-gradient(135deg,#0e1a24,#04080c);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,.5),inset 0 0 24px rgba(201,162,39,.12);
+    position:relative;
+  }
+  .tv-platzhalter .screen::after{
+    content:"⚽";font-size:40px;opacity:.85;
+  }
+  .tv-platzhalter .stand{
+    width:54px;height:8px;background:var(--braun-hell);border-radius:0 0 4px 4px;margin-top:0;
+  }
+  .tv-platzhalter .modell{
+    margin-top:12px;font-family:var(--serif);font-size:18px;font-weight:700;color:var(--gold-hell);
+  }
+  .tv-platzhalter .hinweis{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--braun-hell);margin-top:3px}
+
+  /* ----- 4. So einfach geht's ----- */
+  .schritte-titel{
+    text-align:center;font-family:var(--serif);font-size:21px;color:var(--gold-hell);
+    margin:18px 0 11px;font-weight:700;
+  }
+  .schritte{display:flex;gap:12px;justify-content:center}
+  .schritt{
+    flex:1;background:rgba(247,241,229,.06);border:1px solid rgba(201,162,39,.3);
+    border-radius:12px;padding:14px 12px 13px;text-align:center;
+  }
+  .schritt .num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:50%;
+    background:linear-gradient(140deg,var(--gold),#B08A1E);color:var(--braun-dunkel);
+    font-weight:800;font-size:17px;margin-bottom:8px;box-shadow:0 3px 8px rgba(0,0,0,.3);
+  }
+  .schritt p{font-size:12.5px;line-height:1.4;color:var(--creme)}
+  .schritt p b{color:var(--gold-hell)}
+
+  /* ----- 5. QR-Block ----- */
+  .qr-block{
+    display:flex;align-items:center;gap:22px;margin-top:14px;
+    background:rgba(247,241,229,.06);border:1px solid rgba(201,162,39,.3);
+    border-radius:14px;padding:14px 22px;
+  }
+  .qr-rahmen{
+    background:#fff;border-radius:10px;padding:10px;flex-shrink:0;
+    box-shadow:0 8px 22px rgba(0,0,0,.4);line-height:0;
+  }
+  .qr-rahmen svg,.qr-rahmen img{width:210px;height:210px;display:block;image-rendering:pixelated}
+  .qr-text .scan{font-family:var(--serif);font-size:25px;font-weight:700;color:var(--gold-hell);line-height:1.15}
+  .qr-text .url{
+    margin-top:10px;font-size:15px;font-weight:700;color:var(--creme);
+    word-break:break-all;
+  }
+  .qr-text .url .akzent{color:var(--gold-hell)}
+  .qr-text .laufzeit{
+    margin-top:14px;font-size:14px;color:var(--creme);line-height:1.45;
+    border-top:1px solid rgba(201,162,39,.3);padding-top:12px;
+  }
+  .qr-text .laufzeit .label{
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-hell);
+    font-weight:700;display:block;margin-bottom:3px;
+  }
+  .qr-text .laufzeit b{color:var(--creme)}
+
+  /* ----- 6/7. Sponsor-Leiste (weißer Balken) ----- */
+  .sponsor{
+    margin-top:auto;background:#fff;border-radius:12px;
+    padding:11px 22px;display:flex;align-items:center;gap:20px;
+    box-shadow:0 6px 18px rgba(0,0,0,.3);
+  }
+  .sponsor .s-label{
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5C3A21;
+    font-weight:700;flex-shrink:0;line-height:1.4;max-width:150px;
+  }
+  .sponsor img{height:74px;width:auto;max-width:300px;object-fit:contain;margin-left:auto}
+  .sponsor .s-cafe{
+    font-family:var(--serif);font-weight:700;font-size:21px;color:#5C3A21;line-height:1.05;flex-shrink:0;
+  }
+  .sponsor .s-cafe small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.06em;color:#8A5C36;font-weight:600}
+  .sponsor .s-amp{font-family:var(--serif);font-size:22px;color:var(--gold);font-weight:700;flex-shrink:0}
+  .sponsor .s-fallback{
+    display:none;font-family:var(--sans);font-weight:800;font-size:26px;color:#1a1a1a;margin-left:auto;
+  }
+  .sponsor .s-fallback .pkt{color:#D7261D}
+
+  /* ----- 8. Fußzeile ----- */
+  footer{
+    margin-top:10px;font-size:8.2px;line-height:1.42;color:rgba(247,241,229,.62);
+    text-align:justify;
+  }
+  footer b{color:rgba(230,201,99,.85)}
+
+  /* ===== Druck: exakt eine A4-Seite, randlos ===== */
+  @media print{
+    @page{size:A4;margin:0}
+    html,body{background:#fff}
+    .plakat{margin:0;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="plakat">
+  <div class="inhalt">
+
+    <!-- Deko: Fußballer-Silhouette (lizenzfrei, generisch — kein realer Spieler) -->
+    <svg class="fussballer" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Kopf -->
+      <circle cx="118" cy="30" r="15"/>
+      <!-- Rumpf, nach vorne gebeugt -->
+      <path d="M126 44 C118 60 110 78 96 92 C88 100 84 110 92 116 C100 122 112 116 120 106 C132 90 140 70 142 52 C143 44 134 38 126 44 Z"/>
+      <!-- vorderer Arm (Schwung) -->
+      <path d="M128 58 C146 56 162 50 174 40 C180 36 178 28 170 30 C158 34 144 40 130 44 C124 46 122 58 128 58 Z"/>
+      <!-- hinterer Arm -->
+      <path d="M108 70 C96 76 84 86 78 98 C75 104 82 110 88 105 C98 96 108 88 116 82 C122 78 114 66 108 70 Z"/>
+      <!-- Standbein -->
+      <path d="M96 110 C92 130 90 152 92 174 C92 184 104 184 106 174 C108 154 110 132 112 114 C113 106 98 102 96 110 Z"/>
+      <!-- Schussbein, gestreckt zum Ball -->
+      <path d="M104 104 C124 112 146 124 164 140 C172 147 164 158 156 152 C140 140 120 128 102 120 C94 116 96 100 104 104 Z"/>
+      <!-- Fuß am Ball -->
+      <path d="M160 140 C168 140 176 144 178 152 C179 158 170 160 164 156 C160 153 154 148 156 144 Z"/>
+      <!-- Schuhe -->
+      <path d="M90 174 C86 178 82 184 90 187 C100 190 112 188 110 180 C109 175 96 170 90 174 Z"/>
+      <!-- fliegender Ball + Bewegungslinien -->
+      <circle cx="190" cy="158" r="12"/>
+      <path d="M150 150 L168 152 M148 162 L166 163 M152 174 L168 172" stroke="var(--gold-hell)" stroke-width="2.5" fill="none" opacity=".7"/>
+    </svg>
+
+    <!-- 1. Kopf -->
+    <div class="kopf">
+      <img class="logo" src="../images/logos/schlosscafe-logo.png" alt="Schloss-Café Bleiburg">
+      <div class="standorte">Schloss-Café Bleiburg · Cafe Reinhart Eberndorf</div>
+      <div class="trenner">⚽</div>
+    </div>
+
+    <!-- 2. Eyecatcher-Headline -->
+    <div class="kicker">Café mit Herz · WM-Gewinnspiel 2026</div>
+    <h1>
+      <span class="gross">GEWINNE</span>
+      <span class="tv">einen 50-Zoll QLED-Fernseher!</span>
+    </h1>
+    <div class="subline"><b>Hisense 50A7Q</b> · 4K UHD · ein Preis von <b>Café mit Herz</b> &amp; <b>Elektro Enzi</b></div>
+
+    <!-- 3. TV-Produktbild (Platzhalter bis tv.png vorliegt) -->
+    <div class="tv-zone">
+      <img src="tv.png" alt="Hisense 50A7Q QLED 50 Zoll Fernseher"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="tv-platzhalter" style="display:none">
+        <div class="screen"></div>
+        <div class="stand"></div>
+        <div class="modell">Hisense 50A7Q QLED 50&quot;</div>
+        <div class="hinweis">Produktbild folgt</div>
+      </div>
+    </div>
+
+    <!-- 4. So einfach geht's -->
+    <div class="schritte-titel">So einfach geht's</div>
+    <div class="schritte">
+      <div class="schritt">
+        <div class="num">1</div>
+        <p><b>QR-Code scannen</b> oder cafemitherz.at/wm-gewinnspiel öffnen</p>
+      </div>
+      <div class="schritt">
+        <div class="num">2</div>
+        <p><b>Codewort des Tages</b> von unserer Tafel eintippen</p>
+      </div>
+      <div class="schritt">
+        <div class="num">3</div>
+        <p><b>5 Tage = 5 Bälle</b> = im Lostopf für den großen Gewinn</p>
+      </div>
+    </div>
+
+    <!-- 5. QR-Code + Laufzeit -->
+    <div class="qr-block">
+      <div class="qr-rahmen"><div id="qrZiel" aria-label="QR-Code zum Mitspielen"></div></div>
+      <div class="qr-text">
+        <div class="scan">Jetzt scannen &amp;<br>mitspielen!</div>
+        <div class="url">www.cafemitherz.at<span class="akzent">/wm-gewinnspiel</span></div>
+        <div class="laufzeit">
+          <span class="label">Laufzeit</span>
+          Während der ganzen Fußball-WM:<br><b>11. Juni – 19. Juli 2026</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6/7. Sponsor-Leiste: Hauptpreis gemeinsam von Café mit Herz & Elektro Enzi -->
+    <div class="sponsor">
+      <div class="s-label">Hauptpreis<br>gesponsert von</div>
+      <span class="s-cafe">Café mit Herz<small>Schloss-Café · Cafe Reinhart</small></span>
+      <span class="s-amp">&amp;</span>
+      <img src="elektro-enzi-logo.jpg" alt="Elektro Enzi, Bleiburg · Tel. 04235 / 22 92"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <div class="s-fallback">elektro enzi<span class="pkt">●</span></div>
+    </div>
+
+    <!-- 8. Fußzeile / Teilnahmebedingungen -->
+    <footer>
+      <b>Teilnahmebedingungen:</b> Teilnahme ab 18 Jahren. Ein Stempel pro Tag und Gerät, 5 Besuche nötig.
+      Teilnahmeschluss 19. Juli 2026. Die gesammelten Stempel werden nur lokal im Browser des Geräts gespeichert —
+      bei Löschung der Browserdaten oder Gerätewechsel verfallen sie; kein Anspruch auf Wiederherstellung.
+      Verlosung unter allen vollständigen Teilnahmen, eine Teilnahme pro Person, Gewinn kann nicht in bar abgelöst werden,
+      der Rechtsweg ist ausgeschlossen. Veranstalter: Café mit Herz, Oliver Burkhardt, Bleiburg.
+      Hauptpreis gesponsert von Café mit Herz &amp; Elektro Enzi, Bleiburg · Tel. 04235 / 22 92. Keine Rechtsberatung.
+    </footer>
+
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   QR-ENGINE-START
+   Eigenständige Minimal-Implementierung eines QR-Code-Encoders.
+   Byte-Modus, Fehlerkorrektur-Level M, Versionen 1-6 (bis ~106 Zeichen).
+   Komplett offline, keine Abhängigkeiten.
+   Übernommen 1:1 aus qr-generator.html (getestete Engine).
+   API: qrMatrix(text) -> 2D-Array aus true/false (true = dunkel)
+   ===================================================================== */
+
+// --- Galois-Feld GF(256), Polynom 0x11D ---
+var GF_EXP = new Array(512), GF_LOG = new Array(256);
+(function () {
+  var x = 1;
+  for (var i = 0; i < 255; i++) {
+    GF_EXP[i] = x; GF_LOG[x] = i;
+    x <<= 1; if (x & 0x100) x ^= 0x11D;
+  }
+  for (var j = 255; j < 512; j++) GF_EXP[j] = GF_EXP[j - 255];
+})();
+function gfMul(a, b) { if (!a || !b) return 0; return GF_EXP[GF_LOG[a] + GF_LOG[b]]; }
+
+// --- Reed-Solomon ---
+function rsGenerator(ec) {
+  var g = [1];
+  for (var i = 0; i < ec; i++) {
+    var ng = new Array(g.length + 1);
+    for (var k = 0; k < ng.length; k++) ng[k] = 0;
+    for (var j = 0; j < g.length; j++) {
+      ng[j] ^= g[j];
+      ng[j + 1] ^= gfMul(g[j], GF_EXP[i]);
+    }
+    g = ng;
+  }
+  return g;
+}
+function rsRemainder(data, ec) {
+  var gen = rsGenerator(ec);
+  var res = data.concat(new Array(ec));
+  for (var z = data.length; z < res.length; z++) res[z] = 0;
+  for (var i = 0; i < data.length; i++) {
+    var f = res[i];
+    if (f) for (var j = 1; j < gen.length; j++) res[i + j] ^= gfMul(gen[j], f);
+  }
+  return res.slice(data.length);
+}
+
+// --- Versionstabelle, Level M ---
+var QR_VERSIONEN = [
+  [1, 10, [16]],
+  [2, 16, [28]],
+  [3, 26, [44]],
+  [4, 18, [32, 32]],
+  [5, 24, [43, 43]],
+  [6, 16, [27, 27, 27, 27]]
+];
+var QR_ALIGN = { 1: [], 2: [6, 18], 3: [6, 22], 4: [6, 26], 5: [6, 30], 6: [6, 34] };
+
+function utf8Bytes(text) {
+  var out = [], enc = encodeURIComponent(text);
+  for (var i = 0; i < enc.length; i++) {
+    var c = enc.charAt(i);
+    if (c === '%') { out.push(parseInt(enc.substr(i + 1, 2), 16)); i += 2; }
+    else out.push(enc.charCodeAt(i));
+  }
+  return out;
+}
+
+function bauDatenCodewoerter(bytes, version) {
+  var info = QR_VERSIONEN[version - 1];
+  var datenCW = 0;
+  for (var b = 0; b < info[2].length; b++) datenCW += info[2][b];
+  var bits = [];
+  function push(wert, anzahl) {
+    for (var i = anzahl - 1; i >= 0; i--) bits.push((wert >> i) & 1);
+  }
+  push(4, 4);                 // Modus: Byte
+  push(bytes.length, 8);      // Zeichenzahl (8 Bit bei Version 1-9)
+  for (var i = 0; i < bytes.length; i++) push(bytes[i], 8);
+  var maxBits = datenCW * 8;
+  var term = Math.min(4, maxBits - bits.length);
+  push(0, term);
+  while (bits.length % 8 !== 0) bits.push(0);
+  var cw = [];
+  for (var p = 0; p < bits.length; p += 8) {
+    var v = 0;
+    for (var q = 0; q < 8; q++) v = (v << 1) | bits[p + q];
+    cw.push(v);
+  }
+  var pad = [0xEC, 0x11], pi = 0;
+  while (cw.length < datenCW) cw.push(pad[(pi++) % 2]);
+  return cw;
+}
+
+function verschachtele(codewoerter, version) {
+  var info = QR_VERSIONEN[version - 1];
+  var ecJeBlock = info[1], blockGroessen = info[2];
+  var bloecke = [], ecBloecke = [], pos = 0;
+  for (var b = 0; b < blockGroessen.length; b++) {
+    var dat = codewoerter.slice(pos, pos + blockGroessen[b]);
+    pos += blockGroessen[b];
+    bloecke.push(dat);
+    ecBloecke.push(rsRemainder(dat, ecJeBlock));
+  }
+  var out = [];
+  var maxDat = Math.max.apply(null, blockGroessen);
+  for (var i = 0; i < maxDat; i++)
+    for (var j = 0; j < bloecke.length; j++)
+      if (i < bloecke[j].length) out.push(bloecke[j][i]);
+  for (var e = 0; e < ecJeBlock; e++)
+    for (var k = 0; k < ecBloecke.length; k++)
+      out.push(ecBloecke[k][e]);
+  return out;
+}
+
+function maskeAktiv(m, r, c) {
+  switch (m) {
+    case 0: return (r + c) % 2 === 0;
+    case 1: return r % 2 === 0;
+    case 2: return c % 3 === 0;
+    case 3: return (r + c) % 3 === 0;
+    case 4: return (Math.floor(r / 2) + Math.floor(c / 3)) % 2 === 0;
+    case 5: return (r * c) % 2 + (r * c) % 3 === 0;
+    case 6: return ((r * c) % 2 + (r * c) % 3) % 2 === 0;
+    default: return ((r + c) % 2 + (r * c) % 3) % 2 === 0;
+  }
+}
+
+// BCH(15,5) für Format-Info, EC-Level M = 00
+function formatBits(maske) {
+  var daten = (0 << 3) | maske; // M=00
+  var rest = daten << 10;
+  for (var i = 14; i >= 10; i--) {
+    if ((rest >> i) & 1) rest ^= 0x537 << (i - 10);
+  }
+  return (((daten << 10) | rest) ^ 0x5412) & 0x7FFF;
+}
+
+function baueMatrix(version, codewoerter, maske) {
+  var groesse = 17 + 4 * version;
+  var mod = [], fun = [];
+  for (var r = 0; r < groesse; r++) {
+    mod.push(new Array(groesse));
+    fun.push(new Array(groesse));
+  }
+  function setzFun(r, c, dunkel) { mod[r][c] = dunkel; fun[r][c] = true; }
+
+  // Finder + Separatoren
+  function finder(r0, c0) {
+    for (var r = -1; r <= 7; r++) for (var c = -1; c <= 7; c++) {
+      var rr = r0 + r, cc = c0 + c;
+      if (rr < 0 || cc < 0 || rr >= groesse || cc >= groesse) continue;
+      var dunkel = (r >= 0 && r <= 6 && c >= 0 && c <= 6) &&
+        (r === 0 || r === 6 || c === 0 || c === 6 || (r >= 2 && r <= 4 && c >= 2 && c <= 4));
+      setzFun(rr, cc, dunkel);
+    }
+  }
+  finder(0, 0); finder(0, groesse - 7); finder(groesse - 7, 0);
+
+  // Timing
+  for (var t = 8; t < groesse - 8; t++) {
+    if (fun[6][t] === undefined) setzFun(6, t, t % 2 === 0);
+    if (fun[t][6] === undefined) setzFun(t, 6, t % 2 === 0);
+  }
+
+  // Alignment
+  var ali = QR_ALIGN[version];
+  for (var a = 0; a < ali.length; a++) for (var b = 0; b < ali.length; b++) {
+    var ar = ali[a], ac = ali[b];
+    if (fun[ar][ac] !== undefined) continue; // überlappt Finder
+    for (var dr = -2; dr <= 2; dr++) for (var dc = -2; dc <= 2; dc++) {
+      var dunkel = Math.max(Math.abs(dr), Math.abs(dc)) !== 1;
+      setzFun(ar + dr, ac + dc, dunkel);
+    }
+  }
+
+  // Format-Bereiche reservieren
+  for (var f = 0; f <= 8; f++) {
+    if (f !== 6) { fun[8][f] = true; fun[f][8] = true; }
+  }
+  for (var f2 = 0; f2 < 8; f2++) {
+    fun[8][groesse - 1 - f2] = true;
+    if (f2 < 7) fun[groesse - 1 - f2][8] = true;
+  }
+  // Dunkles Modul
+  setzFun(4 * version + 9, 8, true);
+
+  // Daten platzieren (Zickzack)
+  var bitIndex = 0, gesamtBits = codewoerter.length * 8;
+  var richtung = -1, zeile = groesse - 1;
+  for (var spalte = groesse - 1; spalte > 0; spalte -= 2) {
+    if (spalte === 6) spalte--;
+    while (true) {
+      for (var s = 0; s < 2; s++) {
+        var c2 = spalte - s;
+        if (!fun[zeile][c2]) {
+          var dunkel2 = false;
+          if (bitIndex < gesamtBits) {
+            dunkel2 = ((codewoerter[bitIndex >> 3] >> (7 - (bitIndex & 7))) & 1) === 1;
+            bitIndex++;
+          }
+          if (maskeAktiv(maske, zeile, c2)) dunkel2 = !dunkel2;
+          mod[zeile][c2] = dunkel2;
+        }
+      }
+      zeile += richtung;
+      if (zeile < 0 || zeile >= groesse) { zeile -= richtung; richtung = -richtung; break; }
+    }
+  }
+
+  // Format-Info schreiben (Bit 14 = MSB)
+  var fb = formatBits(maske);
+  function bit(n) { return ((fb >> n) & 1) === 1; }
+  var posA = [[8,0],[8,1],[8,2],[8,3],[8,4],[8,5],[8,7],[8,8],[7,8],[5,8],[4,8],[3,8],[2,8],[1,8],[0,8]];
+  for (var i2 = 0; i2 < 15; i2++) mod[posA[i2][0]][posA[i2][1]] = bit(14 - i2);
+  for (var j2 = 0; j2 < 7; j2++) mod[groesse - 1 - j2][8] = bit(14 - j2);
+  for (var k2 = 0; k2 < 8; k2++) mod[8][groesse - 8 + k2] = bit(7 - k2);
+
+  return mod;
+}
+
+function strafpunkte(mod) {
+  var n = mod.length, punkte = 0, r, c;
+  // Regel 1: Läufe >= 5
+  for (r = 0; r < n; r++) {
+    var lauf = 1;
+    for (c = 1; c <= n; c++) {
+      if (c < n && mod[r][c] === mod[r][c - 1]) lauf++;
+      else { if (lauf >= 5) punkte += 3 + (lauf - 5); lauf = 1; }
+    }
+  }
+  for (c = 0; c < n; c++) {
+    var lauf2 = 1;
+    for (r = 1; r <= n; r++) {
+      if (r < n && mod[r][c] === mod[r - 1][c]) lauf2++;
+      else { if (lauf2 >= 5) punkte += 3 + (lauf2 - 5); lauf2 = 1; }
+    }
+  }
+  // Regel 2: 2x2-Blöcke
+  for (r = 0; r < n - 1; r++) for (c = 0; c < n - 1; c++) {
+    var v = mod[r][c];
+    if (mod[r][c + 1] === v && mod[r + 1][c] === v && mod[r + 1][c + 1] === v) punkte += 3;
+  }
+  // Regel 3: Finder-ähnliche Muster
+  var m1 = [true,false,true,true,true,false,true,false,false,false,false];
+  var m2 = [false,false,false,false,true,false,true,true,true,false,true];
+  function passt(get, start, muster) {
+    for (var i = 0; i < 11; i++) if (get(start + i) !== muster[i]) return false;
+    return true;
+  }
+  for (r = 0; r < n; r++) for (c = 0; c <= n - 11; c++) {
+    var zr = r, zc = c;
+    var getH = function (i) { return mod[zr][zc + i] === true; };
+    if (passt(getH, 0, m1) || passt(getH, 0, m2)) punkte += 40;
+  }
+  for (c = 0; c < n; c++) for (r = 0; r <= n - 11; r++) {
+    var zr2 = r, zc2 = c;
+    var getV = function (i) { return mod[zr2 + i][zc2] === true; };
+    if (passt(getV, 0, m1) || passt(getV, 0, m2)) punkte += 40;
+  }
+  // Regel 4: Dunkel-Anteil
+  var dunkel = 0;
+  for (r = 0; r < n; r++) for (c = 0; c < n; c++) if (mod[r][c]) dunkel++;
+  var prozent = dunkel * 100 / (n * n);
+  punkte += Math.floor(Math.abs(prozent - 50) / 5) * 10;
+  return punkte;
+}
+
+// Haupt-API: Text -> Modulmatrix (true = dunkel) oder Exception wenn zu lang.
+function qrMatrix(text) {
+  var bytes = utf8Bytes(text);
+  var version = 0;
+  for (var v = 0; v < QR_VERSIONEN.length; v++) {
+    var datenCW = 0, info = QR_VERSIONEN[v];
+    for (var b = 0; b < info[2].length; b++) datenCW += info[2][b];
+    if (bytes.length <= datenCW - 2) { version = info[0]; break; }
+  }
+  if (!version) throw new Error('Text zu lang fuer diesen QR-Generator (max ~106 Zeichen).');
+  var cw = verschachtele(bauDatenCodewoerter(bytes, version), version);
+  var beste = null, besteStrafe = Infinity;
+  for (var m = 0; m < 8; m++) {
+    var kandidat = baueMatrix(version, cw, m);
+    var strafe = strafpunkte(kandidat);
+    if (strafe < besteStrafe) { besteStrafe = strafe; beste = kandidat; }
+  }
+  return beste;
+}
+/* QR-ENGINE-ENDE */
+
+/* ---------- QR beim Laden als scharfes SVG rendern (druck- und PNG-tauglich) ---------- */
+(function () {
+  var ZIEL = 'https://www.cafemitherz.at/wm-gewinnspiel';
+  var ziel = document.getElementById('qrZiel');
+  try {
+    var matrix = qrMatrix(ZIEL);
+    var n = matrix.length, rand = 4;
+    var gesamt = n + 2 * rand;
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + gesamt + ' ' + gesamt +
+      '" shape-rendering="crispEdges" width="210" height="210">';
+    svg += '<rect width="' + gesamt + '" height="' + gesamt + '" fill="#ffffff"/>';
+    var pfad = '';
+    for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) {
+      if (matrix[r][c]) pfad += 'M' + (c + rand) + ' ' + (r + rand) + 'h1v1h-1z';
+    }
+    svg += '<path d="' + pfad + '" fill="#000000"/></svg>';
+    ziel.innerHTML = svg;
+  } catch (e) {
+    ziel.innerHTML = '<div style="width:210px;height:210px;display:flex;align-items:center;' +
+      'justify-content:center;color:#5C3A21;font:600 13px sans-serif;text-align:center;padding:10px">' +
+      'cafemitherz.at/wm-gewinnspiel</div>';
+  }
+})();
+</script>
+</body>
+</html>
