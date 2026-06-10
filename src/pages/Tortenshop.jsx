@@ -3,6 +3,10 @@ import { FaWhatsapp, FaEnvelope, FaShoppingBag, FaStar, FaPalette, FaInfoCircle,
 import LazyVideo from '../components/LazyVideo'
 import { torten, aktionstorte } from '../data/torten'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useContent } from '../hooks/useContent'
+
+// Preise kommen als Zahl (data/torten.js) oder als String (CMS) — beides als "58.00" anzeigen.
+const fmtPreis = (p) => (typeof p === 'number' ? p.toFixed(2) : p)
 
 // Anlasstorten = die Torten, nach denen in der KI-Suche gefragt wird (Tauf-, Kommunions-,
 // Hochzeits-, Geburtstagstorten). Prominent im Tortenshop, damit ChatGPT/Gemini das Angebot zitieren.
@@ -89,7 +93,8 @@ function AllergenModal({ torte, onClose }) {
   )
 }
 
-function TortenKarte({ torte, onBestellen, onAllergene }) {
+function TortenKarte({ torte, onBestellen, onAllergene, cmsPrefix }) {
+  const cms = (feld) => (cmsPrefix ? `${cmsPrefix}.${feld}` : undefined)
   return (
     <div className="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
       <div className="relative h-56 overflow-hidden">
@@ -112,16 +117,16 @@ function TortenKarte({ torte, onBestellen, onAllergene }) {
         )}
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-display text-braun-800 mb-2">{torte.name}</h3>
-        <p className="text-braun-500 text-sm leading-relaxed mb-4">{torte.beschreibung}</p>
+        <h3 className="text-xl font-display text-braun-800 mb-2" data-cms={cms('name')}>{torte.name}</h3>
+        <p className="text-braun-500 text-sm leading-relaxed mb-4" data-cms={cms('beschreibung')}>{torte.beschreibung}</p>
         {torte.normalpreis && (
           <div className="mb-4">
-            <p className="text-braun-400 font-sans text-sm line-through">€ {torte.normalpreis.toFixed(2)}</p>
-            <p className="text-gold font-sans font-bold text-xl">€ {torte.preis.toFixed(2)} <span className="text-sm font-normal">bei Online-Bestellung</span></p>
+            <p className="text-braun-400 font-sans text-sm line-through" data-cms={cms('normalpreis')}>€ {fmtPreis(torte.normalpreis)}</p>
+            <p className="text-gold font-sans font-bold text-xl" data-cms={cms('preis')}>€ {fmtPreis(torte.preis)} <span className="text-sm font-normal">bei Online-Bestellung</span></p>
           </div>
         )}
         {torte.preis && !torte.normalpreis && (
-          <p className="text-gold font-sans font-bold text-lg mb-4">€ {torte.preis.toFixed(2)}</p>
+          <p className="text-gold font-sans font-bold text-lg mb-4" data-cms={cms('preis')}>€ {fmtPreis(torte.preis)}</p>
         )}
         <div className="flex items-center gap-3">
           <button
@@ -235,6 +240,16 @@ export default function Tortenshop() {
   usePageTitle('Torten online bestellen – hausgemachte Konditorei-Torten')
   const [selected, setSelected] = useState(null)
   const [allergenTorte, setAllergenTorte] = useState(null)
+  const content = useContent()
+  // Texte/Preise aus dem CMS, Bild/Allergene/Kategorie bleiben hardcoded (data/torten.js).
+  const aktionstorteAnzeige = {
+    ...aktionstorte,
+    name: content.aktionstorte.name,
+    beschreibung: content.aktionstorte.beschreibung,
+    monat: content.aktionstorte.monat,
+    preis: content.aktionstorte.preis,
+    normalpreis: content.aktionstorte.normalpreis,
+  }
 
   return (
     <div className="pt-20">
@@ -249,15 +264,15 @@ export default function Tortenshop() {
             </p>
           </div>
 
-          {aktionstorte.aktiv && (
-            <div className="mb-16">
+          {content.aktionstorte.aktiv && (
+            <div className="mb-16" data-cms-section="aktionstorte">
               <h2 className="text-2xl font-display text-braun-800 mb-6 flex items-center gap-3">
                 <FaStar className="text-gold" size={20} />
                 Torte des Monats
-                <span className="text-braun-400 font-sans text-sm font-normal">— {aktionstorte.monat}</span>
+                <span className="text-braun-400 font-sans text-sm font-normal" data-cms="aktionstorte.monat">— {aktionstorteAnzeige.monat}</span>
               </h2>
               <div className="max-w-sm">
-                <TortenKarte torte={aktionstorte} onBestellen={setSelected} onAllergene={setAllergenTorte} />
+                <TortenKarte torte={aktionstorteAnzeige} onBestellen={setSelected} onAllergene={setAllergenTorte} cmsPrefix="aktionstorte" />
               </div>
             </div>
           )}
@@ -269,14 +284,14 @@ export default function Tortenshop() {
             ))}
           </div>
 
-          <p className="mt-8 text-center text-braun-500 text-xs max-w-2xl mx-auto">
+          <p className="mt-8 text-center text-braun-500 text-xs max-w-2xl mx-auto" data-cms-section="allergene">
             <FaInfoCircle className="inline mb-0.5 mr-1" size={11} />
             Allergeninformation gem. EU-Verordnung 1169/2011 — auf jeder Torte verfügbar.
             Angaben ohne Gewähr; bei Unverträglichkeiten bitte vor Bestellung im Café nachfragen.
           </p>
 
           {/* Anlasstorten — individuell nach Wunsch */}
-          <div id="anlasstorten" className="mt-16 sm:mt-24 scroll-mt-24">
+          <div id="anlasstorten" className="mt-16 sm:mt-24 scroll-mt-24" data-cms-section="anlasstorten">
             <div className="text-center mb-10 sm:mb-14">
               <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Torten für besondere Anlässe</p>
               <h2 className="text-3xl sm:text-4xl font-display text-braun-800 mb-3 sm:mb-4">Anlasstorten nach Wunsch</h2>
@@ -305,8 +320,7 @@ export default function Tortenshop() {
               </p>
               <p className="text-braun-400 text-xs max-w-xl mx-auto mb-6">
                 <FaTruck className="inline mb-0.5 mr-1" size={11} />
-                Lieferung in ganz Kärnten — je nach Entfernung fällt eine kleine Liefergebühr an
-                (ca. € 0,80/km), fragen Sie einfach nach. Abholung in Bleiburg/Eberndorf kostenlos.
+                <span data-cms="anlasstorten.lieferung_text">{content.anlasstorten.lieferung_text}</span>
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a

@@ -8,6 +8,7 @@ import { standorte } from '../data/standorte'
 import SpiralAnimation from '../components/SpiralAnimation'
 import EventTicker from '../components/EventTicker'
 import LazyVideo from '../components/LazyVideo'
+import { useContent } from '../hooks/useContent'
 
 function AutoPlayVideo({ src, poster, className, muted = true, loop = false, playsInline = false, ...props }) {
   const ref = useRef(null)
@@ -40,6 +41,7 @@ function AutoPlayVideo({ src, poster, className, muted = true, loop = false, pla
 
 
 function Hero() {
+  const content = useContent()
   return (
     <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
@@ -69,11 +71,11 @@ function Hero() {
 
       <div className="relative z-10 text-center px-5 sm:px-4 max-w-4xl pt-16 sm:pt-0">
         <p className="font-sans text-gold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm mb-4 sm:mb-6">Willkommen bei</p>
-        <h1 className="text-4xl sm:text-6xl lg:text-8xl font-display text-creme mb-4 sm:mb-6 leading-tight">
-          Café mit Herz
+        <h1 className="text-4xl sm:text-6xl lg:text-8xl font-display text-creme mb-4 sm:mb-6 leading-tight" data-cms="meta.business_name">
+          {content.meta.business_name}
         </h1>
-        <p className="text-braun-200 text-lg sm:text-2xl font-light mb-3 sm:mb-4 italic">
-          Gastfreundschaft mit ganz viel Herz!
+        <p className="text-braun-200 text-lg sm:text-2xl font-light mb-3 sm:mb-4 italic" data-cms="meta.tagline">
+          {content.meta.tagline}
         </p>
         <p className="text-braun-300 text-sm sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
           Genießen Sie täglich frische, hausgemachte Mehlspeisen, Torten und Eisspezialitäten
@@ -374,35 +376,40 @@ function FruehstueckModal({ onClose }) {
 
 function Klassiker() {
   const [fruehstueckOpen, setFruehstueckOpen] = useState(false)
+  const content = useContent()
   const items = [
     {
       name: 'Erdbeertörtchen',
-      beschreibung: 'Hausgemachte Roulade mit Marillen-Marmelade, gesüßtem Schlagobers, frischen Erdbeeren und säuerlicher Gelatine — ein Klassiker der Vitrine.',
+      cms: 'erdbeertoertchen',
+      beschreibung: content.klassiker.erdbeertoertchen,
       bild: '/images/klassiker/erdbeertortchen.jpg',
       video: null,
     },
     {
       name: 'Schaumrollen',
-      beschreibung: 'Hauchdünner Blätterteig, gefüllt mit süßem Ei-Schnee nach Art des Hauses — hausgemacht wie eh und je.',
+      cms: 'schaumrollen',
+      beschreibung: content.klassiker.schaumrollen,
       bild: '/images/klassiker/schaumrollen.jpg',
       video: '/images/klassiker/schaumrollen.mp4',
     },
     {
       name: 'Frühstück',
-      beschreibung: 'Üppige Etagère mit Käse, Aufschnitt, Eiern & Lachs — dazu Fruchtspiegel, Joghurt und frische Semmel. Nur auf Vorbestellung.',
+      cms: 'fruehstueck',
+      beschreibung: content.klassiker.fruehstueck,
       bild: '/images/klassiker/fruehstueck-1.jpg',
       badge: 'Auf Vorbestellung',
     },
     {
       name: 'Eiskreationen',
-      beschreibung: 'Hausgemachte Eisbecher und Eisspezialitäten — täglich frisch, nach Saison und Laune.',
+      cms: 'eiskreationen',
+      beschreibung: content.klassiker.eiskreationen,
       bild: null,
       video: '/images/klassiker/eiskreationen.mp4',
     },
   ]
 
   return (
-    <section className="py-16 sm:py-24 bg-white">
+    <section className="py-16 sm:py-24 bg-white" data-cms-section="klassiker">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
           <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Café Reinhart &amp; Schloss-Café</p>
@@ -440,7 +447,7 @@ function Klassiker() {
               </div>
               <div className="p-5 sm:p-6">
                 <h3 className="text-xl sm:text-2xl font-display text-braun-800 mb-2">{item.name}</h3>
-                <p className="text-braun-500 text-sm leading-relaxed">{item.beschreibung}</p>
+                <p className="text-braun-500 text-sm leading-relaxed" data-cms={`klassiker.${item.cms}`}>{item.beschreibung}</p>
                 {item.name === 'Frühstück' && (
                   <button
                     onClick={() => setFruehstueckOpen(true)}
@@ -461,6 +468,8 @@ function Klassiker() {
 
 function TortenHighlight() {
   const highlights = torten.slice(0, 3)
+  const content = useContent()
+  const aktion = content.aktionstorte
   return (
     <section className="py-16 sm:py-24 bg-braun-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -472,22 +481,22 @@ function TortenHighlight() {
           </p>
         </div>
 
-        {aktionstorte.aktiv && (
-          <div className="mb-10 sm:mb-16 bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 rounded-2xl p-5 sm:p-8 flex flex-col md:flex-row items-center gap-5 sm:gap-8">
+        {aktion.aktiv && (
+          <div className="mb-10 sm:mb-16 bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 rounded-2xl p-5 sm:p-8 flex flex-col md:flex-row items-center gap-5 sm:gap-8" data-cms-section="aktionstorte">
             <div className="w-full md:w-1/3 h-44 sm:h-56 rounded-xl overflow-hidden">
-              <img src={`.${aktionstorte.bild}`} alt={aktionstorte.name} loading="lazy" className="w-full h-full object-cover" />
+              <img src={`.${aktionstorte.bild}`} alt={aktion.name} loading="lazy" className="w-full h-full object-cover" />
             </div>
             <div className="flex-1 text-center md:text-left">
               <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">
                 <FaStar className="text-gold" />
-                <span className="font-sans text-gold text-xs sm:text-sm font-semibold tracking-wide uppercase">Torte des Monats {aktionstorte.monat}</span>
+                <span className="font-sans text-gold text-xs sm:text-sm font-semibold tracking-wide uppercase">Torte des Monats <span data-cms="aktionstorte.monat">{aktion.monat}</span></span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-display text-braun-800 mb-2 sm:mb-3">{aktionstorte.name}</h3>
-              <p className="text-braun-600 text-sm sm:text-base mb-3 sm:mb-4">{aktionstorte.beschreibung}</p>
-              {aktionstorte.normalpreis && (
+              <h3 className="text-2xl sm:text-3xl font-display text-braun-800 mb-2 sm:mb-3" data-cms="aktionstorte.name">{aktion.name}</h3>
+              <p className="text-braun-600 text-sm sm:text-base mb-3 sm:mb-4" data-cms="aktionstorte.beschreibung">{aktion.beschreibung}</p>
+              {aktion.normalpreis && (
                 <div className="mb-4 sm:mb-5">
-                  <span className="text-braun-400 font-sans text-sm line-through mr-2">€ {aktionstorte.normalpreis.toFixed(2)}</span>
-                  <span className="text-gold font-sans font-bold text-xl">€ {aktionstorte.preis.toFixed(2)}</span>
+                  <span className="text-braun-400 font-sans text-sm line-through mr-2" data-cms="aktionstorte.normalpreis">€ {aktion.normalpreis}</span>
+                  <span className="text-gold font-sans font-bold text-xl" data-cms="aktionstorte.preis">€ {aktion.preis}</span>
                   <span className="text-braun-500 font-sans text-xs ml-2">bei Online-Bestellung</span>
                 </div>
               )}
@@ -587,8 +596,9 @@ function Events() {
 
 function VermietungTeaser() {
   const waMsg = encodeURIComponent('Hallo, ich interessiere mich für die Vermietung der Eismaschine / des Kühlwagens für eine Veranstaltung.')
+  const content = useContent()
   return (
-    <section className="relative overflow-hidden bg-braun-900">
+    <section className="relative overflow-hidden bg-braun-900" data-cms-section="vermietung">
       {/* Foto-Hintergrund */}
       <div className="absolute inset-0">
         <img
@@ -612,7 +622,7 @@ function VermietungTeaser() {
           </h2>
           <p className="text-braun-300 text-sm sm:text-base leading-relaxed mb-3">
             Soft-Eis-Maschine inkl. Eisverkäufer Micha für Ihren Event —
-            <span className="text-gold font-semibold"> € 500 für 6 Stunden</span>, inkl. Material, Auf- & Abbau.
+            <span className="text-gold font-semibold" data-cms="vermietung.eismaschine_preis_text"> € {content.vermietung.eismaschine_preis_text} für 6 Stunden</span>, inkl. Material, Auf- & Abbau.
           </p>
           <p className="text-braun-400 text-sm mb-8">
             Außerdem: Kühlwagen-Vermietung auf Anfrage.
@@ -637,7 +647,7 @@ function VermietungTeaser() {
       <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center">
         <div className="bg-gradient-to-br from-gold via-gold-light to-gold text-braun-900 rounded-2xl px-8 py-6 shadow-[0_8px_40px_rgba(201,168,108,0.5)] text-center">
           <p className="font-sans text-[10px] tracking-[0.2em] uppercase font-bold mb-1 opacity-70">mit Micha</p>
-          <p className="font-display text-5xl font-bold leading-none">€ 500</p>
+          <p className="font-display text-5xl font-bold leading-none" data-cms="vermietung.eismaschine_preis_text">€ {content.vermietung.eismaschine_preis_text}</p>
           <p className="font-sans text-xs mt-1.5 opacity-75">6 Stunden · inkl. Material</p>
         </div>
         <p className="text-braun-500 font-sans text-[10px] mt-3 italic">exkl. Trinkgeld</p>

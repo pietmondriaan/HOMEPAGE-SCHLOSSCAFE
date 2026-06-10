@@ -2,12 +2,16 @@ import { Link, useLocation } from 'react-router-dom'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaDirections, FaArrowRight, FaWhatsapp, FaStar, FaStreetView } from 'react-icons/fa'
 import { standorte } from '../data/standorte'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useContent } from '../hooks/useContent'
 import LazyVideo from '../components/LazyVideo'
 
 export default function Standort() {
   const location = useLocation()
+  const content = useContent()
   const id = location.pathname.replace('/', '')
-  const s = id === 'schlosscafe' ? standorte.schlosscafe : standorte.reinhardt
+  const key = id === 'schlosscafe' ? 'schlosscafe' : 'reinhardt'
+  const s = standorte[key]
+  const c = content.standorte[key]
   usePageTitle(id === 'schlosscafe' ? 'Schloss-Café Bleiburg – Torten, Kunst & Kaffeegenuss' : 'Cafe Reinhart Eberndorf – am Klopeinersee')
 
   if (!s) return <div className="pt-20 p-10 text-center">Standort nicht gefunden.</div>
@@ -69,35 +73,35 @@ export default function Standort() {
             </div>
 
             <div className="space-y-6">
-              <div className="bg-white rounded-2xl p-8 shadow-md">
+              <div className="bg-white rounded-2xl p-8 shadow-md" data-cms-section="standorte">
                 <h3 className="text-xl font-display text-braun-800 mb-5">Kontakt & Info</h3>
                 <div className="space-y-4 text-braun-600">
                   <div className="flex items-start gap-3">
                     <FaMapMarkerAlt className="text-gold mt-1 shrink-0" />
                     <div>
                       <p className="font-semibold font-sans text-sm">Adresse</p>
-                      <p className="text-sm">{s.adresse}</p>
+                      <p className="text-sm" data-cms={`standorte.${key}.adresse`}>{c.adresse}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <FaClock className="text-gold mt-1 shrink-0" />
                     <div>
                       <p className="font-semibold font-sans text-sm">Öffnungszeiten</p>
-                      <p className="text-sm">{s.oeffnungszeiten}</p>
+                      <p className="text-sm" data-cms={`standorte.${key}.oeffnungszeiten`}>{c.oeffnungszeiten}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <FaPhone className="text-gold mt-1 shrink-0" />
                     <div>
                       <p className="font-semibold font-sans text-sm">Telefon</p>
-                      <a href={`tel:${s.telefon}`} className="text-sm hover:text-gold">{s.telefon}</a>
+                      <a href={`tel:${c.telefon}`} className="text-sm hover:text-gold" data-cms={`standorte.${key}.telefon`}>{c.telefon}</a>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <FaEnvelope className="text-gold mt-1 shrink-0" />
                     <div>
                       <p className="font-semibold font-sans text-sm">E-Mail</p>
-                      <a href={`mailto:${s.email}`} className="text-sm hover:text-gold">{s.email}</a>
+                      <a href={`mailto:${c.email}`} className="text-sm hover:text-gold" data-cms={`standorte.${key}.email`}>{c.email}</a>
                     </div>
                   </div>
                 </div>

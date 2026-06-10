@@ -1,11 +1,12 @@
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useContent } from '../hooks/useContent'
 import { FaWhatsapp, FaEnvelope, FaCheck, FaTimes, FaStar, FaSnowflake, FaTruck } from 'react-icons/fa'
 
-function PreisGlossy({ preis, einheit, klein }) {
+function PreisGlossy({ preis, einheit, klein, cms }) {
   return (
     <div className="inline-flex flex-col items-center bg-gradient-to-br from-gold via-gold-light to-gold text-braun-900 rounded-2xl px-6 py-4 shadow-[0_8px_32px_rgba(201,168,108,0.45)] border border-gold-light/40">
       {klein && <span className="font-sans text-[10px] tracking-[0.2em] uppercase font-semibold mb-1 opacity-70">{klein}</span>}
-      <span className="font-display text-4xl font-bold leading-none">€ {preis}</span>
+      <span className="font-display text-4xl font-bold leading-none" data-cms={cms}>€ {preis}</span>
       <span className="font-sans text-xs mt-1 opacity-80">{einheit}</span>
     </div>
   )
@@ -32,6 +33,7 @@ function Inklusive({ items, exkl }) {
 
 export default function Vermietung() {
   usePageTitle('Eismaschine & Kühlwagen mieten – Events & Veranstaltungen')
+  const content = useContent()
 
   const waMsg = encodeURIComponent('Hallo, ich interessiere mich für die Vermietung der Eismaschine / des Kühlwagens für eine Veranstaltung.')
   const waUrl = `https://wa.me/436645336243?text=${waMsg}`
@@ -87,7 +89,7 @@ export default function Vermietung() {
       </section>
 
       {/* ── SERVICES ─────────────────────────────────────────────── */}
-      <section className="bg-braun-900 py-16 sm:py-24">
+      <section className="bg-braun-900 py-16 sm:py-24" data-cms-section="vermietung">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Eismaschine mit Micha — HERO-CARD */}
@@ -130,14 +132,13 @@ export default function Vermietung() {
                 <h2 className="text-3xl sm:text-4xl font-display text-creme mb-2 leading-tight">
                   Eismaschine<br /><span className="text-gold">+ Micha</span>
                 </h2>
-                <p className="text-braun-300 text-sm mb-7 leading-relaxed">
-                  Sie bekommen alles aus einer Hand: die Soft-Eis-Maschine, das Material
-                  und Micha — Ihren charmanten Eisverkäufer, der Ihre Gäste begeistert.
+                <p className="text-braun-300 text-sm mb-7 leading-relaxed" data-cms="vermietung.eismaschine_text">
+                  {content.vermietung.eismaschine_text}
                 </p>
 
                 {/* Preis */}
                 <div className="mb-8">
-                  <PreisGlossy preis="500" einheit="6 Std. · inkl. MwSt." klein="pro Einsatz" />
+                  <PreisGlossy preis={content.vermietung.eismaschine_preis_text} einheit="6 Std. · inkl. MwSt." klein="pro Einsatz" cms="vermietung.eismaschine_preis_text" />
                 </div>
 
                 {/* Inkl./Exkl. */}
