@@ -1,24 +1,46 @@
 ﻿import { useState } from 'react'
-import { FaStar, FaPalette } from 'react-icons/fa'
+import { FaStar, FaPalette, FaFutbol } from 'react-icons/fa'
 import { getActiveEvents } from '../data/events'
 import { aktionstorte } from '../data/torten'
 
-function TickerItem({ icon, label, text, accent }) {
-  return (
-    <span className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-8 whitespace-nowrap">
+// WM-Gewinnspiel läuft bis 19.07.2026 (Europe/Vienna) und ist dann automatisch raus.
+const WM_ENDE = '2026-07-19'
+function wmAktiv() {
+  const heute = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Vienna', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date())
+  return heute <= WM_ENDE
+}
+
+function TickerItem({ icon, label, text, accent, href }) {
+  const inner = (
+    <>
       <span className={`text-xs ${accent ? 'text-gold' : 'text-gold/70'}`}>{icon}</span>
       {label && (
         <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-gold/80 font-semibold">{label}</span>
       )}
-      <span className="text-creme/90 text-xs sm:text-sm font-light">{text}</span>
+      <span className={accent ? 'text-creme text-xs sm:text-sm font-semibold' : 'text-creme/90 text-xs sm:text-sm font-light'}>{text}</span>
       <span className="text-gold/30 mx-2 sm:mx-4">◆</span>
-    </span>
+    </>
   )
+  const cls = 'inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-8 whitespace-nowrap'
+  return href
+    ? <a href={href} className={cls + ' hover:opacity-80 transition-opacity'}>{inner}</a>
+    : <span className={cls}>{inner}</span>
 }
 
 export default function EventTicker() {
   const [isPaused, setIsPaused] = useState(false)
   const items = []
+
+  // WM-Gewinnspiel zuerst & hervorgehoben (klickbar), solange die Aktion läuft.
+  if (wmAktiv()) {
+    items.push({
+      icon: <FaFutbol size={11} />,
+      label: 'WM-Gewinnspiel',
+      text: '50-Zoll QLED-Fernseher gewinnen – jetzt mitspielen →',
+      accent: true,
+      href: '/wm-gewinnspiel',
+    })
+  }
 
   if (aktionstorte.aktiv) {
     items.push({

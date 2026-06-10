@@ -7,7 +7,6 @@ import { getActiveEvents } from '../data/events'
 import { standorte } from '../data/standorte'
 import SpiralAnimation from '../components/SpiralAnimation'
 import EventTicker from '../components/EventTicker'
-import WMBanner from '../components/WMBanner'
 import WMEvent from '../components/WMEvent'
 import LazyVideo from '../components/LazyVideo'
 import { useContent } from '../hooks/useContent'
@@ -663,7 +662,6 @@ export default function Home() {
   usePageTitle(null)
   return (
     <>
-      <WMBanner />
       <Hero />
       <Standorte />
       <Klassiker />
