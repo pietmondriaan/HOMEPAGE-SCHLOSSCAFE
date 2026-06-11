@@ -58,7 +58,10 @@ export default function Datenschutz() {
             automatisch gelöscht wird. Gespeichert werden ausschließlich zusammengefasste Gesamtzahlen.
             Die Verarbeitung erfolgt auf unserem eigenen Hosting (Cloudflare); eine Weitergabe an Dritte
             findet nicht statt. Rechtsgrundlage ist unser berechtigtes Interesse an einer datensparsamen
-            Reichweitenmessung gemäß Art. 6 Abs. 1 lit. f DSGVO.
+            Reichweitenmessung gemäß Art. 6 Abs. 1 lit. f DSGVO. Über unseren Website-Dienstleister
+            vis·à·vision (Cloudflare, EU) erfassen wir auf demselben anonymen, cookielosen Weg
+            zusätzlich, welche Seitenbereiche wie oft aufgerufen werden, um die Inhalte zu verbessern;
+            auch dabei werden ausschließlich zusammengefasste Zählerstände ohne Personenbezug gespeichert.
           </p>
 
           <h2>7. Google Fonts</h2>
