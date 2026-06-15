@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FaFacebookF, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
+import { FaFacebookF, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
 import { useContent } from '../hooks/useContent'
 
 export default function Footer() {
@@ -16,9 +16,6 @@ export default function Footer() {
             <div className="flex items-center gap-4 mt-5">
               <a href="https://www.facebook.com/search/top?q=schloss%20quadrat" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-braun-700 flex items-center justify-center hover:bg-gold transition-colors">
                 <FaFacebookF size={16} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-braun-700 flex items-center justify-center hover:bg-gold transition-colors">
-                <FaInstagram size={16} />
               </a>
             </div>
           </div>

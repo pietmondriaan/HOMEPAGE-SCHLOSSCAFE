@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { FaBars, FaTimes, FaFacebookF, FaInstagram, FaChevronDown, FaPhone } from 'react-icons/fa'
+import { FaBars, FaTimes, FaFacebookF, FaChevronDown, FaPhone } from 'react-icons/fa'
 
 const cafesMenu = [
   {
@@ -228,13 +228,6 @@ export default function Navbar() {
               >
                 <FaFacebookF size={13} />
               </a>
-              <a
-                href="#"
-                className="w-7 h-7 rounded-full flex items-center justify-center text-braun-400 hover:text-gold hover:bg-braun-700 transition-colors"
-                aria-label="Instagram"
-              >
-                <FaInstagram size={13} />
-              </a>
             </div>
 
             {/* CTA */}
@@ -329,9 +322,6 @@ export default function Navbar() {
             <div className="flex justify-center gap-6">
               <a href="https://www.facebook.com/search/top?q=schloss%20quadrat" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-braun-700 flex items-center justify-center text-braun-300 active:bg-gold transition-colors" aria-label="Facebook">
                 <FaFacebookF size={18} />
-              </a>
-              <a href="#" className="w-12 h-12 rounded-full bg-braun-700 flex items-center justify-center text-braun-300 active:bg-gold transition-colors" aria-label="Instagram">
-                <FaInstagram size={18} />
               </a>
             </div>
           </div>

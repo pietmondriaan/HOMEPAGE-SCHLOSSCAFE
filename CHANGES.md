@@ -1,3 +1,8 @@
+> **VERALTET (2026-06-15).** Dieses Dokument beschreibt ausschließlich den nie
+> live gegangenen Astro-Prototyp unter `preview/`. Dieses Verzeichnis wurde
+> entfernt. Die produktive Live-Seite cafemitherz.at läuft auf Vite/React
+> (`src/`). Der folgende Inhalt ist nur noch historisch.
+
 # CHANGES — Hero-Redesign (feature/hero-redesign)
 
 Basierend auf MiroFish-Simulation vom 2026-05-15:
