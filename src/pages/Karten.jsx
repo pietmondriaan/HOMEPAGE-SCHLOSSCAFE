@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { FaTimes, FaChevronLeft, FaChevronRight, FaCoffee, FaIceCream } from 'react-icons/fa'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useContent } from '../hooks/useContent'
+import Rich from '../components/Rich'
 
 const kategorien = [
   {
@@ -107,6 +109,7 @@ function Lightbox({ seiten, startIndex, onClose }) {
 
 export default function Karten() {
   usePageTitle('Speise- & Getränkekarten')
+  const content = useContent()
   const [aktiv, setAktiv] = useState('getraenke')
   const [lightbox, setLightbox] = useState(null) // { seiten, index }
 
@@ -117,11 +120,9 @@ export default function Karten() {
       {/* Header */}
       <section className="bg-braun-800 py-14 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-3">Unsere Angebote</p>
-          <h1 className="text-4xl sm:text-5xl font-display text-creme mb-4">Speisekarten</h1>
-          <p className="text-braun-300 text-sm sm:text-base max-w-xl mx-auto">
-            Getränke, Eis und mehr — hier finden Sie alle Karten unserer Cafés zum Durchblättern.
-          </p>
+          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-3" data-cms="karten.eyebrow">{content.karten.eyebrow}</p>
+          <h1 className="text-4xl sm:text-5xl font-display text-creme mb-4" data-cms="karten.heading">{content.karten.heading}</h1>
+          <Rich as="p" className="text-braun-300 text-sm sm:text-base max-w-xl mx-auto" data-cms="karten.intro" text={content.karten.intro} />
         </div>
       </section>
 

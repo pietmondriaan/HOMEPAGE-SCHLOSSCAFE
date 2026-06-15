@@ -4,6 +4,7 @@ import { standorte } from '../data/standorte'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { useContent } from '../hooks/useContent'
 import LazyVideo from '../components/LazyVideo'
+import Rich from '../components/Rich'
 
 export default function Standort() {
   const location = useLocation()
@@ -45,7 +46,7 @@ export default function Standort() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <h2 className="text-3xl font-display text-braun-800 mb-6">Über uns</h2>
+              <h2 className="text-3xl font-display text-braun-800 mb-6" data-cms="standort_seite.ueber_uns_heading">{content.standort_seite.ueber_uns_heading}</h2>
               <p className="text-braun-600 leading-relaxed text-lg mb-8">{s.beschreibung}</p>
               <p className="text-braun-600 leading-relaxed">
                 In unserem {s.name} in {s.ort} bieten wir Ihnen pure Gaumenfreude mit hausgemachten
@@ -155,12 +156,9 @@ export default function Standort() {
 
       <section className="py-16 sm:py-20 bg-braun-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Täglich ab 7:00 Uhr</p>
+          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3" data-cms="standort_seite.fruehstueck_eyebrow">{content.standort_seite.fruehstueck_eyebrow}</p>
           <h2 className="text-3xl sm:text-4xl font-display text-creme mb-4">Frühstück im {s.name}</h2>
-          <p className="text-braun-300 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
-            Starten Sie Ihren Tag mit einem frischen Frühstück bei uns — hausgemacht, regional und mit viel Herz zubereitet.
-            Einfach per WhatsApp vorbestellen!
-          </p>
+          <Rich as="p" className="text-braun-300 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed" data-cms="standort_seite.fruehstueck_text" text={content.standort_seite.fruehstueck_text} />
           <a
             href={`https://wa.me/${s.whatsapp}?text=Hallo!%20Ich%20m%C3%B6chte%20ein%20Fr%C3%BChst%C3%BCck%20im%20${encodeURIComponent(s.name)}%20vorbestellen.%20Datum%2FUhrzeit%3A%20___%20Anzahl%20Personen%3A%20___`}
             target="_blank"

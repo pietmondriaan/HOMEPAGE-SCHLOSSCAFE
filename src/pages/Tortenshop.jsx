@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FaWhatsapp, FaEnvelope, FaShoppingBag, FaStar, FaPalette, FaInfoCircle, FaExclamationTriangle, FaTruck, FaChurch, FaHeart, FaBirthdayCake, FaGift } from 'react-icons/fa'
 import LazyVideo from '../components/LazyVideo'
+import Rich from '../components/Rich'
 import { torten, aktionstorte } from '../data/torten'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { useContent } from '../hooks/useContent'
@@ -118,7 +119,7 @@ function TortenKarte({ torte, onBestellen, onAllergene, cmsPrefix }) {
       </div>
       <div className="p-6">
         <h3 className="text-xl font-display text-braun-800 mb-2" data-cms={cms('name')}>{torte.name}</h3>
-        <p className="text-braun-500 text-sm leading-relaxed mb-4" data-cms={cms('beschreibung')}>{torte.beschreibung}</p>
+        <Rich as="p" className="text-braun-500 text-sm leading-relaxed mb-4" data-cms={cms('beschreibung')} text={torte.beschreibung} />
         {torte.normalpreis && (
           <div className="mb-4">
             <p className="text-braun-400 font-sans text-sm line-through" data-cms={cms('normalpreis')}>€ {fmtPreis(torte.normalpreis)}</p>
@@ -256,12 +257,9 @@ export default function Tortenshop() {
       <section className="py-16 sm:py-24 bg-creme">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-16">
-            <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Click & Buy</p>
-            <h1 className="text-3xl sm:text-5xl font-display text-braun-800 mb-3 sm:mb-4">Tortenshop</h1>
-            <p className="text-braun-500 max-w-2xl mx-auto">
-              Bestellen Sie Ihre Lieblingstorte online und holen Sie sie am nächsten Tag
-              in einem unserer Cafés ab. Ganze Torten — frisch für Sie zubereitet.
-            </p>
+            <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3" data-cms="tortenshop.eyebrow">{content.tortenshop.eyebrow}</p>
+            <h1 className="text-3xl sm:text-5xl font-display text-braun-800 mb-3 sm:mb-4" data-cms="tortenshop.heading">{content.tortenshop.heading}</h1>
+            <Rich as="p" className="text-braun-500 max-w-2xl mx-auto" data-cms="tortenshop.intro" text={content.tortenshop.intro} />
           </div>
 
           {content.aktionstorte.aktiv && (
@@ -293,12 +291,9 @@ export default function Tortenshop() {
           {/* Anlasstorten — individuell nach Wunsch */}
           <div id="anlasstorten" className="mt-16 sm:mt-24 scroll-mt-24" data-cms-section="anlasstorten">
             <div className="text-center mb-10 sm:mb-14">
-              <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Torten für besondere Anlässe</p>
-              <h2 className="text-3xl sm:text-4xl font-display text-braun-800 mb-3 sm:mb-4">Anlasstorten nach Wunsch</h2>
-              <p className="text-braun-500 max-w-2xl mx-auto">
-                Tauf-, Kommunions- & Hochzeitstorten und mehr — von unseren Konditormeistern
-                individuell gefertigt, mit <strong className="text-braun-700">Lieferung in ganz Kärnten</strong>.
-              </p>
+              <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3" data-cms="anlasstorten.eyebrow">{content.anlasstorten.eyebrow}</p>
+              <h2 className="text-3xl sm:text-4xl font-display text-braun-800 mb-3 sm:mb-4" data-cms="anlasstorten.heading">{content.anlasstorten.heading}</h2>
+              <Rich as="p" className="text-braun-500 max-w-2xl mx-auto" data-cms="anlasstorten.intro" text={content.anlasstorten.intro} />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
@@ -313,11 +308,8 @@ export default function Tortenshop() {
 
             <div className="mt-10 sm:mt-12 bg-braun-100 rounded-2xl p-6 sm:p-10 text-center">
               <FaPalette className="mx-auto text-gold text-3xl sm:text-4xl mb-3 sm:mb-4" />
-              <h3 className="text-2xl sm:text-3xl font-display text-braun-800 mb-2 sm:mb-3">Ihre individuelle Torte</h3>
-              <p className="text-braun-600 max-w-xl mx-auto mb-2">
-                Nennen Sie uns Anlass, Wunschtermin, Personenzahl und Ihre Geschmacks- bzw.
-                Motivwünsche — wir erstellen Ihnen gerne ein unverbindliches Angebot.
-              </p>
+              <h3 className="text-2xl sm:text-3xl font-display text-braun-800 mb-2 sm:mb-3" data-cms="anlasstorten.cta_heading">{content.anlasstorten.cta_heading}</h3>
+              <Rich as="p" className="text-braun-600 max-w-xl mx-auto mb-2" data-cms="anlasstorten.cta_text" text={content.anlasstorten.cta_text} />
               <p className="text-braun-400 text-xs max-w-xl mx-auto mb-6">
                 <FaTruck className="inline mb-0.5 mr-1" size={11} />
                 <span data-cms="anlasstorten.lieferung_text">{content.anlasstorten.lieferung_text}</span>

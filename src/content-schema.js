@@ -12,6 +12,52 @@ export const DEFAULT_CONTENT = {
     business_name: 'Café mit Herz',
     tagline: 'Gastfreundschaft mit ganz viel Herz!',
   },
+  hero: {
+    eyebrow: 'Willkommen bei',
+    subtitle: 'Genießen Sie täglich frische, hausgemachte Mehlspeisen, Torten und Eisspezialitäten in unseren Cafés in Bleiburg und Eberndorf am Klopeinersee.',
+    cta_primary: 'Torte bestellen',
+    cta_secondary: 'Unsere Cafés entdecken',
+  },
+  sektionen: {
+    standorte: {
+      eyebrow: 'Zwei Cafés, ein Herz',
+      heading: 'Unsere Standorte',
+    },
+    klassiker: {
+      eyebrow: 'Café Reinhart & Schloss-Café',
+      heading: 'Unsere Klassiker',
+      intro: 'Täglich frisch in unseren Cafés — die Mehlspeisen, für die man immer wieder kommt.',
+    },
+    torten: {
+      eyebrow: 'Schlemmen, Entspannen, Genießen',
+      heading: 'Unsere Torten',
+      intro: 'Aus hochwertigen, regionalen Zutaten – von unseren Konditormeistern täglich frisch zubereitet.',
+    },
+    events: {
+      eyebrow: 'Was ist los?',
+      heading: 'Veranstaltungen',
+    },
+    vermietung: {
+      eyebrow: 'Events & Vermietung',
+      heading_zeile1: 'Eis für Ihr Fest —',
+      heading_zeile2: 'mit Micha dabei.',
+      text: 'Soft-Eis-Maschine inkl. Eisverkäufer Micha für Ihren Event —',
+      zusatz_text: 'Außerdem: Kühlwagen-Vermietung auf Anfrage.',
+    },
+  },
+  kulturmoment: {
+    eyebrow: 'Besonderer Besuch',
+    heading_zeile1: 'Gottfried',
+    heading_zeile2: 'Helnwein',
+    heading_zeile3: 'zu Gast',
+    beschreibung: 'Der Weltkünstler und Ehrenbürger von Bleiburg besuchte anlässlich der Eröffnung der Ausstellung seiner Tochter Mercedes Helnwein im Werner Berg Museum das Schloss-Café — nur wenige Schritte vom Museum entfernt, am selben Platz.',
+    box_heading: 'Drei Welten im Nahbereich',
+    empfehlung_label: 'Unsere Empfehlung zur Ausstellung',
+    empfehlung_name: 'Museumsbecher',
+    empfehlung_text: 'Schokolade · Stracciatella · hausgemachte Himbeersauce',
+    pietrowski_lead: 'Kunst direkt im Café:',
+    pietrowski_text: '— Fadenbilder, Acryl & CrossArt — ist täglich im Schloss-Café zu sehen und käuflich zu erwerben.',
+  },
   standorte: {
     schlosscafe: {
       oeffnungszeiten: 'Täglich 7:00 – 19:00 Uhr',
@@ -46,6 +92,37 @@ export const DEFAULT_CONTENT = {
   },
   anlasstorten: {
     lieferung_text: 'Lieferung in ganz Kärnten — je nach Entfernung fällt eine kleine Liefergebühr an (ca. € 0,80/km), fragen Sie einfach nach. Abholung in Bleiburg/Eberndorf kostenlos.',
+    eyebrow: 'Torten für besondere Anlässe',
+    heading: 'Anlasstorten nach Wunsch',
+    intro: 'Tauf-, Kommunions- & Hochzeitstorten und mehr — von unseren Konditormeistern individuell gefertigt, mit **Lieferung in ganz Kärnten**.',
+    cta_heading: 'Ihre individuelle Torte',
+    cta_text: 'Nennen Sie uns Anlass, Wunschtermin, Personenzahl und Ihre Geschmacks- bzw. Motivwünsche — wir erstellen Ihnen gerne ein unverbindliches Angebot.',
+  },
+  tortenshop: {
+    eyebrow: 'Click & Buy',
+    heading: 'Tortenshop',
+    intro: 'Bestellen Sie Ihre Lieblingstorte online und holen Sie sie am nächsten Tag in einem unserer Cafés ab. Ganze Torten — frisch für Sie zubereitet.',
+  },
+  karten: {
+    eyebrow: 'Unsere Angebote',
+    heading: 'Speisekarten',
+    intro: 'Getränke, Eis und mehr — hier finden Sie alle Karten unserer Cafés zum Durchblättern.',
+  },
+  standort_seite: {
+    ueber_uns_heading: 'Über uns',
+    fruehstueck_eyebrow: 'Täglich ab 7:00 Uhr',
+    fruehstueck_text: 'Starten Sie Ihren Tag mit einem frischen Frühstück bei uns — hausgemacht, regional und mit viel Herz zubereitet. Einfach per WhatsApp vorbestellen!',
+  },
+  vermietung_seite: {
+    hero_eyebrow: 'Café mit Herz · Events',
+    hero_heading_zeile1: 'Eisspaß für Ihre',
+    hero_heading_zeile2: 'Veranstaltung',
+    hero_subtitle: 'Soft-Eis direkt bei Ihrem Event — mit oder ohne unserem Eisverkäufer Micha. Und für die Kühlung: unser Kühlwagen steht bereit.',
+  },
+  kontakt: {
+    eyebrow: 'Wir freuen uns auf Sie',
+    heading: 'Kontakt & Reservierung',
+    intro: 'Für größere Runden empfehlen wir eine Reservierung. Kontaktieren Sie uns direkt per WhatsApp, Telefon oder E-Mail.',
   },
   gewinnspiel: {
     aktiv: true,
@@ -53,6 +130,7 @@ export const DEFAULT_CONTENT = {
   },
   footer: {
     copyright: 'Café mit Herz – Schloss-Café & Cafe Reinhart. Alle Rechte vorbehalten.',
+    intro: 'Gastfreundschaft mit ganz viel Herz! Genießen Sie täglich frische, hausgemachte Mehlspeisen, Torten und Eisspezialitäten.',
   },
 }
 
@@ -63,6 +141,43 @@ export const DEFAULT_CONTENT = {
 export const FIELD_META = {
   'meta.business_name': { label: 'Firmenname', type: 'string', max: 60 },
   'meta.tagline':       { label: 'Untertitel/Slogan', type: 'string', max: 120 },
+
+  'hero.eyebrow':       { label: 'Startbereich — Eyebrow', type: 'string', max: 60 },
+  'hero.subtitle':      { label: 'Startbereich — Beschreibung', type: 'text', max: 400 },
+  'hero.cta_primary':   { label: 'Startbereich — Button 1', type: 'string', max: 40 },
+  'hero.cta_secondary': { label: 'Startbereich — Button 2', type: 'string', max: 40 },
+
+  'sektionen.standorte.eyebrow': { label: 'Sektion Standorte — Eyebrow', type: 'string', max: 60 },
+  'sektionen.standorte.heading': { label: 'Sektion Standorte — Überschrift', type: 'string', max: 80 },
+
+  'sektionen.klassiker.eyebrow': { label: 'Sektion Klassiker — Eyebrow', type: 'string', max: 60 },
+  'sektionen.klassiker.heading': { label: 'Sektion Klassiker — Überschrift', type: 'string', max: 80 },
+  'sektionen.klassiker.intro':   { label: 'Sektion Klassiker — Intro', type: 'text', max: 300 },
+
+  'sektionen.torten.eyebrow': { label: 'Sektion Torten — Eyebrow', type: 'string', max: 60 },
+  'sektionen.torten.heading': { label: 'Sektion Torten — Überschrift', type: 'string', max: 80 },
+  'sektionen.torten.intro':   { label: 'Sektion Torten — Intro', type: 'text', max: 300 },
+
+  'sektionen.events.eyebrow': { label: 'Sektion Veranstaltungen — Eyebrow', type: 'string', max: 60 },
+  'sektionen.events.heading': { label: 'Sektion Veranstaltungen — Überschrift', type: 'string', max: 80 },
+
+  'sektionen.vermietung.eyebrow':        { label: 'Sektion Vermietung (Start) — Eyebrow', type: 'string', max: 60 },
+  'sektionen.vermietung.heading_zeile1': { label: 'Sektion Vermietung (Start) — Überschrift Zeile 1', type: 'string', max: 60 },
+  'sektionen.vermietung.heading_zeile2': { label: 'Sektion Vermietung (Start) — Überschrift Zeile 2', type: 'string', max: 60 },
+  'sektionen.vermietung.text':           { label: 'Sektion Vermietung (Start) — Text', type: 'text', max: 300 },
+  'sektionen.vermietung.zusatz_text':    { label: 'Sektion Vermietung (Start) — Zusatz', type: 'text', max: 200 },
+
+  'kulturmoment.eyebrow':         { label: 'Helnwein — Eyebrow', type: 'string', max: 60 },
+  'kulturmoment.heading_zeile1':  { label: 'Helnwein — Überschrift Zeile 1', type: 'string', max: 40 },
+  'kulturmoment.heading_zeile2':  { label: 'Helnwein — Überschrift Zeile 2', type: 'string', max: 40 },
+  'kulturmoment.heading_zeile3':  { label: 'Helnwein — Überschrift Zeile 3', type: 'string', max: 40 },
+  'kulturmoment.beschreibung':    { label: 'Helnwein — Beschreibung', type: 'text', max: 500 },
+  'kulturmoment.box_heading':     { label: 'Helnwein — Box-Überschrift', type: 'string', max: 80 },
+  'kulturmoment.empfehlung_label':{ label: 'Helnwein — Empfehlung Label', type: 'string', max: 80 },
+  'kulturmoment.empfehlung_name': { label: 'Helnwein — Empfehlung Name', type: 'string', max: 60 },
+  'kulturmoment.empfehlung_text': { label: 'Helnwein — Empfehlung Text', type: 'text', max: 200 },
+  'kulturmoment.pietrowski_lead': { label: 'Helnwein — Kunst-Hinweis Vorspann', type: 'string', max: 60 },
+  'kulturmoment.pietrowski_text': { label: 'Helnwein — Kunst-Hinweis (nach dem Namen)', type: 'text', max: 300 },
 
   'standorte.schlosscafe.oeffnungszeiten': { label: 'Schloss-Café — Öffnungszeiten', type: 'string', max: 80 },
   'standorte.schlosscafe.telefon':         { label: 'Schloss-Café — Telefonnummer', type: 'tel', max: 40 },
@@ -90,24 +205,59 @@ export const FIELD_META = {
   'vermietung.eismaschine_text':       { label: 'Vermietung — Eismaschine Beschreibung', type: 'text', max: 400 },
 
   'anlasstorten.lieferung_text': { label: 'Anlasstorten — Liefer-Hinweis', type: 'text', max: 400 },
+  'anlasstorten.eyebrow':        { label: 'Anlasstorten — Eyebrow', type: 'string', max: 60 },
+  'anlasstorten.heading':        { label: 'Anlasstorten — Überschrift', type: 'string', max: 80 },
+  'anlasstorten.intro':          { label: 'Anlasstorten — Intro', type: 'text', max: 300 },
+  'anlasstorten.cta_heading':    { label: 'Anlasstorten — CTA Überschrift', type: 'string', max: 80 },
+  'anlasstorten.cta_text':       { label: 'Anlasstorten — CTA Text', type: 'text', max: 400 },
+
+  'tortenshop.eyebrow': { label: 'Tortenshop — Eyebrow', type: 'string', max: 60 },
+  'tortenshop.heading': { label: 'Tortenshop — Überschrift', type: 'string', max: 80 },
+  'tortenshop.intro':   { label: 'Tortenshop — Intro', type: 'text', max: 300 },
+
+  'karten.eyebrow': { label: 'Speisekarten — Eyebrow', type: 'string', max: 60 },
+  'karten.heading': { label: 'Speisekarten — Überschrift', type: 'string', max: 80 },
+  'karten.intro':   { label: 'Speisekarten — Intro', type: 'text', max: 300 },
+
+  'standort_seite.ueber_uns_heading':   { label: 'Standortseite — Überschrift „Über uns"', type: 'string', max: 80 },
+  'standort_seite.fruehstueck_eyebrow': { label: 'Standortseite — Frühstück Eyebrow', type: 'string', max: 60 },
+  'standort_seite.fruehstueck_text':    { label: 'Standortseite — Frühstück Text', type: 'text', max: 400 },
+
+  'vermietung_seite.hero_eyebrow':        { label: 'Vermietung (Seite) — Hero Eyebrow', type: 'string', max: 60 },
+  'vermietung_seite.hero_heading_zeile1': { label: 'Vermietung (Seite) — Hero Überschrift Zeile 1', type: 'string', max: 60 },
+  'vermietung_seite.hero_heading_zeile2': { label: 'Vermietung (Seite) — Hero Überschrift Zeile 2', type: 'string', max: 60 },
+  'vermietung_seite.hero_subtitle':       { label: 'Vermietung (Seite) — Hero Beschreibung', type: 'text', max: 400 },
+
+  'kontakt.eyebrow': { label: 'Kontakt — Eyebrow', type: 'string', max: 60 },
+  'kontakt.heading': { label: 'Kontakt — Überschrift', type: 'string', max: 80 },
+  'kontakt.intro':   { label: 'Kontakt — Intro', type: 'text', max: 300 },
 
   'gewinnspiel.aktiv':  { label: 'Gewinnspiel/Event — sichtbar', type: 'bool' },
   'gewinnspiel.plakat': { label: 'Gewinnspiel/Event — Plakat (Bild)', type: 'image' },
 
   'footer.copyright': { label: 'Fußzeile — Copyright (Text nach der Jahreszahl)', type: 'string', max: 120 },
+  'footer.intro':     { label: 'Fußzeile — Einleitungstext', type: 'text', max: 300 },
 }
 
 // Sektionen für Markierung/Bereichs-Chips. editable:false = Markierung erkennt
 // den Bereich, erklärt aber, dass er von Vis-à-Vision gepflegt wird.
 export const SECTION_META = {
-  standorte:    { label: 'Standorte (Öffnungszeiten & Kontakt)', editable: true },
-  aktionstorte: { label: 'Torte des Monats', editable: true },
-  klassiker:    { label: 'Unsere Klassiker', editable: true },
-  vermietung:   { label: 'Events & Vermietung', editable: true },
-  anlasstorten: { label: 'Anlasstorten', editable: true },
-  gewinnspiel:  { label: 'Gewinnspiel / Event', editable: true },
-  footer:       { label: 'Fußzeile', editable: true },
-  allergene:    { label: 'Allergeninformation', editable: false },
+  hero:             { label: 'Startbereich (Hero)', editable: true },
+  sektionen:        { label: 'Startseite — Sektions-Überschriften', editable: true },
+  kulturmoment:     { label: 'Helnwein / Kunst-Moment', editable: true },
+  standorte:        { label: 'Standorte (Öffnungszeiten & Kontakt)', editable: true },
+  aktionstorte:     { label: 'Torte des Monats', editable: true },
+  klassiker:        { label: 'Unsere Klassiker', editable: true },
+  vermietung:       { label: 'Events & Vermietung', editable: true },
+  vermietung_seite: { label: 'Vermietung (Unterseite)', editable: true },
+  anlasstorten:     { label: 'Anlasstorten', editable: true },
+  tortenshop:       { label: 'Tortenshop (Unterseite)', editable: true },
+  karten:           { label: 'Speisekarten (Unterseite)', editable: true },
+  standort_seite:   { label: 'Standort-Unterseite', editable: true },
+  kontakt:          { label: 'Kontakt (Unterseite)', editable: true },
+  gewinnspiel:      { label: 'Gewinnspiel / Event', editable: true },
+  footer:           { label: 'Fußzeile', editable: true },
+  allergene:        { label: 'Allergeninformation', editable: false },
 }
 
 // services.3.title → services.*.title

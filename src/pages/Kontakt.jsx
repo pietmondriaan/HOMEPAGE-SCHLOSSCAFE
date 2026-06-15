@@ -2,9 +2,12 @@ import { useState } from 'react'
 import { FaWhatsapp, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
 import { standorte } from '../data/standorte'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useContent } from '../hooks/useContent'
+import Rich from '../components/Rich'
 
 export default function Kontakt() {
   usePageTitle('Kontakt & Reservierung')
+  const content = useContent()
   const [form, setForm] = useState({ name: '', email: '', telefon: '', personen: '', datum: '', uhrzeit: '', standort: 'schlosscafe', nachricht: '' })
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
@@ -16,11 +19,9 @@ export default function Kontakt() {
       <section className="py-16 sm:py-24 bg-creme">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-16">
-            <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Wir freuen uns auf Sie</p>
-            <h1 className="text-3xl sm:text-5xl font-display text-braun-800 mb-3 sm:mb-4">Kontakt & Reservierung</h1>
-            <p className="text-braun-500 max-w-2xl mx-auto">
-              Für größere Runden empfehlen wir eine Reservierung. Kontaktieren Sie uns direkt per WhatsApp, Telefon oder E-Mail.
-            </p>
+            <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3" data-cms="kontakt.eyebrow">{content.kontakt.eyebrow}</p>
+            <h1 className="text-3xl sm:text-5xl font-display text-braun-800 mb-3 sm:mb-4" data-cms="kontakt.heading">{content.kontakt.heading}</h1>
+            <Rich as="p" className="text-braun-500 max-w-2xl mx-auto" data-cms="kontakt.intro" text={content.kontakt.intro} />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-12">

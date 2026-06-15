@@ -1,5 +1,6 @@
 import { usePageTitle } from '../hooks/usePageTitle'
 import { useContent } from '../hooks/useContent'
+import Rich from '../components/Rich'
 import { FaWhatsapp, FaEnvelope, FaCheck, FaTimes, FaStar, FaSnowflake, FaTruck } from 'react-icons/fa'
 
 function PreisGlossy({ preis, einheit, klein, cms }) {
@@ -74,17 +75,14 @@ export default function Vermietung() {
         <div className="relative z-10 text-center px-4 max-w-3xl">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-10 bg-gold/60" />
-            <span className="font-sans text-gold text-xs tracking-[0.25em] uppercase">Café mit Herz · Events</span>
+            <span className="font-sans text-gold text-xs tracking-[0.25em] uppercase" data-cms="vermietung_seite.hero_eyebrow">{content.vermietung_seite.hero_eyebrow}</span>
             <div className="h-px w-10 bg-gold/60" />
           </div>
           <h1 className="text-4xl sm:text-6xl font-display text-creme mb-4 leading-tight">
-            Eisspaß für Ihre<br />
-            <span className="text-gold italic">Veranstaltung</span>
+            <span data-cms="vermietung_seite.hero_heading_zeile1">{content.vermietung_seite.hero_heading_zeile1}</span><br />
+            <span className="text-gold italic" data-cms="vermietung_seite.hero_heading_zeile2">{content.vermietung_seite.hero_heading_zeile2}</span>
           </h1>
-          <p className="text-braun-300 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            Soft-Eis direkt bei Ihrem Event — mit oder ohne unserem Eisverkäufer Micha.
-            Und für die Kühlung: unser Kühlwagen steht bereit.
-          </p>
+          <Rich as="p" className="text-braun-300 text-base sm:text-lg max-w-xl mx-auto leading-relaxed" data-cms="vermietung_seite.hero_subtitle" text={content.vermietung_seite.hero_subtitle} />
         </div>
       </section>
 
@@ -132,9 +130,7 @@ export default function Vermietung() {
                 <h2 className="text-3xl sm:text-4xl font-display text-creme mb-2 leading-tight">
                   Eismaschine<br /><span className="text-gold">+ Micha</span>
                 </h2>
-                <p className="text-braun-300 text-sm mb-7 leading-relaxed" data-cms="vermietung.eismaschine_text">
-                  {content.vermietung.eismaschine_text}
-                </p>
+                <Rich as="p" className="text-braun-300 text-sm mb-7 leading-relaxed" data-cms="vermietung.eismaschine_text" text={content.vermietung.eismaschine_text} />
 
                 {/* Preis */}
                 <div className="mb-8">

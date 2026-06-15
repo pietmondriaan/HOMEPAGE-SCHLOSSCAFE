@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaFacebookF, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
+import Rich from './Rich'
 import { useContent } from '../hooks/useContent'
 
 export default function Footer() {
@@ -10,9 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10">
           <div className="col-span-2 md:col-span-1">
             <img src="./images/logos/schlosscafe-logo.png" alt="Café mit Herz" className="h-12 sm:h-16 mb-3 sm:mb-4" />
-            <p className="text-sm leading-relaxed">
-              Gastfreundschaft mit ganz viel Herz! Genießen Sie täglich frische, hausgemachte Mehlspeisen, Torten und Eisspezialitäten.
-            </p>
+            <Rich as="p" className="text-sm leading-relaxed" data-cms="footer.intro" text={content.footer.intro} />
             <div className="flex items-center gap-4 mt-5">
               <a href="https://www.facebook.com/search/top?q=schloss%20quadrat" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-braun-700 flex items-center justify-center hover:bg-gold transition-colors">
                 <FaFacebookF size={16} />

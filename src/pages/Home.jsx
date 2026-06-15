@@ -9,6 +9,7 @@ import SpiralAnimation from '../components/SpiralAnimation'
 import EventTicker from '../components/EventTicker'
 import WMEvent from '../components/WMEvent'
 import LazyVideo from '../components/LazyVideo'
+import Rich from '../components/Rich'
 import { useContent } from '../hooks/useContent'
 
 function AutoPlayVideo({ src, poster, className, muted = true, loop = false, playsInline = false, ...props }) {
@@ -71,23 +72,20 @@ function Hero() {
       </a>
 
       <div className="relative z-10 text-center px-5 sm:px-4 max-w-4xl pt-16 sm:pt-0">
-        <p className="font-sans text-gold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm mb-4 sm:mb-6">Willkommen bei</p>
+        <p className="font-sans text-gold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm mb-4 sm:mb-6" data-cms="hero.eyebrow">{content.hero.eyebrow}</p>
         <h1 className="text-4xl sm:text-6xl lg:text-8xl font-display text-creme mb-4 sm:mb-6 leading-tight" data-cms="meta.business_name">
           {content.meta.business_name}
         </h1>
         <p className="text-braun-200 text-lg sm:text-2xl font-light mb-3 sm:mb-4 italic" data-cms="meta.tagline">
           {content.meta.tagline}
         </p>
-        <p className="text-braun-300 text-sm sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-          Genießen Sie täglich frische, hausgemachte Mehlspeisen, Torten und Eisspezialitäten
-          in unseren Cafés in Bleiburg und Eberndorf am Klopeinersee.
-        </p>
+        <Rich as="p" className="text-braun-300 text-sm sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed" data-cms="hero.subtitle" text={content.hero.subtitle} />
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <Link to="/torten" className="btn-gold text-base sm:text-lg flex items-center justify-center gap-2 py-3.5 sm:py-3">
-            <FaShoppingBag /> Torte bestellen
+            <FaShoppingBag /> <span data-cms="hero.cta_primary">{content.hero.cta_primary}</span>
           </Link>
-          <button onClick={() => document.getElementById('standorte')?.scrollIntoView({ behavior: 'smooth' })} className="btn-braun text-base sm:text-lg cursor-pointer py-3.5 sm:py-3">
-            Unsere Cafés entdecken
+          <button onClick={() => document.getElementById('standorte')?.scrollIntoView({ behavior: 'smooth' })} className="btn-braun text-base sm:text-lg cursor-pointer py-3.5 sm:py-3" data-cms="hero.cta_secondary">
+            {content.hero.cta_secondary}
           </button>
         </div>
       </div>
@@ -146,12 +144,13 @@ function StandortKarte({ standortKey, s }) {
 }
 
 function Standorte() {
+  const content = useContent()
   return (
     <section id="standorte" className="py-16 sm:py-24 bg-creme">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
-          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Zwei Cafés, ein Herz</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-braun-800">Unsere Standorte</h2>
+          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3" data-cms="sektionen.standorte.eyebrow">{content.sektionen.standorte.eyebrow}</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-braun-800" data-cms="sektionen.standorte.heading">{content.sektionen.standorte.heading}</h2>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10">
           {Object.entries(standorte).map(([key, s]) => (
@@ -164,6 +163,8 @@ function Standorte() {
 }
 
 function KulturMoment() {
+  const content = useContent()
+  const k = content.kulturmoment
   return (
     <section className="bg-[#0c0906] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
@@ -193,26 +194,22 @@ function KulturMoment() {
           <div className="order-2 lg:order-2 lg:pl-8 xl:pl-12">
             <div className="flex items-center gap-3 mb-5 sm:mb-6">
               <div className="w-8 h-px bg-gold" />
-              <p className="font-sans text-gold tracking-[0.25em] uppercase text-[10px] sm:text-xs">Besonderer Besuch</p>
+              <p className="font-sans text-gold tracking-[0.25em] uppercase text-[10px] sm:text-xs" data-cms="kulturmoment.eyebrow">{k.eyebrow}</p>
             </div>
 
             <h2 className="text-4xl sm:text-5xl xl:text-6xl font-display text-creme leading-[1.08] mb-5 sm:mb-6">
-              Gottfried<br />Helnwein<br />
-              <span className="text-gold italic">zu Gast</span>
+              <span data-cms="kulturmoment.heading_zeile1">{k.heading_zeile1}</span><br /><span data-cms="kulturmoment.heading_zeile2">{k.heading_zeile2}</span><br />
+              <span className="text-gold italic" data-cms="kulturmoment.heading_zeile3">{k.heading_zeile3}</span>
             </h2>
 
-            <p className="text-braun-300 text-sm sm:text-base leading-relaxed mb-7 sm:mb-8 max-w-md">
-              Der Weltkünstler und Ehrenbürger von Bleiburg besuchte anlässlich der Eröffnung
-              der Ausstellung seiner Tochter <span className="text-creme font-medium">Mercedes Helnwein</span> im
-              Werner Berg Museum das Schloss-Café — nur wenige Schritte vom Museum entfernt, am selben Platz.
-            </p>
+            <Rich as="p" className="text-braun-300 text-sm sm:text-base leading-relaxed mb-7 sm:mb-8 max-w-md" data-cms="kulturmoment.beschreibung" text={k.beschreibung} />
 
             {/* Ausstellungs-Box */}
             <div className="border border-braun-700/60 rounded-xl p-4 sm:p-5 mb-7 sm:mb-8 bg-braun-800/20 backdrop-blur-sm">
               <p className="font-sans text-gold text-[10px] sm:text-xs tracking-[0.2em] uppercase mb-2.5">
                 Werner Berg Museum · Bleiburg
               </p>
-              <h3 className="font-display text-creme text-lg sm:text-xl mb-1">Drei Welten im Nahbereich</h3>
+              <h3 className="font-display text-creme text-lg sm:text-xl mb-1" data-cms="kulturmoment.box_heading">{k.box_heading}</h3>
               <p className="text-braun-400 text-xs mb-3.5 italic">
                 Mercedes Helnwein · Werner Berg · Alberto Giacometti
               </p>
@@ -258,16 +255,16 @@ function KulturMoment() {
                 />
               </div>
               <div className="flex-1 bg-braun-800/40 px-4 py-3.5">
-                <p className="font-sans text-[10px] text-gold tracking-[0.18em] uppercase font-semibold mb-1">Unsere Empfehlung zur Ausstellung</p>
-                <p className="font-display text-creme text-base leading-snug mb-1">Museumsbecher</p>
-                <p className="font-sans text-braun-400 text-xs leading-relaxed">Schokolade · Stracciatella · hausgemachte Himbeersauce</p>
+                <p className="font-sans text-[10px] text-gold tracking-[0.18em] uppercase font-semibold mb-1" data-cms="kulturmoment.empfehlung_label">{k.empfehlung_label}</p>
+                <p className="font-display text-creme text-base leading-snug mb-1" data-cms="kulturmoment.empfehlung_name">{k.empfehlung_name}</p>
+                <Rich as="p" className="font-sans text-braun-400 text-xs leading-relaxed" data-cms="kulturmoment.empfehlung_text" text={k.empfehlung_text} />
               </div>
             </div>
 
             {/* Pietrowski-Hinweis */}
             <div className="pt-5 border-t border-braun-800">
               <p className="text-braun-500 text-xs leading-relaxed">
-                <span className="text-braun-400">Kunst direkt im Café:</span> Die Dauerausstellung von{' '}
+                <span className="text-braun-400" data-cms="kulturmoment.pietrowski_lead">{k.pietrowski_lead}</span> Die Dauerausstellung von{' '}
                 <a
                   href="https://www.pietrowski.at"
                   target="_blank"
@@ -276,7 +273,7 @@ function KulturMoment() {
                 >
                   Michael Pietrowski
                 </a>
-                {' '}— Fadenbilder, Acryl & CrossArt — ist täglich im Schloss-Café zu sehen und käuflich zu erwerben.
+                {' '}<Rich as="span" data-cms="kulturmoment.pietrowski_text" text={k.pietrowski_text} />
               </p>
             </div>
           </div>
@@ -413,11 +410,9 @@ function Klassiker() {
     <section className="py-16 sm:py-24 bg-white" data-cms-section="klassiker">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
-          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Café Reinhart &amp; Schloss-Café</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-braun-800 mb-3 sm:mb-4">Unsere Klassiker</h2>
-          <p className="text-braun-500 text-sm sm:text-base max-w-xl mx-auto">
-            Täglich frisch in unseren Cafés — die Mehlspeisen, für die man immer wieder kommt.
-          </p>
+          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3" data-cms="sektionen.klassiker.eyebrow">{content.sektionen.klassiker.eyebrow}</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-braun-800 mb-3 sm:mb-4" data-cms="sektionen.klassiker.heading">{content.sektionen.klassiker.heading}</h2>
+          <Rich as="p" className="text-braun-500 text-sm sm:text-base max-w-xl mx-auto" data-cms="sektionen.klassiker.intro" text={content.sektionen.klassiker.intro} />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {items.map(item => (
@@ -448,7 +443,7 @@ function Klassiker() {
               </div>
               <div className="p-5 sm:p-6">
                 <h3 className="text-xl sm:text-2xl font-display text-braun-800 mb-2">{item.name}</h3>
-                <p className="text-braun-500 text-sm leading-relaxed" data-cms={`klassiker.${item.cms}`}>{item.beschreibung}</p>
+                <Rich as="p" className="text-braun-500 text-sm leading-relaxed" data-cms={`klassiker.${item.cms}`} text={item.beschreibung} />
                 {item.name === 'Frühstück' && (
                   <button
                     onClick={() => setFruehstueckOpen(true)}
@@ -475,11 +470,9 @@ function TortenHighlight() {
     <section className="py-16 sm:py-24 bg-braun-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
-          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Schlemmen, Entspannen, Genießen</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-braun-800 mb-3 sm:mb-4">Unsere Torten</h2>
-          <p className="text-braun-500 text-sm sm:text-base max-w-2xl mx-auto">
-            Aus hochwertigen, regionalen Zutaten – von unseren Konditormeistern täglich frisch zubereitet.
-          </p>
+          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3" data-cms="sektionen.torten.eyebrow">{content.sektionen.torten.eyebrow}</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-braun-800 mb-3 sm:mb-4" data-cms="sektionen.torten.heading">{content.sektionen.torten.heading}</h2>
+          <Rich as="p" className="text-braun-500 text-sm sm:text-base max-w-2xl mx-auto" data-cms="sektionen.torten.intro" text={content.sektionen.torten.intro} />
         </div>
 
         {aktion.aktiv && (
@@ -493,7 +486,7 @@ function TortenHighlight() {
                 <span className="font-sans text-gold text-xs sm:text-sm font-semibold tracking-wide uppercase">Torte des Monats <span data-cms="aktionstorte.monat">{aktion.monat}</span></span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-display text-braun-800 mb-2 sm:mb-3" data-cms="aktionstorte.name">{aktion.name}</h3>
-              <p className="text-braun-600 text-sm sm:text-base mb-3 sm:mb-4" data-cms="aktionstorte.beschreibung">{aktion.beschreibung}</p>
+              <Rich as="p" className="text-braun-600 text-sm sm:text-base mb-3 sm:mb-4" data-cms="aktionstorte.beschreibung" text={aktion.beschreibung} />
               {aktion.normalpreis && (
                 <div className="mb-4 sm:mb-5">
                   <span className="text-braun-400 font-sans text-sm line-through mr-2" data-cms="aktionstorte.normalpreis">€ {aktion.normalpreis}</span>
@@ -555,14 +548,15 @@ function VideoKarte({ e }) {
 
 function Events() {
   const aktiveEvents = getActiveEvents()
+  const content = useContent()
   if (aktiveEvents.length === 0) return null
 
   return (
     <section id="events" className="py-16 sm:py-24 bg-braun-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
-          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3">Was ist los?</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-creme">Veranstaltungen</h2>
+          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3" data-cms="sektionen.events.eyebrow">{content.sektionen.events.eyebrow}</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-creme" data-cms="sektionen.events.heading">{content.sektionen.events.heading}</h2>
         </div>
         <WMEvent />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
@@ -616,19 +610,17 @@ function VermietungTeaser() {
         <div className="max-w-xl">
           <div className="flex items-center gap-2 mb-4">
             <FaSnowflake className="text-gold" size={14} />
-            <span className="font-sans text-gold text-xs tracking-[0.2em] uppercase font-semibold">Events & Vermietung</span>
+            <span className="font-sans text-gold text-xs tracking-[0.2em] uppercase font-semibold" data-cms="sektionen.vermietung.eyebrow">{content.sektionen.vermietung.eyebrow}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-display text-creme mb-4 leading-tight">
-            Eis für Ihr Fest —<br />
-            <span className="text-gold italic">mit Micha dabei.</span>
+            <span data-cms="sektionen.vermietung.heading_zeile1">{content.sektionen.vermietung.heading_zeile1}</span><br />
+            <span className="text-gold italic" data-cms="sektionen.vermietung.heading_zeile2">{content.sektionen.vermietung.heading_zeile2}</span>
           </h2>
           <p className="text-braun-300 text-sm sm:text-base leading-relaxed mb-3">
-            Soft-Eis-Maschine inkl. Eisverkäufer Micha für Ihren Event —
+            <Rich as="span" data-cms="sektionen.vermietung.text" text={content.sektionen.vermietung.text} />
             <span className="text-gold font-semibold" data-cms="vermietung.eismaschine_preis_text"> € {content.vermietung.eismaschine_preis_text} für 6 Stunden</span>, inkl. Material, Auf- & Abbau.
           </p>
-          <p className="text-braun-400 text-sm mb-8">
-            Außerdem: Kühlwagen-Vermietung auf Anfrage.
-          </p>
+          <Rich as="p" className="text-braun-400 text-sm mb-8" data-cms="sektionen.vermietung.zusatz_text" text={content.sektionen.vermietung.zusatz_text} />
           <div className="flex flex-col sm:flex-row gap-3">
             <Link to="/vermietung" className="btn-gold flex items-center justify-center gap-2 text-sm">
               Alle Angebote <FaArrowRight size={12} />
