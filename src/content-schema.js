@@ -14,10 +14,43 @@ export const DEFAULT_CONTENT = {
   },
   // SYNC: Worker-Schema gastro — events + highlights spiegeln den KV-Datenkontrakt
   events: {
-    aktiv: false,
+    aktiv: true,
     eyebrow: 'Was ist los?',
-    heading: 'Veranstaltungen & Rückblick',
-    items: [],
+    heading: 'Veranstaltungen',
+    items: [
+      {
+        titel: '43. Bleiburger Radwandertag & Sommerfest',
+        text: 'Der 43. Bleiburger Radwandertag der Kärntner Sparkasse – und wir sind dabei! Start um 17:00 Uhr vor der Sparkasse Bleiburg. Strecke auch für Oldtimer (50 ccm), Verlosung toller Preise, Hüpfburg für Kinder, bei jeder Witterung. Das Schloss-Café Bleiburg feiert gleichzeitig sein Sommerfest – kommt vorbei!',
+        datum: '20. Juni 2026 · ab 17:00 Uhr',
+        bild: '/images/radwandertag-2026-plakat.jpg',
+        ort: 'Kärntner Sparkasse Bleiburg, 10. Oktober Platz 38',
+        istPlakat: true,
+      },
+      {
+        titel: 'Auszahlung Sparverein',
+        text: 'Die jährliche Auszahlung des Sparvereins findet ab 12:00 Uhr statt. Wir freuen uns auf einen gemütlichen Nachmittag im Schloss-Café — mit hausgemachten Mehlspeisen und guter Gesellschaft!',
+        datum: '5. Juli 2026 · ab 12:00 Uhr',
+        bild: '/images/sparverein-auszahlung.jpg',
+        ort: 'Schloss-Café Bleiburg',
+      },
+      {
+        titel: 'Ausstellung: Drei Welten im Nahbereich',
+        text: 'Mercedes Helnwein, Werner Berg & Alberto Giacometti im Dialog — direkt am 10. Oktober Platz. Zur Eröffnung war Weltkünstler Gottfried Helnwein persönlich in Bleiburg — und zu Gast im Schloss-Café.',
+        datum: 'noch bis 8. Nov · Di–So 10–18 Uhr',
+        bild: '/images/helnwein-besuch.jpg',
+        ort: 'Werner Berg Museum · 10. Oktober Platz 4',
+        link: 'https://www.wernerberg.museum',
+        istPlakat: true,
+      },
+      {
+        titel: 'Dauerausstellung: Michael Pietrowski',
+        text: 'Fadenbilder, Acryl, CrossArt & Beanie-Serie – Wo Street Art die Stadt erobert, verlagert Pietrowski die künstlerische Intervention in den alpinen Raum. Werke können vor Ort besichtigt und erworben werden.',
+        datum: 'Dauerausstellung',
+        bild: '/images/pietrowski-ausstellung.webp',
+        ort: 'Schloss-Café Bleiburg',
+        link: 'https://www.pietrowski.at',
+      },
+    ],
   },
   highlights: [],
   hero: {
