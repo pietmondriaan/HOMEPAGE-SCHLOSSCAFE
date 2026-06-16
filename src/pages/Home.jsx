@@ -522,30 +522,6 @@ function TortenHighlight() {
   )
 }
 
-function VideoKarte({ e }) {
-  return (
-    <div className="relative h-40 sm:h-48 overflow-hidden bg-braun-900">
-      <LazyVideo
-        src={`.${e.video}`}
-        muted
-        loop
-        playsInline
-        className="w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-braun-900/40 to-transparent" />
-      <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm text-white font-sans text-[10px] tracking-wide px-2.5 py-1 rounded-full">
-        <FaPlay size={8} />
-        Video
-      </div>
-      {e.immer_zeigen && (
-        <div className="absolute top-3 left-3 bg-gold text-braun-900 font-sans text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow">
-          Aktuell
-        </div>
-      )}
-    </div>
-  )
-}
-
 function Events() {
   const content = useContent()
   const items = content.events?.items || []
@@ -555,10 +531,14 @@ function Events() {
   // Sektion nur rendern wenn Events aktiv + Items vorhanden, ODER Gewinnspiel aktiv
   if (!(eventsAktiv && items.length > 0) && !gewinnspielAktiv) return null
 
-  // Sicherheits-Check: link nur rendern wenn http(s):// oder /
+  // Sicherheits-Check: link nur rendern wenn http(s):// oder einzelner /
+  // protocol-relative URLs (//host) werden abgelehnt
   function safeHref(link) {
-    if (!link) return null
-    return /^(https?:\/\/|\/)/.test(link) ? link : null
+    if (typeof link !== 'string') return null
+    const v = link.trim()
+    if (/^https?:\/\//i.test(v)) return v
+    if (v.startsWith('/') && !v.startsWith('//')) return v
+    return null
   }
 
   return (
@@ -578,7 +558,7 @@ function Events() {
                 ? { href, target: '_blank', rel: 'noopener noreferrer' }
                 : {}
               return (
-                <Wrapper key={idx} {...wrapperProps} className="card-hover bg-braun-700 rounded-2xl overflow-hidden block active:scale-[0.98] transition-transform">
+                <Wrapper key={item.titel || idx} {...wrapperProps} className="card-hover bg-braun-700 rounded-2xl overflow-hidden block active:scale-[0.98] transition-transform">
                   {item.bild && (
                     <div className={item.istPlakat ? "overflow-hidden bg-braun-900 flex items-center justify-center" : "h-40 sm:h-48 overflow-hidden"}>
                       <img
