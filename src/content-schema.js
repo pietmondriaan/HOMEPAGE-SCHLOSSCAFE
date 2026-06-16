@@ -12,6 +12,14 @@ export const DEFAULT_CONTENT = {
     business_name: 'Café mit Herz',
     tagline: 'Gastfreundschaft mit ganz viel Herz!',
   },
+  // SYNC: Worker-Schema gastro — events + highlights spiegeln den KV-Datenkontrakt
+  events: {
+    aktiv: false,
+    eyebrow: 'Was ist los?',
+    heading: 'Veranstaltungen & Rückblick',
+    items: [],
+  },
+  highlights: [],
   hero: {
     eyebrow: 'Willkommen bei',
     subtitle: 'Genießen Sie täglich frische, hausgemachte Mehlspeisen, Torten und Eisspezialitäten in unseren Cafés in Bleiburg und Eberndorf am Klopeinersee.',
@@ -46,6 +54,7 @@ export const DEFAULT_CONTENT = {
     },
   },
   kulturmoment: {
+    aktiv: true,
     eyebrow: 'Besonderer Besuch',
     heading_zeile1: 'Gottfried',
     heading_zeile2: 'Helnwein',
@@ -158,8 +167,34 @@ export const FIELD_META = {
   'sektionen.torten.heading': { label: 'Sektion Torten — Überschrift', type: 'string', max: 80 },
   'sektionen.torten.intro':   { label: 'Sektion Torten — Intro', type: 'text', max: 300 },
 
-  'sektionen.events.eyebrow': { label: 'Sektion Veranstaltungen — Eyebrow', type: 'string', max: 60 },
-  'sektionen.events.heading': { label: 'Sektion Veranstaltungen — Überschrift', type: 'string', max: 80 },
+  'sektionen.events.eyebrow': { label: 'Sektion Veranstaltungen — Eyebrow (legacy)', type: 'string', max: 60 },
+  'sektionen.events.heading': { label: 'Sektion Veranstaltungen — Überschrift (legacy)', type: 'string', max: 80 },
+
+  // SYNC: Worker-Schema gastro — events CMS-Block
+  'events.aktiv':                 { label: 'Veranstaltungen — sichtbar', type: 'bool' },
+  'events.eyebrow':               { label: 'Veranstaltungen — Eyebrow', type: 'string', max: 60 },
+  'events.heading':               { label: 'Veranstaltungen — Überschrift', type: 'string', max: 80 },
+  'events.items.*.titel':         { label: 'Event — Titel', type: 'string', max: 80 },
+  'events.items.*.text':          { label: 'Event — Beschreibung', type: 'text', max: 600 },
+  'events.items.*.datum':         { label: 'Event — Datum/Zeit (Anzeigetext)', type: 'string', max: 40 },
+  'events.items.*.bild':          { label: 'Event — Bild', type: 'image' },
+  'events.items.*.bild2':         { label: 'Event — Bild 2 (optional)', type: 'image' },
+  'events.items.*.bild3':         { label: 'Event — Bild 3 (optional)', type: 'image' },
+  'events.items.*.bild4':         { label: 'Event — Bild 4 (optional)', type: 'image' },
+  'events.items.*.ort':           { label: 'Event — Ort (optional)', type: 'string', max: 120 },
+  'events.items.*.link':          { label: 'Event — Link (optional, https://, http:// oder /)', type: 'string', max: 200 },
+  'events.items.*.istPlakat':     { label: 'Event — als Plakat anzeigen', type: 'bool' },
+
+  // SYNC: Worker-Schema gastro — highlights CMS-Block
+  'highlights.*.aktiv':     { label: 'Highlight — sichtbar', type: 'bool' },
+  'highlights.*.eyebrow':   { label: 'Highlight — Eyebrow', type: 'string', max: 60 },
+  'highlights.*.titel':     { label: 'Highlight — Titel', type: 'string', max: 80 },
+  'highlights.*.text':      { label: 'Highlight — Text', type: 'text', max: 500 },
+  'highlights.*.bild':      { label: 'Highlight — Bild', type: 'image' },
+  'highlights.*.cta_label': { label: 'Highlight — Button-Text', type: 'string', max: 40 },
+
+  // SYNC: Worker-Schema gastro
+  'kulturmoment.aktiv': { label: 'Helnwein-Sektion — sichtbar', type: 'bool' },
 
   'sektionen.vermietung.eyebrow':        { label: 'Sektion Vermietung (Start) — Eyebrow', type: 'string', max: 60 },
   'sektionen.vermietung.heading_zeile1': { label: 'Sektion Vermietung (Start) — Überschrift Zeile 1', type: 'string', max: 60 },
@@ -259,6 +294,10 @@ export const SECTION_META = {
   footer:           { label: 'Fußzeile', editable: true },
   allergene:        { label: 'Allergeninformation', editable: false },
 }
+
+// SYNC: Worker-Schema gastro — Array-Felder die beim CMS-Update vollständig
+// ersetzt werden (kein tiefes Merge, sondern Array-Swap via Worker).
+export const ARRAY_REPLACE_PATHS = ['events.items', 'highlights']
 
 // services.3.title → services.*.title
 export function normalizePath(path) {
