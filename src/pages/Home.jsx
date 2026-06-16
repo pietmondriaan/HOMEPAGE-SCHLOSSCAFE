@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar, FaPlay, FaClock, FaMapMarkerAlt, FaExternalLinkAlt, FaSnowflake, FaWhatsapp, FaUsers } from 'react-icons/fa'
 import { torten, aktionstorte } from '../data/torten'
-import { getActiveEvents } from '../data/events'
 import { standorte } from '../data/standorte'
 import SpiralAnimation from '../components/SpiralAnimation'
 import EventTicker from '../components/EventTicker'
@@ -165,6 +164,7 @@ function Standorte() {
 function KulturMoment() {
   const content = useContent()
   const k = content.kulturmoment
+  if (k?.aktiv === false) return null
   return (
     <section className="bg-[#0c0906] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
@@ -522,69 +522,70 @@ function TortenHighlight() {
   )
 }
 
-function VideoKarte({ e }) {
-  return (
-    <div className="relative h-40 sm:h-48 overflow-hidden bg-braun-900">
-      <LazyVideo
-        src={`.${e.video}`}
-        muted
-        loop
-        playsInline
-        className="w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-braun-900/40 to-transparent" />
-      <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm text-white font-sans text-[10px] tracking-wide px-2.5 py-1 rounded-full">
-        <FaPlay size={8} />
-        Video
-      </div>
-      {e.immer_zeigen && (
-        <div className="absolute top-3 left-3 bg-gold text-braun-900 font-sans text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow">
-          Aktuell
-        </div>
-      )}
-    </div>
-  )
-}
-
 function Events() {
-  const aktiveEvents = getActiveEvents()
   const content = useContent()
-  if (aktiveEvents.length === 0) return null
+  const items = content.events?.items || []
+  const eventsAktiv = content.events?.aktiv !== false
+  const gewinnspielAktiv = content.gewinnspiel?.aktiv
+
+  // Sektion nur rendern wenn Events aktiv + Items vorhanden, ODER Gewinnspiel aktiv
+  if (!(eventsAktiv && items.length > 0) && !gewinnspielAktiv) return null
+
+  // Sicherheits-Check: link nur rendern wenn http(s):// oder einzelner /
+  // protocol-relative URLs (//host) werden abgelehnt
+  function safeHref(link) {
+    if (typeof link !== 'string') return null
+    const v = link.trim()
+    if (/^https?:\/\//i.test(v)) return v
+    if (v.startsWith('/') && !v.startsWith('//')) return v
+    return null
+  }
 
   return (
     <section id="events" className="py-16 sm:py-24 bg-braun-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
-          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3" data-cms="sektionen.events.eyebrow">{content.sektionen.events.eyebrow}</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-creme" data-cms="sektionen.events.heading">{content.sektionen.events.heading}</h2>
+          <p className="font-sans text-gold tracking-[0.2em] uppercase text-xs sm:text-sm mb-2 sm:mb-3" data-cms="events.eyebrow">{content.events?.eyebrow}</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-creme" data-cms="events.heading">{content.events?.heading}</h2>
         </div>
         <WMEvent />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
-          {aktiveEvents.map(e => (
-            <a key={e.id} href={e.link || '#'} target={e.link ? '_blank' : ''} rel="noopener noreferrer" className="card-hover bg-braun-700 rounded-2xl overflow-hidden block active:scale-[0.98] transition-transform">
-              {e.video ? (
-                <VideoKarte e={e} />
-              ) : (
-                <div className={e.istPlakat ? "overflow-hidden bg-braun-900 flex items-center justify-center" : "h-40 sm:h-48 overflow-hidden"}>
-                  <img src={`.${e.bild}`} alt={e.titel} className={e.istPlakat ? "w-full object-contain" : `w-full h-full object-cover ${e.objektPos === 'top' ? 'object-top' : ''}`} />
-                </div>
-              )}
-              <div className="p-5 sm:p-6">
-                <div className="flex items-center gap-2 text-gold text-sm mb-2 sm:mb-3">
-                  <FaCalendarAlt />
-                  <span className="font-sans text-xs sm:text-sm">
-                    {e.dauerausstellung ? 'Dauerausstellung' : new Date(e.datum).toLocaleDateString('de-AT', { day: 'numeric', month: 'long', year: 'numeric' })}
-                    {e.uhrzeit ? ` · ${e.uhrzeit}` : ''}
-                  </span>
-                </div>
-                <h3 className="text-lg sm:text-xl font-display text-creme mb-1.5 sm:mb-2">{e.titel}</h3>
-                <p className="text-braun-300 text-xs sm:text-sm leading-relaxed">{e.beschreibung}</p>
-                <p className="text-gold-light font-sans text-xs mt-2 sm:mt-3">{e.ort}</p>
-                {e.link && <p className="text-gold font-sans text-sm mt-2 sm:mt-3 font-semibold">Mehr erfahren →</p>}
-              </div>
-            </a>
-          ))}
-        </div>
+        {eventsAktiv && items.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
+            {items.map((item, idx) => {
+              const href = safeHref(item.link)
+              const Wrapper = href ? 'a' : 'div'
+              const wrapperProps = href
+                ? { href, target: '_blank', rel: 'noopener noreferrer' }
+                : {}
+              return (
+                <Wrapper key={item.titel || idx} {...wrapperProps} className="card-hover bg-braun-700 rounded-2xl overflow-hidden block active:scale-[0.98] transition-transform">
+                  {item.bild && (
+                    <div className={item.istPlakat ? "overflow-hidden bg-braun-900 flex items-center justify-center" : "h-40 sm:h-48 overflow-hidden"}>
+                      <img
+                        src={`.${item.bild}`}
+                        alt={item.titel}
+                        loading="lazy"
+                        className={item.istPlakat ? "w-full object-contain" : "w-full h-full object-cover"}
+                      />
+                    </div>
+                  )}
+                  <div className="p-5 sm:p-6">
+                    {item.datum && (
+                      <div className="flex items-center gap-2 text-gold text-sm mb-2 sm:mb-3">
+                        <FaCalendarAlt />
+                        <span className="font-sans text-xs sm:text-sm">{item.datum}</span>
+                      </div>
+                    )}
+                    <h3 className="text-lg sm:text-xl font-display text-creme mb-1.5 sm:mb-2">{item.titel}</h3>
+                    {item.text && <Rich as="p" className="text-braun-300 text-xs sm:text-sm leading-relaxed" text={item.text} />}
+                    {item.ort && <p className="text-gold-light font-sans text-xs mt-2 sm:mt-3">{item.ort}</p>}
+                    {href && <p className="text-gold font-sans text-sm mt-2 sm:mt-3 font-semibold">Mehr erfahren →</p>}
+                  </div>
+                </Wrapper>
+              )
+            })}
+          </div>
+        )}
       </div>
     </section>
   )
