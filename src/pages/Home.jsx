@@ -11,6 +11,18 @@ import LazyVideo from '../components/LazyVideo'
 import Rich from '../components/Rich'
 import { useContent } from '../hooks/useContent'
 
+// CMS-Medien: hochgeladene Dateien liefern absolute URLs (https://… oder //…),
+// die bleiben unverändert. Relative Projektpfade (/images/…) bekommen das
+// `.`-Präfix, damit der Build sie auflöst.
+function cmsMediaUrl(p) {
+  if (typeof p !== 'string' || !p) return ''
+  return /^(https?:)?\/\//i.test(p) ? p : `.${p}`
+}
+// Erkennt vom Nutzer hochgeladene Videos (kurze Handy-Clips) an der Endung.
+function isVideoUrl(p) {
+  return typeof p === 'string' && /\.(mp4|mov|webm|m4v)(\?.*)?$/i.test(p)
+}
+
 function AutoPlayVideo({ src, poster, className, muted = true, loop = false, playsInline = false, ...props }) {
   const ref = useRef(null)
   useEffect(() => {
@@ -561,12 +573,22 @@ function Events() {
                 <Wrapper key={item.titel || idx} {...wrapperProps} className="card-hover bg-braun-700 rounded-2xl overflow-hidden block active:scale-[0.98] transition-transform">
                   {item.bild && (
                     <div className={item.istPlakat ? "overflow-hidden bg-braun-900 flex items-center justify-center" : "h-40 sm:h-48 overflow-hidden"}>
-                      <img
-                        src={`.${item.bild}`}
-                        alt={item.titel}
-                        loading="lazy"
-                        className={item.istPlakat ? "w-full object-contain" : "w-full h-full object-cover"}
-                      />
+                      {isVideoUrl(item.bild) ? (
+                        <LazyVideo
+                          src={cmsMediaUrl(item.bild)}
+                          muted
+                          loop
+                          playsInline
+                          className={item.istPlakat ? "w-full object-contain" : "w-full h-full object-cover"}
+                        />
+                      ) : (
+                        <img
+                          src={cmsMediaUrl(item.bild)}
+                          alt={item.titel}
+                          loading="lazy"
+                          className={item.istPlakat ? "w-full object-contain" : "w-full h-full object-cover"}
+                        />
+                      )}
                     </div>
                   )}
                   <div className="p-5 sm:p-6">
