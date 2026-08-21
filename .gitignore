@@ -3,3 +3,9 @@ node_modules/
 dist/
 preview/node_modules/
 preview/dist/
+
+# Drop-Zone-Material (Fotos/Karten/Zugaenge) — nie ins Repo (Beinahe-Leck 21.08.2026)
+MENÜ-KARTEN/
+Veranstaltungen/
+Zugänge/
+fotos/
