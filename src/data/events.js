@@ -1,29 +1,7 @@
 ﻿export const events = [
-  {
-    id: 8,
-    titel: "Bleiburger Wiesenmarkt",
-    datum: "2026-09-07",
-    uhrzeit: "4.–7. September",
-    beschreibung: "Das größte und älteste Volksfest Unterkärntens steht vor der Tür — und wir sind schon mitten in den Vorbereitungen! Wir freuen uns auf euch am Bleiburger Wiesenmarkt.",
-    bild: null,
-    ort: "Bleiburg",
-    link: "https://bleiburgerwiesenmarkt.at",
-    dauerausstellung: false,
-    aktiv: true,
-  },
-  {
-    id: 7,
-    titel: "Ciao Bella – Italo Night",
-    datum: "2026-09-07",
-    uhrzeit: "ab 17:00 Uhr",
-    beschreibung: "La dolce vita am Bleiburger Wiesenmarkt! Frisch zubereitete Pizza vom Teigkeller, Wein, Spritzer, Aperol uvm., italienische Musik und beste Stimmung — mit DJ Hannes von Laut & Leise Events.",
-    bild: "/images/italo-night-2026-plakat.jpg",
-    ort: "Bleiburger Wiesenmarkt",
-    link: null,
-    dauerausstellung: false,
-    aktiv: true,
-    istPlakat: true,
-  },
+  // Wiesenmarkt + Italo Night stehen seit 25.08.2026 in ../data/wiesenmarkt.js
+  // (Zeltprogramm für Hero, Wiesenzelt-Sektion und Ticker) — hier bewusst nicht mehr,
+  // sonst laufen sie doppelt durch den Ticker.
   {
     id: 9,
     titel: "ANIMA — Ausstellung Michael Pietrowski",

@@ -1,11 +1,13 @@
 ﻿import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { usePageTitle } from '../hooks/usePageTitle'
-import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar, FaPlay, FaClock, FaMapMarkerAlt, FaExternalLinkAlt, FaSnowflake, FaWhatsapp, FaUsers } from 'react-icons/fa'
+import { FaArrowRight, FaShoppingBag, FaCalendarAlt, FaStar, FaPlay, FaClock, FaMapMarkerAlt, FaExternalLinkAlt, FaSnowflake, FaWhatsapp, FaUsers, FaGlassCheers } from 'react-icons/fa'
 import { torten, aktionstorte } from '../data/torten'
 import { standorte } from '../data/standorte'
+import { wiesenmarkt, wiesenmarktAktiv } from '../data/wiesenmarkt'
 import SpiralAnimation from '../components/SpiralAnimation'
 import EventTicker from '../components/EventTicker'
+import Wiesenzelt from '../components/Wiesenzelt'
 import WMEvent from '../components/WMEvent'
 import LazyVideo from '../components/LazyVideo'
 import Rich from '../components/Rich'
@@ -53,6 +55,41 @@ function AutoPlayVideo({ src, poster, className, muted = true, loop = false, pla
 }
 
 
+// Programmblock im Hero: die drei Wiesenmarkt-Tage mit eigenem Programm.
+// Verschwindet nach dem letzten Markttag von selbst (../data/wiesenmarkt).
+function WiesenzeltHero() {
+  if (!wiesenmarktAktiv()) return null
+  return (
+    <div className="mt-8 sm:mt-10 mx-auto max-w-xl rounded-2xl border border-gold/30 bg-braun-900/55 backdrop-blur-sm px-4 py-4 sm:px-6 sm:py-5">
+      <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
+        <FaGlassCheers className="text-gold" size={12} />
+        <p className="font-sans text-gold text-[10px] sm:text-xs tracking-[0.18em] uppercase font-semibold">
+          {wiesenmarkt.titel} · {wiesenmarkt.zeitraumKurz}
+        </p>
+      </div>
+      <ul className="space-y-2 text-left">
+        {wiesenmarkt.programm.map(tag => (
+          <li key={tag.id} className="flex items-baseline gap-3">
+            <span className="font-sans text-gold text-[10px] sm:text-xs font-bold uppercase tracking-wide w-12 sm:w-14 shrink-0">
+              {tag.tagKurz}
+            </span>
+            <span className="text-xs sm:text-sm leading-snug">
+              <span className="text-creme font-semibold">{tag.heroTitel}</span>
+              <span className="text-braun-300"> — {tag.heroText}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+      <button
+        onClick={() => document.getElementById('wiesenzelt')?.scrollIntoView({ behavior: 'smooth' })}
+        className="mt-4 w-full font-sans text-gold text-xs sm:text-sm font-semibold hover:text-gold-light transition-colors cursor-pointer"
+      >
+        Ganzes Zeltprogramm →
+      </button>
+    </div>
+  )
+}
+
 function Hero() {
   const content = useContent()
   return (
@@ -99,6 +136,7 @@ function Hero() {
             {content.hero.cta_secondary}
           </button>
         </div>
+        <WiesenzeltHero />
       </div>
       <div className="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 animate-bounce hidden sm:block">
         <div className="w-6 h-10 rounded-full border-2 border-creme/40 flex items-start justify-center p-2">
@@ -678,6 +716,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Wiesenzelt />
       <Standorte />
       <Klassiker />
       <KulturMoment />

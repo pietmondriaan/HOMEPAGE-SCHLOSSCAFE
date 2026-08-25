@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
-import { FaStar, FaPalette, FaFutbol } from 'react-icons/fa'
+import { FaStar, FaPalette, FaFutbol, FaGlassCheers, FaMusic } from 'react-icons/fa'
 import { getActiveEvents } from '../data/events'
+import { wiesenmarkt, wiesenmarktAktiv } from '../data/wiesenmarkt'
 import { aktionstorte } from '../data/torten'
 
 // WM-Gewinnspiel läuft bis 19.07.2026 (Europe/Vienna) und ist dann automatisch raus.
@@ -48,6 +49,24 @@ export default function EventTicker() {
       label: 'Torte des Monats Mai',
       text: aktionstorte.name + ' – jetzt bestellen',
       accent: true,
+    })
+  }
+
+  // Wiesenzelt + Tagesprogramm, solange der Wiesenmarkt läuft.
+  if (wiesenmarktAktiv()) {
+    items.push({
+      icon: <FaGlassCheers size={11} />,
+      label: 'Wiesenmarkt',
+      text: `${wiesenmarkt.titel} · ${wiesenmarkt.zeitraumKurz} · ${wiesenmarkt.ort}`,
+      accent: true,
+    })
+    wiesenmarkt.programm.forEach(tag => {
+      items.push({
+        icon: <FaMusic size={10} />,
+        label: tag.tagKurz,
+        text: `${tag.heroTitel} · ${tag.heroText}`,
+        accent: false,
+      })
     })
   }
 

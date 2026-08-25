@@ -19,11 +19,21 @@ export const DEFAULT_CONTENT = {
     heading: 'Veranstaltungen',
     items: [
       {
-        titel: 'Bleiburger Wiesenmarkt 2026',
-        text: 'Das größte und älteste Volksfest Unterkärntens steht vor der Tür — und wir sind schon mitten in den Vorbereitungen! Wir freuen uns auf euch am Bleiburger Wiesenmarkt.',
+        titel: 'Schloss Café Wiesenzelt am Wiesenmarkt',
+        text: 'Vier Tage größtes und ältestes Volksfest Unterkärntens — und wir sind mit unserem Zelt mittendrin. Jeden Tag hausgemachte Mehlspeisen, die originale Bleiburger Wiesentorte, Softeis und Kaffee. **Freitag, 4.9.:** Kinder-Disco powered by Schischule Petzen, dazu neu der Wiesnstadl ab 20:00 Uhr — Live-Musik ab 21:00 mit Manuel Brunner. **Samstag, 5.9.:** Wiesnstadl mit poppins, Live-Musik ab 21:00 Uhr. **Montag, 7.9.:** Ciao Bella – Italo Night ab 17:00 Uhr.',
         datum: '4.–7. September 2026',
+        bild: '/images/wiesenzelt-2026-programm.jpg',
         ort: 'Wiesenmarktgelände Bleiburg',
         link: 'https://bleiburgerwiesenmarkt.at',
+        istPlakat: true,
+      },
+      {
+        titel: 'NEU & LIVE: Wiesnstadl',
+        text: 'Nur am 4. und 5. September ab 20:00 Uhr im Schloss-Café-Zelt: Live-Musik ab 21:00 Uhr — am Freitag mit **Manuel Brunner**, am Samstag mit **poppins**. Happy Hour von 21:00 bis 23:00 Uhr. Tanzen, feiern, Wiesenmarkt erleben!',
+        datum: '4. & 5. September · ab 20:00 Uhr',
+        bild: '/images/wiesnstadl-2026-plakat.jpg',
+        ort: 'Bleiburger Wiesenmarkt',
+        istPlakat: true,
       },
       {
         titel: 'Ciao Bella – Italo Night',
