@@ -14,21 +14,10 @@
   {
     id: 11,
     titel: "Bleiburger Kneipenfestival",
-    datum: "2026-10-24",
-    beschreibung: "Ganz Bleiburg feiert: viele Lokale, Live-Musik und beste Stimmung — von Station zu Station.",
+    datum: "2026-11-07",
+    beschreibung: "Ganz Bleiburg feiert — das Schloss-Café ist Station, mit Live-Musik.",
     bild: "/images/kneipenfestival-2026.jpg",
     ort: "Lokale in ganz Bleiburg",
-    aktiv: true,
-  },
-  {
-    id: 9,
-    titel: "ANIMA — Ausstellung Michael Pietrowski",
-    datum: "2026-01-01",
-    beschreibung: "Unsere Dauerausstellung ist auf Reisen: Porträts, Fadenbilder und Kohlepulver-Arbeiten sind derzeit in der Ausstellung „ANIMA – Portreti in vrhovi“ im Kulturzentrum Črna na Koroškem (Slowenien) zu sehen.",
-    bild: "/images/pietrowski-ausstellung.webp",
-    ort: "Kulturzentrum Črna na Koroškem",
-    link: "https://www.pietrowski.at",
-    dauerausstellung: true,
     aktiv: true,
   },
 ]
