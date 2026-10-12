@@ -3,6 +3,15 @@
   // (Zeltprogramm für Hero, Wiesenzelt-Sektion und Ticker) — hier bewusst nicht mehr,
   // sonst laufen sie doppelt durch den Ticker.
   {
+    id: 10,
+    titel: "Oktoberfest im Schloss-Café",
+    datum: "2026-10-23",
+    beschreibung: "Unser traditionelles Oktoberfest mit Weißwurst, Gulasch, frisch gezapftem Bier und guter Laune.",
+    bild: "/images/oktoberfest-2026.jpg",
+    ort: "Schloss-Café Bleiburg",
+    aktiv: true,
+  },
+  {
     id: 9,
     titel: "ANIMA — Ausstellung Michael Pietrowski",
     datum: "2026-01-01",
