@@ -26,6 +26,13 @@ export const DEFAULT_CONTENT = {
         ort: 'Schloss-Café Bleiburg',
       },
       {
+        titel: 'Bleiburger Kneipenfestival',
+        text: 'Am Tag nach unserem Oktoberfest geht es gleich weiter: Beim Bleiburger Kneipenfestival verwandelt sich die ganze Stadt einen Abend lang in eine große Feiermeile. Viele Lokale, Live-Musik an jeder Ecke, gutes Essen und beste Stimmung — einfach von Station zu Station ziehen und Bleiburg bei Nacht genießen. Veranstaltet von der Wirtschaftsgemeinschaft Petzenland.',
+        datum: 'Samstag, 24. Oktober 2026',
+        bild: '/images/kneipenfestival-2026.jpg',
+        ort: 'Lokale in ganz Bleiburg',
+      },
+      {
         titel: 'ANIMA — Ausstellung in Črna na Koroškem',
         text: 'Unsere Dauerausstellung ist auf Reisen: Die Werke von Michael Pietrowski — Porträts, Fadenbilder und Kohlepulver-Arbeiten — sind derzeit in der Ausstellung „ANIMA – Portreti in vrhovi“ im Kulturzentrum Črna na Koroškem (Slowenien) zu sehen.',
         datum: 'derzeit zu sehen',

@@ -12,6 +12,15 @@
     aktiv: true,
   },
   {
+    id: 11,
+    titel: "Bleiburger Kneipenfestival",
+    datum: "2026-10-24",
+    beschreibung: "Ganz Bleiburg feiert: viele Lokale, Live-Musik und beste Stimmung — von Station zu Station.",
+    bild: "/images/kneipenfestival-2026.jpg",
+    ort: "Lokale in ganz Bleiburg",
+    aktiv: true,
+  },
+  {
     id: 9,
     titel: "ANIMA — Ausstellung Michael Pietrowski",
     datum: "2026-01-01",
