@@ -19,13 +19,6 @@ export const DEFAULT_CONTENT = {
     heading: 'Veranstaltungen',
     items: [
       {
-        titel: 'Oktoberfest im Schloss-Café',
-        text: 'Unser traditionelles Oktoberfest: Weißwurst mit süßem Senf und Brezn, ein kräftiges Gulasch, frisch gezapftes Bier — und jede Menge gute Laune. Tracht ist gern gesehen, aber kein Muss. Kommt vorbei, wir freuen uns auf euch. O’zapft is!',
-        datum: 'Freitag, 23. Oktober 2026',
-        bild: '/images/oktoberfest-2026.jpg',
-        ort: 'Schloss-Café Bleiburg',
-      },
-      {
         titel: 'Bleiburger Kneipenfestival',
         text: 'Beim Bleiburger Kneipenfestival verwandelt sich die ganze Stadt einen Abend lang in eine große Feiermeile — und das Schloss-Café ist als Station mit dabei, mit Live-Musik. Viele Lokale, gutes Essen und beste Stimmung: einfach von Station zu Station ziehen und Bleiburg bei Nacht genießen. Veranstaltet von der Wirtschaftsgemeinschaft Petzenland.',
         datum: 'Samstag, 7. November 2026',
