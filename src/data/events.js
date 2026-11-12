@@ -2,15 +2,6 @@
   // Wiesenmarkt + Italo Night stehen seit 25.08.2026 in ../data/wiesenmarkt.js
   // (Zeltprogramm für Hero, Wiesenzelt-Sektion und Ticker) — hier bewusst nicht mehr,
   // sonst laufen sie doppelt durch den Ticker.
-  {
-    id: 11,
-    titel: "Bleiburger Kneipenfestival",
-    datum: "2026-11-07",
-    beschreibung: "Ganz Bleiburg feiert — das Schloss-Café ist Station, mit Live-Musik.",
-    bild: "/images/kneipenfestival-2026.jpg",
-    ort: "Lokale in ganz Bleiburg",
-    aktiv: true,
-  },
 ]
 
 // Automatische Filterung: vergangene Events ausblenden, nach Datum sortieren

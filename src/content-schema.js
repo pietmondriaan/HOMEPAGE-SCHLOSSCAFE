@@ -17,15 +17,7 @@ export const DEFAULT_CONTENT = {
     aktiv: true,
     eyebrow: 'Was ist los?',
     heading: 'Veranstaltungen',
-    items: [
-      {
-        titel: 'Bleiburger Kneipenfestival',
-        text: 'Beim Bleiburger Kneipenfestival verwandelt sich die ganze Stadt einen Abend lang in eine große Feiermeile — und das Schloss-Café ist als Station mit dabei, mit Live-Musik. Viele Lokale, gutes Essen und beste Stimmung: einfach von Station zu Station ziehen und Bleiburg bei Nacht genießen. Veranstaltet von der Wirtschaftsgemeinschaft Petzenland.',
-        datum: 'Samstag, 7. November 2026',
-        bild: '/images/kneipenfestival-2026.jpg',
-        ort: 'Bleiburg — Station im Schloss-Café mit Live-Musik',
-      },
-    ],
+    items: [],
   },
   highlights: [],
   hero: {
