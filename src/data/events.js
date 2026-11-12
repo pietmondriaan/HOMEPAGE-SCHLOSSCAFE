@@ -2,6 +2,15 @@
   // Wiesenmarkt + Italo Night stehen seit 25.08.2026 in ../data/wiesenmarkt.js
   // (Zeltprogramm für Hero, Wiesenzelt-Sektion und Ticker) — hier bewusst nicht mehr,
   // sonst laufen sie doppelt durch den Ticker.
+  {
+    id: 12,
+    titel: "Petzen-Nest: Eröffnung",
+    datum: "2026-12-04",
+    beschreibung: "Die Hüttenküche an der Talstation der Petzenbahn öffnet neu, täglich 9:00 bis 17:30 Uhr.",
+    bild: "/images/petzen-nest-eroeffnung-2026.jpg",
+    ort: "Talstation Petzenbahn, Feistritz ob Bleiburg",
+    aktiv: true,
+  },
 ]
 
 // Automatische Filterung: vergangene Events ausblenden, nach Datum sortieren

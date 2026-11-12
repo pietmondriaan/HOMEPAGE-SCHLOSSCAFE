@@ -17,7 +17,17 @@ export const DEFAULT_CONTENT = {
     aktiv: true,
     eyebrow: 'Was ist los?',
     heading: 'Veranstaltungen',
-    items: [],
+    items: [
+      {
+        titel: 'Petzen-Nest: Wir öffnen neu',
+        text: 'Am 4. Dezember sperrt das Petzen-Nest an der Talstation der Petzenbahn auf. Eine Hüttenküche, täglich von 9:00 bis 17:30 Uhr geöffnet. Gutes Essen, gute Leute, guter Berg. Bis bald auf der Petzen!',
+        datum: 'Freitag, 4. Dezember 2026',
+        bild: '/images/petzen-nest-eroeffnung-2026.jpg',
+        ort: 'Talstation Petzenbahn, Unterort 27a, Feistritz ob Bleiburg — petzennest.at',
+        link: 'https://petzennest.at',
+        istPlakat: true,
+      },
+    ],
   },
   highlights: [],
   hero: {

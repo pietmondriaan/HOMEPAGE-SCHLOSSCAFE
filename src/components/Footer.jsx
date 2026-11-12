@@ -42,6 +42,9 @@ export default function Footer() {
           <div className="col-span-2 sm:col-span-1">
             <h4 className="text-creme text-base sm:text-lg mb-3 sm:mb-4">Links</h4>
             <div className="space-y-1 text-sm">
+              <Link to="/schlosscafe" className="block py-1.5 hover:text-gold active:text-gold transition-colors">Schloss-Café Bleiburg</Link>
+              <Link to="/reinhardt" className="block py-1.5 hover:text-gold active:text-gold transition-colors">Cafe Reinhart Eberndorf</Link>
+              <a href="https://petzennest.at" target="_blank" rel="noopener" className="block py-1.5 hover:text-gold active:text-gold transition-colors">Petzen-Nest · Hüttenküche an der Petzen</a>
               <Link to="/torten" className="block py-1.5 hover:text-gold active:text-gold transition-colors">Tortenshop</Link>
               <Link to="/kontakt" className="block py-1.5 hover:text-gold active:text-gold transition-colors">Reservierung</Link>
               <Link to="/impressum" className="block py-1.5 hover:text-gold active:text-gold transition-colors">Impressum</Link>
